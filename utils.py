@@ -149,14 +149,15 @@ def process_links(links, uuid, sni):
 
 def process_multi(links, uuid, sni):
     processed_links = []
-    batch_size = 10  # Số lượng liên kết xử lý cùng lúc
+    batch_size = 10
+    seen_links = set()
     for i in range(0, len(links), batch_size):
         batch = links[i:i + batch_size]
-        processed_batch = process_batch(batch, uuid, sni)
+        processed_batch = process_batch(batch, uuid, sni, seen_links)
         processed_links.extend(processed_batch)
     return processed_links
 
-def process_batch(batch, uuid, sni):
+def process_batch(batch, uuid, sni, seen_links):
     processed_batch = []
     for link in batch:
         prefix = ''
@@ -178,7 +179,6 @@ def process_batch(batch, uuid, sni):
         else:
             processed_batch.append((prefix, link))
     final_links = []
-    seen_links = set()
     for prefix, link in processed_batch:
         if prefix == 'trojan://':
             try:
