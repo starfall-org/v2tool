@@ -94,8 +94,7 @@ def process_links(links, uuid, sni):
                 processed_links.append((prefix, link))
         else:
             processed_links.append((prefix, link))
-    final_links = []
-    seen_links = set()
+    final_links = set()
     for prefix, link in processed_links:
         if prefix == 'trojan://':
             try:
@@ -142,10 +141,8 @@ def process_links(links, uuid, sni):
             final_link = f'{prefix}{encoded_link}'
         else:
             final_link = f'{prefix}{final_link}'
-        if final_link not in seen_links:
-            final_links.append(final_link)
-            seen_links.add(final_link)
-    return final_links
+        final_links.add(final_link)
+    return list(final_links)
 
 def process_multi(links, uuid, sni):
     batch_size = 1
