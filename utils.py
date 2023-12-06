@@ -224,5 +224,4 @@ def process_batch(batch, uuid, sni, final_links):
         else:
             final_link = f'{prefix}{final_link}'
         final_links.add(final_link)
-    return final_links
     
