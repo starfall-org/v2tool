@@ -149,7 +149,7 @@ def process_links(links, uuid, sni):
 
 def process_multi(links, uuid, sni):
     #processed_links = []
-    batch_size = 10
+    batch_size = 3
     final_links =[]
     seen_links = set()
     for i in range(0, len(links), batch_size):
