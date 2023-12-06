@@ -153,7 +153,7 @@ def process_multi(links, uuid, sni):
     for i in range(0, len(links), batch_size):
         batch = links[i:i + batch_size]
         process_batch(batch, uuid, sni, final_links)
-    return final_links
+    return list(final_links)
 
 def process_batch(batch, uuid, sni, final_links):
     processed_batch = []
