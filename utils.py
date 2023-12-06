@@ -148,16 +148,17 @@ def process_links(links, uuid, sni):
     return final_links
 
 def process_multi(links, uuid, sni):
-    processed_links = []
+    #processed_links = []
     batch_size = 10
+    final_links =[]
     seen_links = set()
     for i in range(0, len(links), batch_size):
         batch = links[i:i + batch_size]
-        processed_batch = process_batch(batch, uuid, sni, seen_links)
-        processed_links.extend(processed_batch)
-    return processed_links
+        processed_batch = process_batch(batch, uuid, sni, seen_links, final_links)
+        #processed_links.extend(processed_batch)
+    return final_links
 
-def process_batch(batch, uuid, sni, seen_links):
+def process_batch(batch, uuid, sni, seen_links, final_links):
     processed_batch = []
     for link in batch:
         prefix = ''
@@ -178,7 +179,7 @@ def process_batch(batch, uuid, sni, seen_links):
                 processed_batch.append((prefix, link))
         else:
             processed_batch.append((prefix, link))
-    final_links = []
+    #final_links = []
     for prefix, link in processed_batch:
         if prefix == 'trojan://':
             try:
