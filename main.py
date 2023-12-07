@@ -70,7 +70,7 @@ def process_query():
     encoded_result = base64.b64encode(result.encode('utf-8')).decode('utf-8')
     return Response(encoded_result, mimetype='text/plain')
     
-@app.route('/<filename>')
+@app.route('/list/<filename>')
 def get_all_urls(filename):
     try:
       urls = get_all(filename)
@@ -80,7 +80,7 @@ def get_all_urls(filename):
     except:
       return {"status": "failed", "message": "kho luu tru khong ton tai"}, 404
      
-@app.route('/<filename>/get')
+@app.route('/get/<filename>')
 def process_all_config(filename):
     uuid = request.args.get('uuid')
     sni = request.args.get('sni')
