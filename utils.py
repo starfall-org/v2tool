@@ -65,7 +65,7 @@ def get_links_from_https(response, headers, proxy):
                   links.extend(decoded_line.splitlines())
         except:
             pass
-    if proxy == "true:
+    if proxy == "true":
       with concurrent.futures.ThreadPoolExecutor() as executor:
         executor.map(proxy_process, response.splitlines())
     else:
