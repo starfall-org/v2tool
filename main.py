@@ -17,7 +17,8 @@ def get_all(filename):
     else:
         raise DatabaseNotFoundError("Không tìm thấy dữ liệu")
 
-@app.route('/')def process_query():
+@app.route('/')
+def process_query():
     query_url = request.args.get('url')
     if not query_url:
         return "Vui lòng cung cấp tham số URL", 200
