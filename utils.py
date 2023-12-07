@@ -38,7 +38,7 @@ def get_links_from_http(response, headers):
 
 def get_links_from_https(response, headers, proxy):
     links = []
-    x = 8
+    x = 80
     def process_url(url):
         nonlocal x
         x += 1
