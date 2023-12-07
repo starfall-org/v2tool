@@ -36,7 +36,7 @@ def get_links_from_http(response, headers):
             pass
     return links
 
-def get_links_from_https(response, headers, mode):
+def get_links_from_https(response, headers, proxy):
     links = []
     x = 8
     def process_url(url):
@@ -65,7 +65,7 @@ def get_links_from_https(response, headers, mode):
                   links.extend(decoded_line.splitlines())
         except:
             pass
-    if mode == "proxy":
+    if proxy == "true:
       with concurrent.futures.ThreadPoolExecutor() as executor:
         executor.map(proxy_process, response.splitlines())
     else:
