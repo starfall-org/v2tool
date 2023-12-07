@@ -77,17 +77,3 @@ def process_all_config(filename):
     result = '\n'.join(final_links)
     encoded_result = base64.b64encode(result.encode('utf-8')).decode('utf-8')
     return Response(encoded_result, mimetype='text/plain')
-
-
-@app.route('/proxy')
-def proxy():
-    url_param = request.args.get("url")
-    if not url_param:
-        return  "Vui lòng cung cấp tham số url", 400
-    try:
-        headers = dict(request.headers)
-        headers.pop("Host", None)
-        response = requests.get(url_param, headers=headers)
-        return (response.text, response.status_code, response.headers.items())
-    except Exception as e:
-        return {"error": str(e)}, 500
