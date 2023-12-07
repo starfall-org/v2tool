@@ -87,7 +87,6 @@ def proxy():
     try:
         headers = dict(request.headers)
         headers.pop("Host", None)
-        headers["Host"] = request.host_url
         response = requests.get(url_param, headers=headers)
         return (response.text, response.status_code, response.headers.items())
     except Exception as e:
