@@ -50,7 +50,7 @@ def get_all_urls(filename):
       resp.mimetype = 'text/plain'
       return resp
     except:
-      abort(404)
+      return {"status": "failed", "message": "kho luu tru khong ton tai"}, 404
      
 @app.route('/<filename>/get')
 def process_all_config(filename):
@@ -67,7 +67,7 @@ def process_all_config(filename):
       urls_json = get_all(filename) 
       urls = '\n'.join(urls_json) 
     except:
-      abort(404)
+      return {"status": "failed", "message": "kho luu tru khong ton tai"}, 404
     if func != "single":
       links = get_links_from_https(urls,headers, proxy)
     else:
