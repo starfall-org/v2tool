@@ -30,7 +30,7 @@ def process_query():
     ua = request.args.get('ua')
     if ua is None:
       ua = "v2rayNG/1.8.12"
-    headers = {"User-Agent": ua}
+    headers = {"User-Agent": ua, "Accept-Encoding": "gzip"}
     response = requests.get(query_url, timeout=5, headers=headers, params={"flag":"v2rayn"}).text
     links = get_links_from_response(response)
     if not links:
@@ -63,7 +63,7 @@ def process_all_config(filename):
     ua = request.args.get('ua')
     if ua is None:
       ua = "v2rayNG/1.8.12"
-    headers = {"User-Agent": ua}
+    headers = {"User-Agent": ua, "Accept-Encoding": "gzip"}
     try:
       urls_json = get_all(filename) 
       urls = '\n'.join(urls_json) 
