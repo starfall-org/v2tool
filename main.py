@@ -34,7 +34,7 @@ def get_all(filename):
     links = get_links_from_response(response)
     if not links:
         links = get_links_from_https(response, headers, proxy)
-    if func = "single":
+    if func == "single":
       final_links = process_links(links, uuid, sni)
     else:
       final_links = process_multi(links, uuid, sni)
