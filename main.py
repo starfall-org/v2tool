@@ -83,7 +83,7 @@ def process_all_config(filename):
 def proxy():
     url_param = request.args.get("url")
     if not url_param:
-        return  "Vui lòng cung cấptham số url=<URL đích>", 400
+        return  "Vui lòng cung cấp tham số url", 400
     try:
         headers = dict(request.headers)
         headers.pop("Host", None)
