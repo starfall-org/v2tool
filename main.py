@@ -17,56 +17,61 @@ def get_all(filename):
     else:
         raise DatabaseNotFoundError("Không tìm thấy dữ liệu")
 
-@app.route('/')
-def process_query():
+@app.route('/')def process_query():
     query_url = request.args.get('url')
     if not query_url:
         return "Vui lòng cung cấp tham số URL", 200
     uuid = request.args.get('uuid')
     sni = request.args.get('sni')
     count = request.args.get('count')
-    mode = request.args.get('mode')
-    headers = {"User-Agent": "v2rayNG/1.8.5"}
+    proxy = request.args.get('proxy')
+    func = request.args.get('function')
+    ua = request.args.get('ua')
+    if ua is None:
+      ua = "v2rayNG/1.8.12"
+    headers = {"User-Agent": ua}
     response = requests.get(query_url, timeout=5, headers=headers, params={"flag":"v2rayn"}).text
     links = get_links_from_response(response)
     if not links:
-        links = get_links_from_https(response, headers, mode)
-    final_links = process_links(links, uuid, sni)
+        links = get_links_from_https(response, headers, proxy)
+    if func = "single":
+      final_links = process_links(links, uuid, sni)
+    else:
+      final_links = process_multi(links, uuid, sni)
     result = '\n'.join(final_links)
     encoded_result = base64.b64encode(result.encode('utf-8')).decode('utf-8')
     return Response(encoded_result, mimetype='text/plain')
 
-@app.route('/get/<filename>')
+@app.route('/<filename>')
 def get_all_urls(filename):
     try:
       urls = get_all(filename)
       resp = make_response('\n'.join(urls))
       resp.mimetype = 'text/plain'
-      return {"message":"dich vu da ngung cung cap"}, 503
+      return resp
     except:
-      return {"message":"ban chua them url"}, 400
-
-@app.route('/v2ray')
-def get_v2ray_urls():
-    urls = get_all("v2ray")
-    resp = make_response('\n'.join(urls))
-    resp.mimetype = 'text/plain'
-    return resp 
-    
-    
-@app.route('/config/<filename>')
+      abort(404)
+     
+@app.route('/<filename>/get')
 def process_all_config(filename):
     uuid = request.args.get('uuid')
     sni = request.args.get('sni')
     count = request.args.get('count')
-    mode = request.args.get('mode')
-    headers = {"User-Agent": "v2rayNG/1.8.5"}
+    proxy = request.args.get('proxy')
+    func = request.args.get('function')
+    ua = request.args.get('ua')
+    if ua is None:
+      ua = "v2rayNG/1.8.12"
+    headers = {"User-Agent": ua}
     try:
       urls_json = get_all(filename) 
       urls = '\n'.join(urls_json) 
     except:
-      return {"message":"co loi xay ra!"}, 500
-    links = get_links_from_https(urls, headers, mode)
+      abort(404)
+    if func != "single":
+      links = get_links_from_https(urls,headers, proxy)
+    else:
+      links = get_links_from_http(url, headers)
     final_links = process_multi(links, uuid, sni)
     result = '\n'.join(final_links)
     encoded_result = base64.b64encode(result.encode('utf-8')).decode('utf-8')
