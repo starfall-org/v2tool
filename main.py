@@ -44,6 +44,32 @@ def process_query():
     encoded_result = base64.b64encode(result.encode('utf-8')).decode('utf-8')
     return Response(encoded_result, mimetype='text/plain')
 
+@app.route('/proxy')
+def process_query():
+    query_url = request.args.get('url')
+    if not query_url:
+        return "Vui lòng cung cấp tham số URL", 200
+    uuid = request.args.get('uuid')
+    sni = request.args.get('sni')
+    count = request.args.get('count')
+    proxy = request.args.get('proxy')
+    func = request.args.get('function')
+    ua = request.args.get('ua')
+    if ua is None:
+      ua = "v2rayNG/1.8.12"
+    headers = {"User-Agent": ua}
+    response = requests.get(f"{workers}/?url={query_url}", timeout=5, headers=headers, params={"flag":"v2rayn"}).text
+    links = get_links_from_response(response)
+    if not links:
+        links = get_links_from_https(response, headers, proxy)
+    if func == "single":
+      final_links = process_links(links, uuid, sni)
+    else:
+      final_links = process_multi(links, uuid, sni)
+    result = '\n'.join(final_links)
+    encoded_result = base64.b64encode(result.encode('utf-8')).decode('utf-8')
+    return Response(encoded_result, mimetype='text/plain')
+    
 @app.route('/<filename>')
 def get_all_urls(filename):
     try:
@@ -79,29 +105,3 @@ def process_all_config(filename):
     encoded_result = base64.b64encode(result.encode('utf-8')).decode('utf-8')
     return Response(encoded_result, mimetype='text/plain')
 
-   
-@app.route('/proxy')
-def process_query():
-    query_url = request.args.get('url')
-    if not query_url:
-        return "Vui lòng cung cấp tham số URL", 200
-    uuid = request.args.get('uuid')
-    sni = request.args.get('sni')
-    count = request.args.get('count')
-    proxy = request.args.get('proxy')
-    func = request.args.get('function')
-    ua = request.args.get('ua')
-    if ua is None:
-      ua = "v2rayNG/1.8.12"
-    headers = {"User-Agent": ua}
-    response = requests.get(f"{workers}/?url={query_url}", timeout=5, headers=headers, params={"flag":"v2rayn"}).text
-    links = get_links_from_response(response)
-    if not links:
-        links = get_links_from_https(response, headers, proxy)
-    if func == "single":
-      final_links = process_links(links, uuid, sni)
-    else:
-      final_links = process_multi(links, uuid, sni)
-    result = '\n'.join(final_links)
-    encoded_result = base64.b64encode(result.encode('utf-8')).decode('utf-8')
-    return Response(encoded_result, mimetype='text/plain')
