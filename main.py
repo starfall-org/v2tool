@@ -45,7 +45,7 @@ def process_query():
     return Response(encoded_result, mimetype='text/plain')
 
 @app.route('/proxy')
-def process_query():
+def process_proxy():
     query_url = request.args.get('url')
     if not query_url:
         return "Vui lòng cung cấp tham số URL", 200
