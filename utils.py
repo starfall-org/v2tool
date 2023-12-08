@@ -56,7 +56,7 @@ def get_links_from_https(response, headers, proxy):
         nonlocal x
         x += 1
         try:
-            sub_response = requests.get(f"{workers}/?url={url}", headers=headers, timeout=x).text
+            sub_response = requests.get(workers, headers=headers, params={"url": url}, timeout=x).text
             if 'vmess://' in sub_response or 'trojan://' in sub_response or 'vless://' in sub_response:
                 links.extend(sub_response.splitlines())
             else:
