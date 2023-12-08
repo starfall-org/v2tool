@@ -32,7 +32,10 @@ def process_query():
     if ua is None:
       ua = "v2rayNG/1.8.12"
     headers = {"User-Agent": ua, "Accept-Encoding": "gzip"}
-    response = requests.get(query_url, timeout=5, headers=headers, params={"flag":"v2rayn"}).text
+    if proxy == "true":
+      response = requests.get(workers, timeout=5, headers=headers, params={"url": query_url}).text
+    else:
+      response = requests.get(query_url, timeout=5, headers=headers, params={"flag":"v2rayn"}).text
     links = get_links_from_response(response)
     if not links:
         links = get_links_from_https(response, headers, proxy)
