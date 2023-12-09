@@ -25,16 +25,31 @@ def get_all(filename):
         raise DatabaseNotFoundError("Không tìm thấy dữ liệu")
         
 def process_query(context):
-    query_url = context.req.query['url']
+    try:
+      query_url = context.req.query['url']
+    except:
+      query_url = None
     if not query_url:
         return "Vui lòng cung cấp tham số URL", 200
-    uuid = context.req.query['uuid']
-    sni = context.req.query['sni']
-    count = context.req.query['count']
-    proxy = context.req.query['proxy']
-    func = context.req.query['function']
-    ua = context.req.query['ua']
-    if ua is None:
+    try:
+      uuid = context.req.query['uuid']
+    except:
+      uuid = None
+    try:
+      sni = context.req.query['sni']
+    except:
+      sni = None
+    try:
+      proxy = context.req.query['proxy']
+    except:
+      proxy = None
+    try:
+      func = context.req.query['function']
+    except:
+      func = None
+    try:
+     ua = context.req.query['ua']
+    except:
       ua = "v2rayNG/1.8.12"
     headers = {"User-Agent": ua, "Accept-Encoding": "gzip"}
     if proxy == "true":
@@ -53,9 +68,9 @@ def process_query(context):
     return encoded_result
     
 def get_all_urls(context):
-    req_path = context.req.path
-    filename = req_path.replace("/list/", "")
     try:
+      req_path = context.req.path
+      filename = req_path.replace("/list/", "")
       urls = get_all(filename)
       resp = '\n'.join(urls)
       return resp
@@ -65,13 +80,25 @@ def get_all_urls(context):
 def process_all_config(context):
     req_path = context.req.path
     filename = req_path.replace("/get/", "")
-    uuid = context.req.query['uuid']
-    sni = context.req.query['sni']
-    count = context.req.query['count']
-    proxy = context.req.query['proxy']
-    func = context.req.query['function']
-    ua = context.req.query['ua']
-    if ua is None:
+    try:
+      uuid = context.req.query['uuid']
+    except:
+      uuid = None
+    try:
+      sni = context.req.query['sni']
+    except:
+      sni = None
+    try:
+      proxy = context.req.query['proxy']
+    except:
+      proxy = None
+    try:
+      func = context.req.query['function']
+    except:
+      func = None
+    try:
+      ua = context.req.query['ua']
+    except:
       ua = "v2rayNG/1.8.12"
     headers = {"User-Agent": ua, "Accept-Encoding": "gzip"}
     try:
