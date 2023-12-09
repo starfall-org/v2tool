@@ -1,7 +1,6 @@
-from utils import get_links_from_response, get_links_from_http, get_links_from_https, process_links, process_multi
+from .utils import get_links_from_response, get_links_from_http, get_links_from_https, process_links, process_multi
 import requests, base64, os
 from deta import Deta
-from utils import workers
 
 workers = os.getenv('WORKERS')
 
