@@ -9,13 +9,13 @@ db = deta.Base("v2ray-notes")
 
 def main(context):
   if context.req.path == "/":
-    return process_query(context)
+    return context.res.send(process_query(context))
   elif context.req.path.startswith("/list/"):
-    return get_all_urls(context)
+    return context.res.send(get_all_urls(context))
   elif "get" in context.req.path:
-    return process_all_config(context)
+    return context.res.send(process_all_config(context))
   else:
-    return "Đường dẫn không hợp lệ."
+    return context.res.send("Đường dẫn không hợp lệ.")
 def get_all(filename):
     existing_entry = db.get(filename)
     if existing_entry:
