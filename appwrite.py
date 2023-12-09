@@ -30,7 +30,7 @@ def process_query(context):
     except:
       query_url = None
     if not query_url:
-        return "Vui lòng cung cấp tham số URL", 200
+        return "Vui lòng cung cấp tham số URL"
     try:
       uuid = context.req.query['uuid']
     except:
