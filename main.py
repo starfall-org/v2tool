@@ -101,9 +101,10 @@ def process_all_config(filename):
       return {"status": "failed", "message": "kho luu tru khong ton tai"}, 404
     if func != "single":
       links = get_links_from_https(urls,headers, proxy)
+      final_links = process_multi(links, uuid, sni)
     else:
       links = get_links_from_http(urls, headers)
-    final_links = process_multi(links, uuid, sni)
+      final_links = process_links(links, uuid, sni)
     result = '\n'.join(final_links)
     encoded_result = base64.b64encode(result.encode('utf-8')).decode('utf-8')
     return Response(encoded_result, mimetype='text/plain')
