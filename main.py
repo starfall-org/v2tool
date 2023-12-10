@@ -102,7 +102,7 @@ def process_all_config(filename):
     if func != "single":
       links = get_links_from_https(urls,headers, proxy)
     else:
-      links = get_links_from_http(url, headers)
+      links = get_links_from_http(urls, headers)
     final_links = process_multi(links, uuid, sni)
     result = '\n'.join(final_links)
     encoded_result = base64.b64encode(result.encode('utf-8')).decode('utf-8')
