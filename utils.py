@@ -22,7 +22,7 @@ def get_links_from_http(response, headers):
     links = []
     for line in response.splitlines():
         try:
-          x = 8
+          x = 3
           x += 1
           if line.startswith('http'):
             sub_response = requests.get(line, headers=headers, params={"flag":"v2rayn"}, timeout=x).text
@@ -38,7 +38,7 @@ def get_links_from_http(response, headers):
 
 def get_links_from_https(response, headers, proxy):
     links = []
-    x = 8
+    x = 2
     def process_url(url):
         nonlocal x
         x += 1
