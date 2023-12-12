@@ -12,12 +12,14 @@ def get_links_from_response(response):
     links = []
     if any(proto in response for proto in ["vmess:", "trojan:", "vless:"]):
       for link in response.splitlines():
-        links.extend(link)
+        if any(proto in link for proto in ["vmess:", "trojan:", "vless:"]):
+          links.extend(link)
     else:
       try:
         decoded_line = base64.b64decode(response).decode('utf-8')
         for link in decoded_line.splitlines():
-          links.extend(link)
+          if any(proto in link for proto in ["vmess:", "trojan:", "vless:"]):
+            links.extend(link)
       except Exception as e:
         return {'status':'error','message': str(e)}
     return links
