@@ -11,11 +11,13 @@ workers = os.getenv("WORKERS")
 def get_links_from_response(response):
     links = []
     if any(proto in response for proto in ["vmess:", "trojan:", "vless:"]):
-      links.extend(response.splitlines())
+      for link in response.splitlines():
+        links.extend(link)
     else:
       try:
         decoded_line = base64.b64decode(response).decode('utf-8')
-        links.extend(decoded_line.splitlines())
+        for link in decoded_line.splitlines():
+          links.extend(link)
       except Exception as e:
         return {'status':'error','message': str(e)}
     return links
