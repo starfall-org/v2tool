@@ -10,7 +10,7 @@ workers = os.getenv("WORKERS")
 
 def get_links_from_response(response):
     links = []
-    if all(proto in response for proto in ["vmess:", "trojan:", "vless:"]):
+    if any(proto in response for proto in ["vmess:", "trojan:", "vless:"]):
       links.extend(response.splitlines())
     else:
       try:
@@ -49,11 +49,11 @@ def get_links_from_https(response, headers, proxy):
             if sub_response.status_code != 200:
               sub_response = requests.get(workers, headers=headers, params={"url": url}, timeout=x)
             sub_response = sub_response.text
-            if all(proto in sub_response for proto in ["vmess:", "trojan:", "vless:"]):
+            if any(proto in sub_response for proto in ["vmess:", "trojan:", "vless:"]):
                 links.extend(sub_response.splitlines())
             else:
                 decoded_line = base64.b64decode(sub_response).decode('utf-8')
-                if all(proto in decoded_line for proto in ["vmess:", "trojan:", "vless:"]):
+                if any(proto in decoded_line for proto in ["vmess:", "trojan:", "vless:"]):
                   links.extend(decoded_line.splitlines())
         except:
             pass
@@ -62,11 +62,11 @@ def get_links_from_https(response, headers, proxy):
         x += 1
         try:
             sub_response = requests.get(workers, headers=headers, params={"url": url}, timeout=x).text
-            if all(proto in sub_response for proto in ["vmess:", "trojan:", "vless:"]):
+            if any(proto in sub_response for proto in ["vmess:", "trojan:", "vless:"]):
                 links.extend(sub_response.splitlines())
             else:
                 decoded_line = base64.b64decode(sub_response).decode('utf-8')
-                if all(proto in decoded_line for proto in ["vmess:", "trojan:", "vless:"]):
+                if any(proto in decoded_line for proto in ["vmess:", "trojan:", "vless:"]):
                   links.extend(decoded_line.splitlines())
         except:
             pass
