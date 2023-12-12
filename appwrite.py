@@ -1,6 +1,7 @@
 from .utils import get_links_from_response, get_links_from_http, get_links_from_https, process_links, process_multi
 import requests, base64, os
 from deta import Deta
+from urllib.parse import unquote
 
 workers = os.getenv('WORKERS')
 
@@ -52,6 +53,7 @@ def process_query(context):
     except:
       ua = "v2rayNG/1.8.12"
     headers = {"User-Agent": ua, "Accept-Encoding": "gzip"}
+    query_url = unquote(query_url)
     if proxy == "true":
       response = requests.get(workers, timeout=5, headers=headers, params={"url": query_url}).text
     else:
