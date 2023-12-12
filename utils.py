@@ -10,12 +10,14 @@ workers = os.getenv("WORKERS")
 
 def get_links_from_response(response):
     links = []
-    if 'vmess://' in response or 'trojan://' in response or 'vless://' in response:
-        links.extend(response.splitlines())
+    if all(proto in response for proto in ["vmess:", "trojan:", "vless:"]):
+      links.extend(response.splitlines())
     else:
+      try:
         decoded_line = base64.b64decode(response).decode('utf-8')
-        if 'vmess://' in decoded_line or 'trojan://' in decoded_line or 'vless://' in decoded_line:
-                links.extend(decoded_line.splitlines())
+        links.extend(decoded_line.splitlines())
+      except Exception as e:
+        return {'status':'error','message': str(e)}
     return links
 
 def get_links_from_http(response, headers):
