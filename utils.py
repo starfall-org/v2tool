@@ -62,11 +62,11 @@ def get_links_from_https(response, headers, proxy):
         x += 1
         try:
             sub_response = requests.get(workers, headers=headers, params={"url": url}, timeout=x).text
-            if 'vmess://' in sub_response or 'trojan://' in sub_response or 'vless://' in sub_response:
+            if all(proto in sub_response for proto in ["vmess:", "trojan:", "vless:"]):
                 links.extend(sub_response.splitlines())
             else:
                 decoded_line = base64.b64decode(sub_response).decode('utf-8')
-                if 'vmess://' in decoded_line or 'trojan://' in decoded_line or 'vless://' in decoded_line:
+                if all(proto in decoded_line for proto in ["vmess:", "trojan:", "vless:"]):
                   links.extend(decoded_line.splitlines())
         except:
             pass
