@@ -16,4 +16,4 @@ COPY --chown=1000 ./ /home/user/api
 
 EXPOSE 8080
 
-ENTRYPOINT gunicorn --bind 0.0.0.0:8080 main:app
+ENTRYPOINT uwsgi --http 0.0.0.0:8080 --module main:app
