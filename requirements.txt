@@ -1,6 +1,4 @@
 requests 
 flask 
-fastapi
-gunicorn 
-uvicorn
+uwsgi
 deta
