@@ -2,6 +2,7 @@ edited = []
 num = 0
 #link = trojan://uuid@0.0.0.0:443?security=tls&headerType=none&type=tcp&sni=sni.com#Name
 def edit(link, set_uuid=None, set_sni=None, set_tag=None):
+  global edited, num
   link = link.split('://')[1]
   uuid = link.split('@')[0]
   ip, port = link.split('?')[0].split('@')[1].split(':')
