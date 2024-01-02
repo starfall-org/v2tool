@@ -34,7 +34,7 @@ def process(url):
   links = []
   sub_response = requests.get(url, timeout=5, headers={"User-Agent": "v2rayNG/1.8.12"}).text
   if sub_response.status_code != 200:
-    sub_response = requests.get(workers, headers=headers, params={"url": url}, timeout=5)
+    sub_response = requests.get(workers, params={"url": url}, timeout=5)
   if any(proto in sub_response for proto in ["vmess:", "trojan:", "vless:"]):
     links.extend(sub_response.splitlines())
   else:
