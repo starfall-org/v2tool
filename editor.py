@@ -9,7 +9,8 @@ def editor(batch, values, uuid=None, sni=None, tag=None):
       link = trojan.edit(link, uuid, sni, tag)
     elif link.startswith('vless'):
       link = vless.edit(link, uuid, sni, tag)
-    values.add(link)
+    if link:
+      values.add(link)
   
 # def _processes(links, uuid=None, sni=None, tag=None):
 #   batch_size = 10
