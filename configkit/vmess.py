@@ -29,9 +29,9 @@ def edit(link, set_uuid=None, set_sni=None, set_tag=None):
       sni = set_sni
     else:
       host = sni = set_sni
-  edited.append(key)
   num += 1
   config = json.dumps(config).encode('utf-8')
   code = base64.b64encode(config).decode('utf-8')
   link = f"vmess://{code}"
+  edited.append(key)
   return link
