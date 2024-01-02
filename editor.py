@@ -25,14 +25,12 @@ def _processes(links, uuid=None, sni=None, tag=None):
 def processes(links, uuid=None, sni=None, tag=None):
     batch_size = 10
     values = []
+    def process_batch(batch):
+        try:
+            return editor(batch, uuid, sni, tag)
+        except Exception as e:
+            print(f"Error processing batch {batch}: {e}")
+            return []
     with concurrent.futures.ThreadPoolExecutor() as executor:
-        futures = {executor.submit(editor, batch, uuid, sni, tag): batch for batch in (links[i:i + batch_size] for i in range(0, len(links), batch_size))}
-        for future in concurrent.futures.as_completed(futures):
-            batch = futures[future]
-            try:
-                value = future.result()
-                values.extend(value)
-            except Exception as e:
-                # Handle exceptions raised in the editor function
-                print(f"Error processing batch {batch}: {e}")
+        values = list(executor.map(process_batch, (links[i:i + batch_size] for i in range(0, len(links), batch_size))))
     return values
