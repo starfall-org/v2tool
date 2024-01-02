@@ -34,7 +34,7 @@ def get_responses(urls):
   links = []
   x = 5
   def process(url):
-    nonlocal x
+    global x
     try:
       sub_response = requests.get(url, timeout=x, headers={"User-Agent": "v2rayNG/1.8.12"})
       if sub_response.status_code != 200:
