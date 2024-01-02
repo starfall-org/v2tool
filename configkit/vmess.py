@@ -5,6 +5,7 @@ import json
 edited = []
 num = 1
 def edit(link, set_uuid=None, set_sni=None, set_tag=None):
+  global edited, num
   code = link.split("://")[1]
   config = base64.b64decode(code).decode('utf-8')
   config = json.loads(config)
