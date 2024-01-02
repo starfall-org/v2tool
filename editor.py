@@ -12,7 +12,7 @@ def editor(batch, values, keys, uuid=None, sni=None, tag=None):
     #if key in list(keys):
      # continue
     values.add(link)
-    keys.add(key)
+    #keys.add(key)
   return links
   
 # def _processes(links, uuid=None, sni=None, tag=None):
