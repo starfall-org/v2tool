@@ -39,10 +39,12 @@ def get_responses(urls):
     
 def process(url):
   links = []
-  sub_response = requests.get(url, timeout=5, headers={"User-Agent": "v2rayNG/1.8.12"})
-  if sub_response.status_code == 200:
+  try:
+    sub_response = requests.get(url, timeout=5, headers={"User-Agent": "v2rayNG/1.8.12"})
+    if sub_response.status_code != 200:
+      return []
     sub_response = sub_response.text
-  else:
+  except:
     sub_response = requests.get(workers, params={"url": url}, timeout=5).text
   if any(proto in sub_response for proto in ["vmess:", "trojan:", "vless:"]):
     links.extend(sub_response.splitlines())
