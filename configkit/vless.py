@@ -8,7 +8,7 @@ def edit(link, set_uuid=None, set_sni=None, set_tag=None):
   else:
     sni = link.split('host=')[1].split('&')[0]
     tag = link.split('#')[1]
-  key = { f'{ip}:{port}' : uuid }
+ # key = { f'{ip}:{port}' : uuid }
   if ip in ['127.0.0.1', '1.1.1.1', '0.0.0.0', '8.8.8.8']:
     return
   if set_uuid:
@@ -18,5 +18,5 @@ def edit(link, set_uuid=None, set_sni=None, set_tag=None):
   if set_tag:
     link = link.replace(tag, set_tag)
   full_link = f"vless://{link}"
-  return full_link, key
+  return full_link #, key
   
