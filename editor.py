@@ -27,10 +27,10 @@ def processes(links, uuid=None, sni=None, tag=None):
   values = []
   def process_batch(batch):
     try:
-      return editor(batch, uuid, sni, tag)
+      value = editor(batch, uuid, sni, tag)
+      values.extend(value)
     except Exception as e:
       print(f"Error processing batch {batch}: {e}")
-      return []
   with concurrent.futures.ThreadPoolExecutor() as executor:
-    values = list(executor.map(process_batch, (links[i:i + batch_size] for i in range(0, len(links), batch_size))))
+    executor.map(process_batch, (links[i:i + batch_size] for i in range(0, len(links), batch_size)))
   return values
