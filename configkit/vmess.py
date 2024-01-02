@@ -15,7 +15,7 @@ def edit(link, set_uuid=None, set_sni=None, set_tag=None):
   sni = config['sni']
   host = config['host']
   port = config['port']
-  key = { str(add) : f'{uuid}:{port}' }
+  key = { f'{add}:{port}' : uuid }
   if add in ['127.0.0.1', '1.1.1.1', '0.0.0.0', '8.8.8.8'] or key in edited:
     return
   if set_tag:
