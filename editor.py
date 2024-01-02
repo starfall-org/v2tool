@@ -13,8 +13,8 @@ def editor(batch, uuid=None, sni=None, tag=None):
     links.append(link)
   return links
   
-def light_process(links, uuid=None, sni=None, tag=None):
-  batch_size = 1
+def processes(links, uuid=None, sni=None, tag=None):
+  batch_size = 10
   values = []
   for i in range(0, len(links), batch_size):
     batch = links[i:i + batch_size]
@@ -22,7 +22,7 @@ def light_process(links, uuid=None, sni=None, tag=None):
     values.extend(value)
   return values
   
-def processes(links, uuid=None, sni=None, tag=None):
+def heavy_processes(links, uuid=None, sni=None, tag=None):
     batch_size = 10
     values = []
     with concurrent.futures.ThreadPoolExecutor() as executor:
