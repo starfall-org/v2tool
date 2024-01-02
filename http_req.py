@@ -6,11 +6,11 @@ import concurrent.futures
 from data import workers
 
 def get_response(url):
-    response = requests.get(url, timeout=8, headers={"User-Agent": "v2rayNG/1.8.12"})
+    response = requests.get(url, timeout=5 , headers={"User-Agent": "v2rayNG/1.8.12"})
     if response.status_code == 200:
       response = response.text
     else:
-      response = requests.get(workers, params={"url": query_url}).text
+      response = requests.get(workers, params={"url": query_url}, timeout=3).text
     links = []
     if any(proto in response for proto in ["vmess:", "trojan:", "vless:"]):
       for link in response.splitlines():
