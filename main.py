@@ -1,53 +1,28 @@
 from flask import Flask, request, Response, render_template, make_response
-from utils import get_links_from_response, get_links_from_http, get_links_from_https, process_links, process_multi
-import requests, base64, os
-from deta import Deta
-from utils import workers
+from http_req import get_response, get_responses
+from editor import processes
+from data import get_data
+from env import workers
 from urllib.parse import unquote
+import base64
 
 app = Flask(__name__)
-workers = os.getenv('WORKERS')
-
-deta = Deta(os.environ.get('DETA_KEY'))
-db = deta.Base("v2ray-notes")
-
-def get_all(filename):
-    existing_entry = db.get(filename)
-    if existing_entry:
-        urls = existing_entry['urls']
-        return urls
-    else:
-        raise DatabaseNotFoundError("Không tìm thấy dữ liệu")
 
 @app.route('/')
 def process_query():
     query_url = request.args.get('url')
     if not query_url:
-        return "Vui lòng cung cấp tham số URL", 200
+      return "Vui lòng cung cấp tham số URL", 200
     uuid = request.args.get('uuid')
     sni = request.args.get('sni')
-    count = request.args.get('count')
-    proxy = request.args.get('proxy')
-    func = request.args.get('function')
-    ua = request.args.get('ua')
-    if ua is None:
-      ua = "v2rayNG/1.8.12"
-    headers = {"User-Agent": ua, "Accept-Encoding": "gzip"}
+    tag = request.args.get('tag')
+    headers = {"User-Agent": "v2rayNG/1.8.12"}
     query_url = unquote(query_url)
-    if proxy == "true":
-      response = requests.get(workers, timeout=5, headers=headers, params={"url": query_url}).text
-    else:
-      response = requests.get(query_url, timeout=5, headers=headers, params={"flag":"v2rayn"}).text
-    links = get_links_from_response(response)
-    if not links:
-        links = get_links_from_https(response, headers, proxy)
-    if func == "single":
-      final_links = process_links(links, uuid, sni)
-    else:
-      final_links = process_multi(links, uuid, sni)
-    result = '\n'.join(final_links)
-    encoded_result = base64.b64encode(result.encode('utf-8')).decode('utf-8')
-    return Response(encoded_result, mimetype='text/plain')
+    list_links = get_response(query_url)
+    links = processes(list_links)
+    links = '\n'.join(links).encode('utf-8')
+    result = base64.b64encode(link).decode('utf-8')
+    return Response(result, mimetype='text/plain')
 
 @app.route('/list/<filename>')
 def get_all_urls(filename):
@@ -61,27 +36,15 @@ def get_all_urls(filename):
      
 @app.route('/get/<filename>')
 def process_all_config(filename):
-    uuid = request.args.get('uuid')
-    sni = request.args.get('sni')
-    count = request.args.get('count')
-    proxy = request.args.get('proxy')
-    func = request.args.get('function')
-    ua = request.args.get('ua')
-    if ua is None:
-      ua = "v2rayNG/1.8.12"
-    headers = {"User-Agent": ua, "Accept-Encoding": "gzip"}
-    try:
-      urls_json = get_all(filename) 
-      urls = '\n'.join(urls_json) 
-    except:
-      return {"status": "failed", "message": "kho luu tru khong ton tai"}, 404
-    if func != "single":
-      links = get_links_from_https(urls,headers, proxy)
-      final_links = process_multi(links, uuid, sni)
-    else:
-      links = get_links_from_http(urls, headers)
-      final_links = process_links(links, uuid, sni)
-    result = '\n'.join(final_links)
-    encoded_result = base64.b64encode(result.encode('utf-8')).decode('utf-8')
-    return Response(encoded_result, mimetype='text/plain')
-
+  uuid = request.args.get('uuid')
+  sni = request.args.get('sni')
+  tag = request.args.get('tag')
+  try:
+    urls = get_all(filename)
+  except Exception as e:
+    return {"status": "failed", "message": str(e)}, 404
+  list_links = get_responses(urls)
+  links = processes(list_links)
+  links = '\n'.join(links).encode('utf-8')
+  result = base64.b64encode(link).decode('utf-8')
+  return Response(result, mimetype='text/plain')
