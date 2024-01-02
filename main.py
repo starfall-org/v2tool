@@ -45,5 +45,5 @@ def process_all_config(filename):
   list_links = get_responses(urls)
   links = processes(list_links)
   links = '\n'.join(links).encode('utf-8')
-  result = base64.b64encode(link).decode('utf-8')
+  result = base64.b64encode(links).decode('utf-8')
   return Response(result, mimetype='text/plain')
