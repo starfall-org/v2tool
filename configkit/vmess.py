@@ -19,7 +19,7 @@ def edit(link, set_uuid=None, set_sni=None, set_tag=None):
   if ip in ['127.0.0.1', '1.1.1.1', '0.0.0.0', '8.8.8.8'] or key in edited:
     return
   if set_tag:
-    tag = f'{name} {num}'
+    tag = f'{name} vmess{num}'
   if set_uuid:
     uuid = set_uuid
   if set_sni:
