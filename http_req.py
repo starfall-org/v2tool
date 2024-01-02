@@ -18,7 +18,7 @@ def get_response(url):
     elif any(proto in response for proto in ["http:", "https:"]):
       url_pattern = r'https?://(?:[-\w.]|(?:%[\da-fA-F]{2}))+'
       sub_urls = re.findall(url_pattern, response)
-      links = sub_response(sub_urls)
+      links = get_responses(sub_urls)
     else:
       try:
         decoded_line = base64.b64decode(response).decode('utf-8')
@@ -29,7 +29,7 @@ def get_response(url):
         links = []
     return links
     
-def sub_response(urls):
+def get_responses(urls):
   with concurrent.futures.ThreadPoolExecutor() as executor:
     links = executor.map(process, urls)
     return links
