@@ -6,9 +6,10 @@ import concurrent.futures
 from data import workers
 
 def get_response(url):
-    try:
-      response = requests.get(url, headers={"User-Agent": "v2rayNG/1.8.12"}).text
-    except:
+    response = requests.get(url, headers={"User-Agent": "v2rayNG/1.8.12"})
+    if response.status_code == 200:
+      response = response.text
+    else:
       response = requests.get(workers, params={"url": query_url}).text
     links = []
     if any(proto in response for proto in ["vmess:", "trojan:", "vless:"]):
@@ -38,8 +39,10 @@ def get_responses(urls):
     
 def process(url):
   links = []
-  sub_response = requests.get(url, timeout=5, headers={"User-Agent": "v2rayNG/1.8.12"}).text
-  if sub_response.status_code != 200:
+  sub_response = requests.get(url, timeout=5, headers={"User-Agent": "v2rayNG/1.8.12"})
+  if sub_response.status_code == 200:
+    sub_response = sub_response.text
+  else:
     sub_response = requests.get(workers, params={"url": url}, timeout=5)
   if any(proto in sub_response for proto in ["vmess:", "trojan:", "vless:"]):
     links.extend(sub_response.splitlines())
