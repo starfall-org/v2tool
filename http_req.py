@@ -3,9 +3,13 @@ import json
 import requests
 import re
 import concurrent.futures
+from env import workers
 
 def get_response(url):
-    response = requests.get(url, headers={"User-Agent": "v2rayNG/1.8.12"}).text
+    try:
+      response = requests.get(url, headers={"User-Agent": "v2rayNG/1.8.12"}).text
+    except:
+      response = requests.get(workers, params={"url": query_url}).text
     links = []
     if any(proto in response for proto in ["vmess:", "trojan:", "vless:"]):
       for link in response.splitlines():
