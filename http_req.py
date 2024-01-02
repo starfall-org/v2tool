@@ -34,7 +34,7 @@ def sub_response(urls):
     
 def process(url):
   links = []
-  sub_response = requests.get(url, headers={"User-Agent": "v2rayNG/1.8.12"}).text
+  sub_response = requests.get(url, timeout=10, headers={"User-Agent": "v2rayNG/1.8.12"}).text
   if any(proto in sub_response for proto in ["vmess:", "trojan:", "vless:"]):
     links.extend(sub_response.splitlines())
   else:
