@@ -1,5 +1,3 @@
-import re
-
 edited = []
 num = 0
 #link = trojan://uuid@0.0.0.0:443?security=tls&headerType=none&type=tcp&sni=sni.com#Name
