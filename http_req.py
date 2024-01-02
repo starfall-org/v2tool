@@ -6,7 +6,7 @@ import concurrent.futures
 from data import workers
 
 def get_response(url):
-    response = requests.get(url, headers={"User-Agent": "v2rayNG/1.8.12"})
+    response = requests.get(url, timeout=8, headers={"User-Agent": "v2rayNG/1.8.12"})
     if response.status_code == 200:
       response = response.text
     else:
@@ -40,12 +40,12 @@ def get_responses(urls):
 def process(url):
   links = []
   try:
-    sub_response = requests.get(url, timeout=10, headers={"User-Agent": "v2rayNG/1.8.12"})
+    sub_response = requests.get(url, timeout=8, headers={"User-Agent": "v2rayNG/1.8.12"})
     if sub_response.status_code != 200:
       return []
     sub_response = sub_response.text
   except:
-    sub_response = requests.get(workers, params={"url": url}, timeout=10).text
+    sub_response = requests.get(workers, params={"url": url}, timeout=8).text
   if any(proto in sub_response for proto in ["vmess:", "trojan:", "vless:"]):
     links.extend(sub_response.splitlines())
   else:
