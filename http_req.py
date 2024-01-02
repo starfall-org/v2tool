@@ -47,7 +47,7 @@ def process(url):
   if any(proto in sub_response for proto in ["vmess:", "trojan:", "vless:"]):
     links.extend(sub_response.splitlines())
   elif sub_response is None:
-    return []
+    pass
   else:
     decoded_line = base64.b64decode(sub_response).decode('utf-8')
     if any(proto in decoded_line for proto in ["vmess:", "trojan:", "vless:"]):
