@@ -1,8 +1,7 @@
-from flask import Flask, request, Response, render_template, make_response
+from flask import Flask, request, Response
 from http_req import get_response, get_responses
 from editor import processes
 from data import get_data
-from env import workers
 from urllib.parse import unquote
 import base64
 
@@ -27,12 +26,12 @@ def process_query():
 @app.route('/list/<filename>')
 def get_all_urls(filename):
     try:
-      urls = get_all(filename)
+      urls = get_data(filename)
       resp = make_response('\n'.join(urls))
       resp.mimetype = 'text/plain'
       return resp
-    except:
-      return {"status": "failed", "message": "kho luu tru khong ton tai"}, 404
+    except Exception as e
+      return {"status": "failed", "message": str(e)}, 404
      
 @app.route('/get/<filename>')
 def process_all_config(filename):
@@ -40,7 +39,7 @@ def process_all_config(filename):
   sni = request.args.get('sni')
   tag = request.args.get('tag')
   try:
-    urls = get_all(filename)
+    urls = get_data(filename)
   except Exception as e:
     return {"status": "failed", "message": str(e)}, 404
   list_links = get_responses(urls)
