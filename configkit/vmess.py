@@ -14,7 +14,7 @@ def edit(link, set_uuid=None, set_sni=None, set_tag=None):
   if ip in ['127.0.0.1', '1.1.1.1', '0.0.0.0', '8.8.8.8']:
     return
   if set_tag:
-    config['ps'] = str(set_tag)
+    config['ps'] = set_tag
   if set_uuid:
     config['id'] = set_uuid
   if set_sni:
