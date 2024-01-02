@@ -13,7 +13,7 @@ def editor(batch, uuid=None, sni=None, tag=None):
     links.append(link)
   return links
   
-def _processes(links, uuid=None, sni=None, tag=None):
+def processes(links, uuid=None, sni=None, tag=None):
   batch_size = 10
   values = []
   for i in range(0, len(links), batch_size):
@@ -22,7 +22,7 @@ def _processes(links, uuid=None, sni=None, tag=None):
     values.extend(value)
   return values
   
-def processes(links, uuid=None, sni=None, tag=None):
+def _processes(links, uuid=None, sni=None, tag=None):
   batch_size = 10
   values = []
   def process_batch(batch):
