@@ -46,11 +46,12 @@ def process(url):
     sub_response = requests.get(workers, params={"url": url}, timeout=5).text
   if any(proto in sub_response for proto in ["vmess:", "trojan:", "vless:"]):
     links.extend(sub_response.splitlines())
-  elif sub_response is None:
-    pass
   else:
-    decoded_line = base64.b64decode(sub_response).decode('utf-8')
-    if any(proto in decoded_line for proto in ["vmess:", "trojan:", "vless:"]):
-      links.extend(decoded_line.splitlines())
+    try:
+      decoded_line = base64.b64decode(sub_response).decode('utf-8')
+      if any(proto in decoded_line for proto in ["vmess:", "trojan:", "vless:"]):
+        links.extend(decoded_line.splitlines())
+    except:
+      pass
   return links
     
