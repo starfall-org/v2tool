@@ -10,7 +10,6 @@ def editor(batch, values, uuid=None, sni=None, tag=None):
     elif link.startswith('vless'):
       link = vless.edit(link, uuid, sni, tag)
     values.add(link)
-  return links
   
 # def _processes(links, uuid=None, sni=None, tag=None):
 #   batch_size = 10
