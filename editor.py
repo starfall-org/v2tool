@@ -17,6 +17,6 @@ def processes(links, uuid=None, sni=None, tag=None):
   values = []
   for i in range(0, len(links), batch_size):
     batch = links[i:i + batch_size]
-    value = editor(batch, values, uuid, sni, tag)
+    value = editor(batch, uuid, sni, tag)
     values.extend(value)
   return values
