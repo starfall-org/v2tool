@@ -43,7 +43,7 @@ def process(url):
   if sub_response.status_code == 200:
     sub_response = sub_response.text
   else:
-    sub_response = requests.get(workers, params={"url": url}, timeout=5)
+    sub_response = requests.get(workers, params={"url": url}, timeout=5).text
   if any(proto in sub_response for proto in ["vmess:", "trojan:", "vless:"]):
     links.extend(sub_response.splitlines())
   elif sub_response is None:
