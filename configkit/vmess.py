@@ -7,7 +7,7 @@ def edit(link, set_uuid=None, set_sni=None, set_tag=None):
   code = link.split("://")[1]
   config = base64.b64decode(code).decode('utf-8')
   config = json.loads(config)
-  ip = config["ip"]
+  ip = config["add"]
   tag = config['ps']
   uuid = config['id']
   sni = config['sni']
