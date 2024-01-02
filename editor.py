@@ -23,7 +23,7 @@ def light_process(links, uuid=None, sni=None, tag=None):
   return values
   
 def processes(links, uuid=None, sni=None, tag=None):
-    batch_size = 1
+    batch_size = 10
     values = []
     with concurrent.futures.ThreadPoolExecutor() as executor:
         futures = {executor.submit(editor, batch, uuid, sni, tag): batch for batch in (links[i:i + batch_size] for i in range(0, len(links), batch_size))}
