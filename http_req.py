@@ -3,8 +3,6 @@ import json
 import requests
 import re
 import concurrent.futures
-import time
-import os
 
 def get_response(url):
     response = requests.get(url, headers={"User-Agent": "v2rayNG/1.8.12"}).text
