@@ -30,9 +30,11 @@ def get_response(url):
     return links
     
 def get_responses(urls):
+  list_links = []
   with concurrent.futures.ThreadPoolExecutor() as executor:
     links = executor.map(process, urls)
-  return links
+    list_links.extend(links)
+  return list_links
     
 def process(url):
   links = []
