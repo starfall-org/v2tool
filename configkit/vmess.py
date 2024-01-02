@@ -10,9 +10,11 @@ def edit(link, set_uuid=None, set_sni=None, set_tag=None):
   ip = config["add"]
   tag = config['ps']
   uuid = config['id']
-  sni = config['sni']
-  host = config['host']
   port = config['port']
+  if port == 443:
+    sni = config['sni']
+  else:
+    sni = config['host']
   key = { f'{ip}:{port}' : uuid }
   if ip in ['127.0.0.1', '1.1.1.1', '0.0.0.0', '8.8.8.8']:
     return
@@ -21,13 +23,7 @@ def edit(link, set_uuid=None, set_sni=None, set_tag=None):
   if set_uuid:
     uuid = set_uuid
   if set_sni:
-    if port == 80:
-      host = set_sni
-    elif port == 443:
-      sni = set_sni
-    else:
-      host = sni = set_sni
-  num += 1
+    sni = set_sni
   config = json.dumps(config).encode('utf-8')
   code = base64.b64encode(config).decode('utf-8')
   link = f"vmess://{code}"
