@@ -27,15 +27,13 @@ def get_response(url):
           if any(proto in link for proto in ["vmess:", "trojan:", "vless:"]):
             links.append(link)
       except:
-        links = []
+        pass
     return links
     
 def get_responses(urls):
-  list_links = []
   with concurrent.futures.ThreadPoolExecutor() as executor:
     links = executor.map(process, urls)
-    list_links.extend(links)
-  return list_links
+  return links
     
 def process(url):
   links = []
