@@ -44,7 +44,6 @@ def process_all_config(filename):
     return {"status": "failed", "message": str(e)}, 404
   list_links = get_responses(urls)
   links = processes(list_links)
-  return links
   links = '\n'.join(links).encode('utf-8')
   result = base64.b64encode(link).decode('utf-8')
   return Response(result, mimetype='text/plain')
