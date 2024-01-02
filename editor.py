@@ -1,16 +1,19 @@
 from configkit import vmess, trojan, vless
 import concurrent.futures
 
-def editor(batch, uuid=None, sni=None, tag=None):
+def editor(batch, keys, uuid=None, sni=None, tag=None):
   links = []
   for link in batch:
     if link.startswith('vmess'):
-      link = vmess.edit(link, uuid, sni, tag)
+      link, key = vmess.edit(link, uuid, sni, tag)
     elif link.startswith('trojan'):
-      link = trojan.edit(link, uuid, sni, tag)
+      link, key = trojan.edit(link, uuid, sni, tag)
     elif link.startswith('vless'):
-      link = vless.edit(link, uuid, sni, tag)
+      link, key = vless.edit(link, uuid, sni, tag)
+    if key in keys:
+      continue
     links.append(link)
+    keys.append(key)
   return links
   
 def _processes(links, uuid=None, sni=None, tag=None):
@@ -25,12 +28,13 @@ def _processes(links, uuid=None, sni=None, tag=None):
 def processes(links, uuid=None, sni=None, tag=None):
   batch_size = 10
   values = []
+  keys = []
   def process_batch(batch):
     try:
-      value = editor(batch, uuid, sni, tag)
+      value = editor(batch, keys, uuid, sni, tag)
       values.extend(value)
     except Exception as e:
-      print(f"Error processing batch {batch}: {e}")
+      pass
   with concurrent.futures.ThreadPoolExecutor() as executor:
     executor.map(process_batch, (links[i:i + batch_size] for i in range(0, len(links), batch_size)))
   return values
