@@ -1,7 +1,7 @@
 from configkit import vmess, trojan, vless
 import concurrent.futures
 
-def editor(batch, keys, uuid=None, sni=None, tag=None):
+def editor(batch, values, uuid=None, sni=None, tag=None):
   links = []
   for link in batch:
     if link.startswith('vmess'):
@@ -10,10 +10,9 @@ def editor(batch, keys, uuid=None, sni=None, tag=None):
       link, key = trojan.edit(link, uuid, sni, tag)
     elif link.startswith('vless'):
       link, key = vless.edit(link, uuid, sni, tag)
-    if key in keys:
-      continue
-    links.append(link)
-    keys.append(key)
+    values.add(link)
+   # links.append(link)
+    #keys.append(key)
   return links
   
 def _processes(links, uuid=None, sni=None, tag=None):
@@ -27,12 +26,12 @@ def _processes(links, uuid=None, sni=None, tag=None):
   
 def processes(links, uuid=None, sni=None, tag=None):
   batch_size = 10
-  values = []
+  values = set()
   keys = []
   def process_batch(batch):
     try:
-      value = editor(batch, keys, uuid, sni, tag)
-      values.extend(value)
+      value = editor(batch, values, uuid, sni, tag)
+      #values.extend(value)
     except Exception as e:
       pass
   with concurrent.futures.ThreadPoolExecutor() as executor:
