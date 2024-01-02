@@ -9,14 +9,14 @@ def edit(link, set_uuid=None, set_sni=None, set_tag=None):
   code = link.split("://")[1]
   config = base64.b64decode(code).decode('utf-8')
   config = json.loads(config)
-  add = config["add"]
+  ip = config["ip"]
   tag = config['ps']
   uuid = config['id']
   sni = config['sni']
   host = config['host']
   port = config['port']
-  key = { f'{add}:{port}' : uuid }
-  if add in ['127.0.0.1', '1.1.1.1', '0.0.0.0', '8.8.8.8'] or key in edited:
+  key = { f'{ip}:{port}' : uuid }
+  if ip in ['127.0.0.1', '1.1.1.1', '0.0.0.0', '8.8.8.8'] or key in edited:
     return
   if set_tag:
     tag = f'{name} {num}'
