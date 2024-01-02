@@ -18,7 +18,7 @@ def process_query():
     headers = {"User-Agent": "v2rayNG/1.8.12"}
     query_url = unquote(query_url)
     list_links = get_response(query_url)
-    links = processes(list_links)
+    links = processes(list_links, uuid, sni, tag)
     links = '\n'.join(links).encode('utf-8')
     result = base64.b64encode(link).decode('utf-8')
     return Response(result, mimetype='text/plain')
