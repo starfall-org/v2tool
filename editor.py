@@ -13,14 +13,14 @@ def editor(batch, uuid=None, sni=None, tag=None):
     links.append(link)
   return links
   
-# def processes(links, uuid=None, sni=None, tag=None):
-#   batch_size = 1
-#   values = []
-#   for i in range(0, len(links), batch_size):
-#     batch = links[i:i + batch_size]
-#     value = editor(batch, uuid, sni, tag)
-#     values.extend(value)
-#   return values
+def light_process(links, uuid=None, sni=None, tag=None):
+  batch_size = 1
+  values = []
+  for i in range(0, len(links), batch_size):
+    batch = links[i:i + batch_size]
+    value = editor(batch, uuid, sni, tag)
+    values.extend(value)
+  return values
   
 def processes(links, uuid=None, sni=None, tag=None):
     batch_size = 1
