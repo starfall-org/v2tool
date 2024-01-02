@@ -43,7 +43,7 @@ def process_all_config(filename):
   except Exception as e:
     return {"status": "failed", "message": str(e)}, 404
   list_links = get_responses(urls)
-  links = processes(list_links)
+  links = processes(list_links, uuid, sni, tag)
   links = '\n'.join(links).encode('utf-8')
   result = base64.b64encode(links).decode('utf-8')
   return Response(result, mimetype='text/plain')
