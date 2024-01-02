@@ -9,8 +9,8 @@ def editor(batch, values, keys, uuid=None, sni=None, tag=None):
       link, key = trojan.edit(link, uuid, sni, tag)
     elif link.startswith('vless'):
       link, key = vless.edit(link, uuid, sni, tag)
-    if key in list(keys):
-      continue
+    #if key in list(keys):
+     # continue
     values.add(link)
     keys.add(key)
   return links
