@@ -1,18 +1,16 @@
 from configkit import vmess, trojan, vless
 
 def editor(batch, uuid=None, sni=None, tag=None):
-  values = []
+  links = []
   for link in batch:
     if link.startswith('vmess'):
-      value = vmess.edit(link, uuid, sni, tag)
+      link = vmess.edit(link, uuid, sni, tag)
     elif link.startswith('trojan'):
-      value = trojan.edit(link, uuid, sni, tag)
+      link = trojan.edit(link, uuid, sni, tag)
     elif link.startswith('vless'):
-      value = vless.edit(link, uuid, sni, tag)
-    else:
-      value = link
-    values.append(value)
-  return values
+      link = vless.edit(link, uuid, sni, tag)
+    links.append(link)
+  return links
   
 def processes(links, uuid=None, sni=None, tag=None):
   batch_size = 1
