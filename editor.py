@@ -25,10 +25,8 @@ def light_process(links, uuid=None, sni=None, tag=None):
 def processes(links, uuid=None, sni=None, tag=None):
     batch_size = 1
     values = []
-
     with concurrent.futures.ThreadPoolExecutor() as executor:
         futures = {executor.submit(editor, batch, uuid, sni, tag): batch for batch in (links[i:i + batch_size] for i in range(0, len(links), batch_size))}
-        
         for future in concurrent.futures.as_completed(futures):
             batch = futures[future]
             try:
@@ -37,5 +35,4 @@ def processes(links, uuid=None, sni=None, tag=None):
             except Exception as e:
                 # Handle exceptions raised in the editor function
                 print(f"Error processing batch {batch}: {e}")
-
     return values
