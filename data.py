@@ -1,6 +1,8 @@
 from deta import Deta
+import os
 
-deta = Deta(os.environ.get('DETA_KEY'))
+workers = os.getenv('WORKERS')
+deta = Deta(os.getenv('DETA_KEY'))
 db = deta.Base("v2ray-notes")
 
 def get_data(filename):
