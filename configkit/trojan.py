@@ -1,3 +1,4 @@
+#trojan
 def edit(link, set_uuid=None, set_sni=None, set_tag=None):
   link = link.split('://')[1]
   uuid = link.split('@')[0]
