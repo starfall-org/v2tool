@@ -30,7 +30,7 @@ def get_all_urls(filename):
       resp = make_response('\n'.join(urls))
       resp.mimetype = 'text/plain'
       return resp
-    except Exception as e
+    except Exception as e:
       return {"status": "failed", "message": str(e)}, 404
      
 @app.route('/get/<filename>')
