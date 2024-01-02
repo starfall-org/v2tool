@@ -25,7 +25,7 @@ def processes(links, uuid=None, sni=None, tag=None):
   values = set()
   def process_batch(batch):
     try:
-      value = editor(batch, values, uuid, sni, tag)
+      editor(batch, values, uuid, sni, tag)
     except Exception as e:
       pass
   with concurrent.futures.ThreadPoolExecutor() as executor:
