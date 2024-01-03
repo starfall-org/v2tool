@@ -1,4 +1,4 @@
 requests 
-flask 
-uwsgi
+flask
 deta
+gunicorn
