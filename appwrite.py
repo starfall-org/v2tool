@@ -2,6 +2,7 @@ from .aw.http_req import get_response, get_responses
 from .aw.editor import processes
 from .data import get_data
 from urllib.parse import unquote
+import base64
 
 def main(context):
   if context.req.path == "/":
