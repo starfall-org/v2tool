@@ -13,13 +13,6 @@ def main(context):
     return context.res.send(process_all_config(context))
   else:
     return context.res.send("Đường dẫn không hợp lệ.")
-def get_all(filename):
-    existing_entry = db.get(filename)
-    if existing_entry:
-        urls = existing_entry['urls']
-        return urls
-    else:
-        raise DatabaseNotFoundError("Không tìm thấy dữ liệu")
         
 def process_query(context):
     try:
