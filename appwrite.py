@@ -1,4 +1,4 @@
-from .appwrite.http_req_aw import get_response, get_responses
+from .appwrite.http_req import get_response, get_responses
 from .appwrite.editor import processes
 from .data import get_data
 from urllib.parse import unquote
