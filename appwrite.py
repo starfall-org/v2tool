@@ -1,5 +1,5 @@
-from .http_req_aw import get_response, get_responses
-from .editor import processes
+from .appwrite.http_req_aw import get_response, get_responses
+from .appwrite.editor import processes
 from .data import get_data
 from urllib.parse import unquote
 
