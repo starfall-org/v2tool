@@ -8,7 +8,6 @@ def edit(link, set_uuid, set_sni, set_tag):
   config = json.loads(config)
   ip = config["add"]
   net = config['net']
-  uuid = config['id']
   if ip in ['127.0.0.1', '1.1.1.1', '0.0.0.0', '8.8.8.8']:
     return
   if set_tag:
