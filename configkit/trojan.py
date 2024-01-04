@@ -1,17 +1,20 @@
-#trojan
+from urllib.parse import urlparse, parse_qs, urlencode, urlunparse
+
 def edit(link, set_uuid, set_sni, set_tag):
-  link = link.split('://')[1]
-  uuid = link.split('@')[0]
-  ip, port = link.split('?')[0].split('@')[1].split(':')
-  sni, tag = link.split('sni=')[1].split('#')
-#  key = { f'{ip}:{port}' : uuid }
+  link = urlparse(link)
+  query = parse_qs(link.query)
+  netloc = link.netloc.split('@')
+  ip = netloc[1].split(':')[0]
   if ip in ['127.0.0.1', '1.1.1.1', '0.0.0.0', '8.8.8.8']:
     return
   if set_uuid:
-    link = link.replace(uuid, set_uuid)
+    netloc[0] = set_uuid
+    netloc = "@".join(netloc)
+    link = link._replace(netloc=netloc)
   if set_sni:
-    link = link.replace(sni, set_sni)
+    query['sni'] = [set_sni]
+    query = urlencode(query, doseq=True)
   if set_tag:
-    link = link.replace(tag, set_tag)
-  full_link = f"trojan://{link}"
-  return full_link #, key
+    link = link._replace(fragment=set_tag)
+  link = urlunparse(link)
+  return link
