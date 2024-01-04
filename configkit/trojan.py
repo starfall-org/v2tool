@@ -14,6 +14,7 @@ def edit(link, set_uuid, set_sni, set_tag):
   if set_sni:
     query['sni'] = [set_sni]
     query = urlencode(query, doseq=True)
+    link = link._replace(query=query)
   if set_tag:
     link = link._replace(fragment=set_tag)
   link = urlunparse(link)
