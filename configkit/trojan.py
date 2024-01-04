@@ -1,5 +1,5 @@
 #trojan
-def edit(link, set_uuid=None, set_sni=None, set_tag=None):
+def edit(link, set_uuid, set_sni, set_tag):
   link = link.split('://')[1]
   uuid = link.split('@')[0]
   ip, port = link.split('?')[0].split('@')[1].split(':')
