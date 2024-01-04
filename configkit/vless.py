@@ -12,7 +12,7 @@ def edit(link, set_uuid, set_sni, set_tag):
     netloc = "@".join(netloc)
     link = link._replace(netloc=netloc)
   if set_sni:
-    if query['security'] == 'tls' and query['type'] == 'tcp':
+    if query['type'] == 'tcp':
       query['sni'] = [set_sni]
     else:
       query['host'] = [set_sni]
