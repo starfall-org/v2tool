@@ -9,8 +9,6 @@ def edit(link, set_uuid, set_sni, set_tag):
   config = json.loads(config)
   ip = config["add"]
   uuid = config['id']
-  port = config['port']
- # key = { f'{ip}:{port}' : uuid }
   if ip in ['127.0.0.1', '1.1.1.1', '0.0.0.0', '8.8.8.8']:
     return
   if set_tag:
@@ -25,4 +23,4 @@ def edit(link, set_uuid, set_sni, set_tag):
   config = json.dumps(config).encode('utf-8')
   code = base64.b64encode(config).decode('utf-8')
   link = f"vmess://{code}"
-  return link #, key
+  return link
