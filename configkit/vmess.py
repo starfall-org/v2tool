@@ -3,11 +3,11 @@ import base64
 import json
 
 def edit(link, set_uuid, set_sni, set_tag):
-  global edited, num
   code = link.split("://")[1]
   config = base64.b64decode(code).decode('utf-8')
   config = json.loads(config)
   ip = config["add"]
+  net = config['net']
   uuid = config['id']
   if ip in ['127.0.0.1', '1.1.1.1', '0.0.0.0', '8.8.8.8']:
     return
@@ -16,7 +16,7 @@ def edit(link, set_uuid, set_sni, set_tag):
   if set_uuid:
     config['id'] = set_uuid
   if set_sni:
-    if port == 443:
+    if net == 'tcp':
       config['sni'] = set_sni
     else:
       config['host'] = set_sni
