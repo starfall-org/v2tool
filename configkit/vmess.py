@@ -2,7 +2,7 @@ import re
 import base64
 import json
 
-def edit(link, set_uuid=None, set_sni=None, set_tag=None):
+def edit(link, set_uuid, set_sni, set_tag):
   global edited, num
   code = link.split("://")[1]
   config = base64.b64decode(code).decode('utf-8')
