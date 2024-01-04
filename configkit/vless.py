@@ -5,12 +5,11 @@ def edit(link, set_uuid, set_sni, set_tag):
   link = link.split('://')[1]
   uuid = link.split('@')[0]
   ip, port = link.split('@')[1].split('?')[0].split(':')
+  tag = link.split('#')[-1]
   if port == 443:
     sni = link.split('sni=')[1].split('#')[0]
-    tag = link.split('#')[-1]
   else:
     sni = link.split('host=')[1].split('&')[0]
-    tag = re.search(r'#(.+)', link).group(1)
   if ip in ['127.0.0.1', '1.1.1.1', '0.0.0.0', '8.8.8.8']:
     return
   if set_uuid:
@@ -19,7 +18,5 @@ def edit(link, set_uuid, set_sni, set_tag):
     link = link.replace(sni, set_sni)
   if set_tag:
     link = link.replace(tag, set_tag)
-  else:
-    link = link.replace(tag, tag)
   full_link = f"vless://{link}"
   return full_link
