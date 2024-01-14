@@ -52,6 +52,6 @@ def get_responses(urls):
           links.extend(decoded_line.splitlines())
       except:
         pass
-  with concurrent.futures.ThreadPoolExecutor() as executor:
+  with concurrent.futures.ThreadPoolExecutor(max_workers=100) as executor:
     executor.map(process, urls)
   return links
