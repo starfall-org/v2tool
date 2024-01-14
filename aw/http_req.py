@@ -2,15 +2,17 @@ import base64
 import json
 import requests
 import re
+import aiohttp
+import asyncio
 import concurrent.futures
-from ..data import workers
+from ..data import workers, proxy
 
 def get_response(url):
-    response = requests.get(url, timeout=8, headers={"User-Agent": "v2rayNG/1.8.12"})
+    response = requests.get(url, timeout=3, headers={"User-Agent": "v2rayNG/1.8.12"})
     if response.status_code == 200:
       response = response.text
     else:
-      response = requests.get(workers, params={"url": query_url}, timeout=8).text
+      response = requests.get(workers, params={"url": query_url}, timeout=5).text
     links = []
     if any(proto in response for proto in ["vmess:", "trojan:", "vless:"]):
       for link in response.splitlines():
@@ -32,18 +34,17 @@ def get_response(url):
     
 def get_responses(urls):
   links = []
-  x = 5
   def process(url):
-    nonlocal x
     try:
-      sub_response = requests.get(url, timeout=x, headers={"User-Agent": "v2rayNG/1.8.12"})
+      sub_response = requests.get(url, timeout=3, headers={"User-Agent": "v2rayNG/1.8.12"})
       if sub_response.status_code != 200:
         raise
       sub_response = sub_response.text
     except:
-      sub_response = requests.get(workers, params={"url": url}, timeout=x).text
-    if x < 10:
-      x += 0.5
+      try:
+          sub_response = requests.get(proxy, params={"url": url}, timeout=5).text
+      except:
+          sub_response = requests.get(workers, params={"url": url}, timeout=5).text
     if any(proto in sub_response for proto in ["vmess:", "trojan:", "vless:"]):
       links.extend(sub_response.splitlines())
     else:
@@ -56,3 +57,34 @@ def get_responses(urls):
   with concurrent.futures.ThreadPoolExecutor() as executor:
     executor.map(process, urls)
   return links
+
+async def async_process(session, url, proxy, workers, links):
+    try:
+        async with session.get(url, timeout=3, headers={"User-Agent": "v2rayNG/1.8.12"}) as sub_response:
+            if sub_response.status != 200:
+                raise Exception("Request failed")
+            sub_response = await sub_response.text()
+    except:
+        try:
+            sub_response = await session.get(proxy, params={"url": url}, timeout=5)
+            sub_response = await sub_response.text()
+        except:
+            sub_response = await session.get(workers, params={"url": url}, timeout=5)
+            sub_response = await sub_response.text()
+
+    if any(proto in sub_response for proto in ["vmess:", "trojan:", "vless:"]):
+        links.extend(sub_response.splitlines())
+    else:
+        try:
+            decoded_line = base64.b64decode(sub_response).decode('utf-8')
+            if any(proto in decoded_line for proto in ["vmess:", "trojan:", "vless:"]):
+                links.extend(decoded_line.splitlines())
+        except:
+            pass
+
+async def get_responses_async(urls):
+    links = []
+    async with aiohttp.ClientSession() as session:
+        tasks = [async_process(session, url, proxy, workers, links) for url in urls]
+        await asyncio.gather(*tasks)
+    return links
