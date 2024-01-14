@@ -10,7 +10,7 @@ def get_response(url):
     if response.status_code == 200:
       response = response.text
     else:
-      response = requests.get(workers, params={"url": query_url}, timeout=8).text
+      response = requests.get(workers, params={"url": query_url}, timeout=5).text
     links = []
     if any(proto in response for proto in ["vmess:", "trojan:", "vless:"]):
       for link in response.splitlines():
