@@ -1,8 +1,12 @@
-from .aw.http_req import get_response, get_responses
+from .aw.http_req import get_response, get_responses, get_responses_async
 from .aw.editor import processes
 from .data import get_data
 from urllib.parse import unquote
 import base64
+import asyncio
+
+loop = asyncio.new_event_loop()
+asyncio.set_event_loop(loop)
 
 def main(context):
   if context.req.path == "/":
@@ -69,7 +73,7 @@ def process_all_config(context):
     urls = get_data(filename)
   except Exception as e:
     return {"status": "failed", "message": str(e)}, 404
-  list_links = get_responses(urls)
+  list_links = loop.run_until_complete(get_responses_async(urls))
   links = processes(list_links, uuid, sni, tag)
   links = '\n'.join(links).encode('utf-8')
   result = base64.b64encode(links).decode('utf-8')
