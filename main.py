@@ -50,7 +50,7 @@ def process_all_config(filename):
   links = processes(list_links, uuid, sni, tag)
   links = '\n'.join(links).encode('utf-8')
   result = base64.b64encode(links).decode('utf-8')
-  return Response(result, mimetype='text/plain')
+  return result #Response(result, mimetype='text/plain')
   
 @app.route('/getv2/<filename>')
 def process_all_config_async(filename):
