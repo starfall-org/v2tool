@@ -6,7 +6,7 @@ import concurrent.futures
 from data import workers, proxy
 
 def get_response(url):
-    response = requests.get(url, timeout=5, headers={"User-Agent": "v2rayNG/1.8.12"})
+    response = requests.get(url, timeout=3, headers={"User-Agent": "v2rayNG/1.8.12"})
     if response.status_code == 200:
       response = response.text
     else:
@@ -34,7 +34,7 @@ def get_responses(urls):
   links = []
   def process(url):
     try:
-      sub_response = requests.get(url, timeout=5, headers={"User-Agent": "v2rayNG/1.8.12"})
+      sub_response = requests.get(url, timeout=3, headers={"User-Agent": "v2rayNG/1.8.12"})
       if sub_response.status_code != 200:
         raise
       sub_response = sub_response.text
