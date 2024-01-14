@@ -3,4 +3,3 @@ flask
 deta
 gunicorn
 aiohttp
-pycurl
