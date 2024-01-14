@@ -82,7 +82,7 @@ async def async_process(session, url, proxy, workers, links):
         except:
             pass
 
-async def get_responses_async(urls, proxy, workers):
+async def get_responses_async(urls):
     links = []
     async with aiohttp.ClientSession() as session:
         tasks = [async_process(session, url, proxy, workers, links) for url in urls]
