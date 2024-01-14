@@ -10,7 +10,7 @@ def get_response(url):
     if response.status_code == 200:
       response = response.text
     else:
-      response = requests.get(workers, params={"url": query_url}, timeout=5).text
+      response = requests.get(workers, params={"url": query_url}, timeout=3).text
     links = []
     if any(proto in response for proto in ["vmess:", "trojan:", "vless:"]):
       for link in response.splitlines():
@@ -40,9 +40,9 @@ def get_responses(urls):
       sub_response = sub_response.text
     except:
       try:
-          sub_response = requests.get(proxy, params={"url": url}, timeout=5).text
+          sub_response = requests.get(proxy, params={"url": url}, timeout=3).text
       except:
-          sub_response = requests.get(workers, params={"url": url}, timeout=5).text
+          sub_response = requests.get(workers, params={"url": url}, timeout=3).text
     if any(proto in sub_response for proto in ["vmess:", "trojan:", "vless:"]):
       links.extend(sub_response.splitlines())
     else:
