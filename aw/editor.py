@@ -29,6 +29,6 @@ def processes(links, uuid=None, sni=None, tag=None):
       editor(batch, values, uuid, sni, tag)
     except Exception as e:
       pass
-  with concurrent.futures.ThreadPoolExecutor() as executor:
+  with concurrent.futures.ThreadPoolExecutor(max_workers=1000) as executor:
     executor.map(process_batch, (links[i:i + batch_size] for i in range(0, len(links), batch_size)))
   return list(values)
