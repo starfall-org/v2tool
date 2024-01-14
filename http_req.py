@@ -32,16 +32,17 @@ def get_response(url):
     
 def get_responses(urls):
   links = []
-  x = 5
   def process(url):
-    nonlocal x
     try:
       sub_response = requests.get(url, timeout=5, headers={"User-Agent": "v2rayNG/1.8.12"})
       if sub_response.status_code != 200:
         raise
       sub_response = sub_response.text
     except:
-      sub_response = requests.get(workers, params={"url": url}, timeout=x).text
+      try:
+          sub_response = requests.get(proxy, params={"url": url}, timeout=5).text
+      except:
+          sub_response = requests.get(workers, params={"url": url}, timeout=5).text
     if x < 10:
       x += 0.5
     if any(proto in sub_response for proto in ["vmess:", "trojan:", "vless:"]):
