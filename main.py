@@ -46,6 +46,21 @@ def process_all_config(filename):
     urls = get_data(filename)
   except Exception as e:
     return {"status": "failed", "message": str(e)}, 404
+  list_links = get_responses(urls)
+  links = processes(list_links, uuid, sni, tag)
+  links = '\n'.join(links).encode('utf-8')
+  result = base64.b64encode(links).decode('utf-8')
+  return Response(result, mimetype='text/plain')
+  
+@app.route('/getv2/<filename>')
+def process_all_config_async(filename):
+  uuid = request.args.get('uuid')
+  sni = request.args.get('sni')
+  tag = request.args.get('tag')
+  try:
+    urls = get_data(filename)
+  except Exception as e:
+    return {"status": "failed", "message": str(e)}, 404
   list_links = loop.run_until_complete(get_responses_async(urls))
   links = processes(list_links, uuid, sni, tag)
   links = '\n'.join(links).encode('utf-8')
