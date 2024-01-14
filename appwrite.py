@@ -48,7 +48,7 @@ def get_all_urls(context):
       resp = '\n'.join(urls)
       return resp
     except:
-      return {"status": "failed", "message": "kho luu tru khong ton tai"}
+      return "Kho lưu trữ không tồn tại"}
       
 def process_all_config(context):
   req_path = context.req.path
@@ -68,7 +68,7 @@ def process_all_config(context):
   try:
     urls = get_data(filename)
   except Exception as e:
-    return {"status": "failed", "message": str(e)}
+    return str(e)
   list_links = get_responses(urls)
   links = processes(list_links, uuid, sni, tag)
   links = '\n'.join(links).encode('utf-8')
