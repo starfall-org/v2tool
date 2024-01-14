@@ -66,10 +66,10 @@ async def async_process(session, url, proxy, workers, links):
             sub_response = await sub_response.text()
     except:
         try:
-            sub_response = await session.get(proxy, params={"url": url}, timeout=5)
+            sub_response = await session.get(proxy, params={"url": url}, timeout=3)
             sub_response = await sub_response.text()
         except:
-            sub_response = await session.get(workers, params={"url": url}, timeout=5)
+            sub_response = await session.get(workers, params={"url": url}, timeout=3)
             sub_response = await sub_response.text()
 
     if any(proto in sub_response for proto in ["vmess:", "trojan:", "vless:"]):
