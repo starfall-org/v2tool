@@ -43,8 +43,6 @@ def get_responses(urls):
           sub_response = requests.get(proxy, params={"url": url}, timeout=5).text
       except:
           sub_response = requests.get(workers, params={"url": url}, timeout=5).text
-    if x < 10:
-      x += 0.5
     if any(proto in sub_response for proto in ["vmess:", "trojan:", "vless:"]):
       links.extend(sub_response.splitlines())
     else:
