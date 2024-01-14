@@ -2,8 +2,6 @@ import base64
 import json
 import requests
 import re
-import aiohttp
-import asyncio
 import concurrent.futures
 from ..data import workers, proxy
 
