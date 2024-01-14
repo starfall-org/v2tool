@@ -5,8 +5,7 @@ from urllib.parse import unquote
 import base64
 import asyncio
 
-loop = asyncio.new_event_loop()
-asyncio.get_event_loop(loop)
+loop = asyncio.get_event_loop()
 
 def main(context):
   if context.req.path == "/":
