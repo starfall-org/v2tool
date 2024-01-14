@@ -11,4 +11,4 @@ def get_data(filename):
   if entry:
     return entry['urls']
   else:
-    raise DatabaseNotFoundError("Không tìm thấy dữ liệu")
+    raise Exception("Không tìm thấy dữ liệu")
