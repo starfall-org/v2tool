@@ -2,6 +2,7 @@ from deta import Deta
 import os
 
 workers = os.getenv('WORKERS')
+proxy = os.getenv('PROXY')
 deta = Deta(os.getenv('DETA_KEY'))
 db = deta.Base("v2ray-notes")
 
