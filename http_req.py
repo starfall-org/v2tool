@@ -4,9 +4,7 @@ import requests
 import re
 import aiohttp
 import asyncio
-import pycurl
 import concurrent.futures
-from io import BytesIO
 from data import workers, proxy
 
 def get_response(url):
@@ -14,7 +12,7 @@ def get_response(url):
     if response.status_code == 200:
       response = response.text
     else:
-      response = requests.get(workers, params={"url": query_url}, timeout=5).text
+      response = requests.get(workers, params={"url": query_url}, timeout=3).text
     links = []
     if any(proto in response for proto in ["vmess:", "trojan:", "vless:"]):
       for link in response.splitlines():
@@ -37,37 +35,16 @@ def get_response(url):
 def get_responses(urls):
   links = []
   def process(url):
-    buffer = BytesIO()
-    c = pycurl.Curl()
     try:
-      c.setopt(c.URL, url)
-      c.setopt(c.USERAGENT, 'v2rayNG/1.8.12')
-      c.setopt(c.CONNECTTIMEOUT, 3)
-      c.setopt(c.WRITEDATA, buffer)
-      c.perform()
-      c.close()
-      status_code = c.getinfo(pycurl.HTTP_CODE)
-      body = buffer.getvalue()
-      if status_code != 200:
+      sub_response = requests.get(url, timeout=3, headers={"User-Agent": "v2rayNG/1.8.12"})
+      if sub_response.status_code != 200:
         raise
-      sub_response = body.decode('utf-8')
+      sub_response = sub_response.text
     except:
       try:
-          c.setopt(c.URL, proxy)
-          c.setopt(c.POSTFIELDS, f"url={url}")
-          c.setopt(c.CONNECTTIMEOUT, 3)
-          c.setopt(c.WRITEDATA, buffer)
-          c.perform()
-          c.close()
-          sub_response = requests.get(proxy, params={"url": url}, timeout=5).text
+          sub_response = requests.get(proxy, params={"url": url}, timeout=3).text
       except:
-          c.setopt(c.URL, workers)
-          c.setopt(c.POSTFIELDS, f"url={url}")
-          c.setopt(c.CONNECTTIMEOUT, 3)
-          c.setopt(c.WRITEDATA, buffer)
-          c.perform()
-          c.close()
-    sub_response = buffer.getvalue().decode('utf-8')
+          sub_response = requests.get(workers, params={"url": url}, timeout=3).text
     if any(proto in sub_response for proto in ["vmess:", "trojan:", "vless:"]):
       links.extend(sub_response.splitlines())
     else:
