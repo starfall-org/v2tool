@@ -48,7 +48,7 @@ def get_all_urls(context):
       resp = '\n'.join(urls)
       return resp
     except:
-      return "Kho lưu trữ không tồn tại"}
+      return "Kho lưu trữ không tồn tại"
       
 def process_all_config(context):
   req_path = context.req.path
