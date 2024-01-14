@@ -57,34 +57,3 @@ def get_responses(urls):
   with concurrent.futures.ThreadPoolExecutor() as executor:
     executor.map(process, urls)
   return links
-
-async def async_process(session, url, proxy, workers, links):
-    try:
-        async with session.get(url, timeout=3, headers={"User-Agent": "v2rayNG/1.8.12"}) as sub_response:
-            if sub_response.status != 200:
-                raise Exception("Request failed")
-            sub_response = await sub_response.text()
-    except:
-        try:
-            sub_response = await session.get(proxy, params={"url": url}, timeout=5)
-            sub_response = await sub_response.text()
-        except:
-            sub_response = await session.get(workers, params={"url": url}, timeout=5)
-            sub_response = await sub_response.text()
-
-    if any(proto in sub_response for proto in ["vmess:", "trojan:", "vless:"]):
-        links.extend(sub_response.splitlines())
-    else:
-        try:
-            decoded_line = base64.b64decode(sub_response).decode('utf-8')
-            if any(proto in decoded_line for proto in ["vmess:", "trojan:", "vless:"]):
-                links.extend(decoded_line.splitlines())
-        except:
-            pass
-
-async def get_responses_async(urls):
-    links = []
-    async with aiohttp.ClientSession() as session:
-        tasks = [async_process(session, url, proxy, workers, links) for url in urls]
-        await asyncio.gather(*tasks)
-    return links
