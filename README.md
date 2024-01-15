@@ -1,1 +1,1 @@
-v2ray config tool
+# Do not use for commercial purposes
