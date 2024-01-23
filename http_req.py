@@ -10,7 +10,7 @@ from data import workers, proxy
 def get_response(url):
     try:
         response = requests.get(url, timeout=3, headers={"User-Agent": "v2rayNG/1.8.12"})
-        if sub_response.status_code != 200:
+        if response.status_code != 200:
             raise
         response = response.text
     except:
