@@ -28,13 +28,10 @@ def get_response(url):
       sub_urls = re.findall(url_pattern, response)
       links = get_responses(sub_urls)
     else:
-      try:
         decoded_line = base64.b64decode(response).decode('utf-8')
         for link in decoded_line.splitlines():
           if any(proto in link for proto in ["vmess:", "trojan:", "vless:"]):
             links.append(link)
-      except:
-        pass
     return links
     
 def get_responses(urls):
