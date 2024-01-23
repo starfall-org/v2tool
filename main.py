@@ -24,7 +24,7 @@ def process_query():
     list_links = get_response(query_url)
     links = processes(list_links, uuid, sni, tag)
     links = '\n'.join(links).encode('utf-8')
-    result = base64.b64encode(link).decode('utf-8')
+    result = base64.b64encode(links).decode('utf-8')
     return Response(result, mimetype='text/plain')
 
 @app.route('/list/<filename>')
