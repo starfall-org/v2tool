@@ -37,7 +37,7 @@ def process_query(context):
     list_links = get_response(query_url)
     links = processes(list_links, uuid, sni, tag)
     links = '\n'.join(links).encode('utf-8')
-    result = base64.b64encode(link).decode('utf-8')
+    result = base64.b64encode(links).decode('utf-8')
     return result
     
 def get_all_urls(context):
