@@ -14,7 +14,7 @@ def test_proxy():
     r = requests.get("https://www.google.com/generate_204")
         if r.status_code == 204:
             return True
-        if time.time() - start_time >= 5:
+        if time.time() - start_time >= 3:
             del os.environ["http_proxy"]
             del os.environ["http_proxy"]
             return False
