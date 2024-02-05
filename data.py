@@ -2,10 +2,22 @@ from deta import Deta
 from threading import Thread
 import requests
 import os
+import time
 
 deta = Deta(os.getenv('DETA_KEY'))
 db = deta.Base("notes")
 proxy = "http://127.0.0.1:11288"
+
+def test_proxy():
+    start_time = time.time()
+    while True
+    r = requests.get("https://www.google.com/generate_204")
+        if r.status_code == 204:
+            return True
+        if time.time() - start_time >= 5:
+            del os.environ["http_proxy"]
+            del os.environ["http_proxy"]
+            return False
 
 class Proxy:
     @staticmethod
@@ -14,14 +26,7 @@ class Proxy:
         os.system(f"./lite -p 11288 {config} &")
         os.environ["http_proxy"]=proxy
         os.environ["https_proxy"]=proxy
-        try:
-            r = requests.get("https://www.google.com/generate_204")
-            if r.status_code != 204:
-                raise
-        except Exception as e:
-            print(e)
-            return False
-        return True
+        return test_proxy()
         
     @staticmethod
     def run():
@@ -29,10 +34,7 @@ class Proxy:
         os.system(f"./lite -p 11288 {config} &")
         os.environ["http_proxy"]=proxy
         os.environ["https_proxy"]=proxy
-        r = requests.get("https://www.google.com/generate_204")
-        while r.status_code != 204:
-            pass
-        return True
+        return test_proxy()
 
 def get_data(filename):
     entry = db.get(filename)
