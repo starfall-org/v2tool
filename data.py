@@ -29,13 +29,9 @@ class Proxy:
         os.system(f"./lite -p 11288 {config} &")
         os.environ["http_proxy"]=proxy
         os.environ["https_proxy"]=proxy
-        try:
-            r = requests.get("https://www.google.com/generate_204")
-            if r.status_code != 204:
-                raise
-        except Exception as e:
-            print(e)
-            return False
+        r = requests.get("https://www.google.com/generate_204")
+        while r.status_code != 204:
+            pass
         return True
 
 def get_data(filename):
