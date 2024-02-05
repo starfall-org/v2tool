@@ -14,7 +14,7 @@ class Proxy:
     def get():
         config = db.get("proxy")["value"]
         proxy = "http://127.0.0.1:8888"
-        os.system(f"./lite -p 8888 {config}")
+        os.system(f"./lite -p 8888 {config} &")
         os.environ["http_proxy"]=proxy
         os.environ["https_proxy"]=proxy
         return "OK"
