@@ -17,7 +17,7 @@ def test_proxy():
             continue
         if r.status_code == 204:
             return True
-        if time.time() - start_time >= 6:
+        if time.time() - start_time >= 5:
             del os.environ["http_proxy"]
             del os.environ["http_proxy"]
             return False
