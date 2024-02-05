@@ -23,6 +23,8 @@ class Proxy:
         
     @staticmethod
     def run():
+        if os.environ["http_proxy"] == proxy:
+            return True
         config = db.get("proxy")["value"]
         os.system(f"./lite -p 8888 {config} &")
         os.environ["http_proxy"]=proxy
