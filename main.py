@@ -6,7 +6,11 @@ import base64
 
 def main(context):
     if not context.req.path.startswith("/proxy"):
-        Proxy.run()
+        try:
+            Proxy.run()
+        except Exception as e:
+            print(e)
+            pass
     if context.req.path == "/":
         return context.res.send(process_query(context))
     elif context.req.path.startswith("/get"):
