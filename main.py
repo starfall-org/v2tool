@@ -1,68 +1,76 @@
-from flask import Flask, request, Response
-from http_req import get_response, get_responses, get_responses_async
-from editor import processes
-from data import get_data
+from .aw.http_req import get_response, get_responses
+from .aw.editor import processes
+from .data import get_data
 from urllib.parse import unquote
 import base64
-import asyncio
 
-app = Flask(__name__)
-
-loop = asyncio.new_event_loop()
-asyncio.set_event_loop(loop)
-
-@app.route('/')
-def process_query():
-    query_url = request.args.get('url')
+def main(context):
+  if context.req.path == "/":
+    return context.res.send(process_query(context))
+  elif context.req.path.startswith("/list/"):
+    return context.res.send(get_all_urls(context))
+  elif "get" in context.req.path:
+    return context.res.send(process_all_config(context))
+  else:
+    return context.res.send("Đường dẫn không hợp lệ.")
+        
+def process_query(context):
+    try:
+      query_url = context.req.query['url']
+    except Exception:
+      query_url = None
     if not query_url:
-      return "Vui lòng cung cấp tham số URL", 200
-    uuid = request.args.get('uuid')
-    sni = request.args.get('sni')
-    tag = request.args.get('tag')
-    headers = {"User-Agent": "v2rayNG/1.8.12"}
+        return "Vui lòng cung cấp tham số URL"
+    try:
+      uuid = context.req.query['uuid']
+    except Exception:
+      uuid = None
+    try:
+      sni = context.req.query['sni']
+    except Exception:
+      sni = None
+    try:
+      tag = context.req.query['tag']
+    except Exception:
+      tag = None
     query_url = unquote(query_url)
     list_links = get_response(query_url)
     links = processes(list_links, uuid, sni, tag)
     links = '\n'.join(links).encode('utf-8')
     result = base64.b64encode(links).decode('utf-8')
-    return Response(result, mimetype='text/plain')
-
-@app.route('/list/<filename>')
-def get_all_urls(filename):
+    return result
+    
+def get_all_urls(context):
     try:
+      req_path = context.req.path
+      filename = req_path.replace("/list/", "")
       urls = get_data(filename)
-      resp = make_response('\n'.join(urls))
-      resp.mimetype = 'text/plain'
+      resp = '\n'.join(urls)
       return resp
-    except Exception as e:
-      return {"status": "failed", "message": str(e)}, 404
-     
-@app.route('/get/<filename>')
-def process_all_config(filename):
-  uuid = request.args.get('uuid')
-  sni = request.args.get('sni')
-  tag = request.args.get('tag')
+    except Exception:
+      return "Kho lưu trữ không tồn tại"
+      
+def process_all_config(context):
+  req_path = context.req.path
+  filename = req_path.replace("/get/", "")
+  try:
+    uuid = context.req.query['uuid']
+  except Exception:
+    uuid = None
+  try:
+    sni = context.req.query['sni']
+  except Exception:
+    sni = None
+  try:
+    tag = context.req.query['tag']
+  except Exception:
+    tag = None
   try:
     urls = get_data(filename)
   except Exception as e:
-    return {"status": "failed", "message": str(e)}, 404
+    return str(e)
   list_links = get_responses(urls)
   links = processes(list_links, uuid, sni, tag)
   links = '\n'.join(links).encode('utf-8')
   result = base64.b64encode(links).decode('utf-8')
-  return result #Response(result, mimetype='text/plain')
-  
-@app.route('/getv2/<filename>')
-def process_all_config_async(filename):
-  uuid = request.args.get('uuid')
-  sni = request.args.get('sni')
-  tag = request.args.get('tag')
-  try:
-    urls = get_data(filename)
-  except Exception as e:
-    return {"status": "failed", "message": str(e)}, 404
-  list_links = loop.run_until_complete(get_responses_async(urls))
-  links = processes(list_links, uuid, sni, tag)
-  links = '\n'.join(links).encode('utf-8')
-  result = base64.b64encode(links).decode('utf-8')
-  return result #Response(result, mimetype='text/plain')
+  return result
