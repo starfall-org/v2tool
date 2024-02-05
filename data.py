@@ -14,7 +14,7 @@ class Proxy:
         r = requests.get("https://www.google.com/generate_204")
         if r.status_code != 204:
             del os.environ["http_proxy"]
-            del os.environ["http_proxy"]
+            del os.environ["https_proxy"]
             return False
         return True
         
@@ -28,7 +28,7 @@ class Proxy:
         r = requests.get("https://www.google.com/generate_204")
         if r.status_code != 204:
             del os.environ["http_proxy"]
-            del os.environ["http_proxy"]
+            del os.environ["https_proxy"]
             return False
         return True
 
