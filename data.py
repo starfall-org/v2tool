@@ -1,4 +1,5 @@
 from deta import Deta
+from threading import Thread
 import os
 
 deta = Deta(os.getenv('DETA_KEY'))
@@ -11,7 +12,7 @@ class Proxy:
         return "OK"
         
     @staticmethod
-    def get():
+    def run():
         config = db.get("proxy")["value"]
         proxy = "http://127.0.0.1:8888"
         os.system(f"./lite -p 8888 {config} &")
