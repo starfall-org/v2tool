@@ -16,7 +16,7 @@ def test_proxy():
             return True
         if time.time() - start_time >= 3:
             del os.environ["http_proxy"]
-            del os.environ["http_proxy"]
+            del os.environ["https_proxy"]
             return False
 
 class Proxy:
