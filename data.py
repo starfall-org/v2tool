@@ -13,7 +13,7 @@ def test_proxy():
     while True:
         try:
             r = requests.get("https://www.google.com/generate_204", timeout=2)
-        except:
+        except Exception:
             continue
         if r.status_code == 204:
             return True
