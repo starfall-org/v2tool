@@ -12,16 +12,16 @@ expath = os.path.abspath(__file__).replace("/data.py", "")
 def test_proxy():
     start_time = time.time()
     while True:
+        if time.time() - start_time >= 6:
+            del os.environ["http_proxy"]
+            del os.environ["https_proxy"]
+            return False
         try:
             requests.get("https://www.google.com/generate_204")
             return True
         except Exception:
             continue
-        if time.time() - start_time >= 5:
-            del os.environ["http_proxy"]
-            del os.environ["https_proxy"]
-            return False
-
+       
 class Proxy:
     @staticmethod
     def add(config):
