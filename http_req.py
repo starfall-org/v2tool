@@ -26,7 +26,7 @@ def get_response(url):
 def get_responses(urls):
     links = []
     def process(url):
-        sub_response = requests.get(url, timeout=3, headers={"User-Agent": "v2rayNG/1.8.12"})
+        sub_response = requests.get(url, timeout=3, headers={"User-Agent": "v2rayNG/*.*.*"})
         if any(proto in sub_response for proto in ["vmess:", "trojan:", "vless:"]):
             links.extend(sub_response.splitlines())
         else:
