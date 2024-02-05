@@ -14,8 +14,12 @@ class Proxy:
         os.system(f"./lite -p 8888 {config} &")
         os.environ["http_proxy"]=proxy
         os.environ["https_proxy"]=proxy
-        r = requests.get("https://www.google.com/generate_204")
-        if r.status_code != 204:
+        try:
+            r = requests.get("https://www.google.com/generate_204")
+            if r.status_code != 204:
+                raise
+        except Exception as e:
+            print(e)
             del os.environ["http_proxy"]
             del os.environ["https_proxy"]
             return False
@@ -23,14 +27,16 @@ class Proxy:
         
     @staticmethod
     def run():
-        if os.getenv("http_proxy") == proxy:
-            return True
         config = db.get("proxy")["value"]
         os.system(f"./lite -p 8888 {config} &")
         os.environ["http_proxy"]=proxy
         os.environ["https_proxy"]=proxy
-        r = requests.get("https://www.google.com/generate_204")
-        if r.status_code != 204:
+        try:
+            r = requests.get("https://www.google.com/generate_204")
+            if r.status_code != 204:
+                raise
+        except Exception as e:
+            print(e)
             del os.environ["http_proxy"]
             del os.environ["https_proxy"]
             return False
