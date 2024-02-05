@@ -11,15 +11,15 @@ proxy = "http://127.0.0.1:8888"
 def test_proxy():
     start_time = time.time()
     while True:
+        if time.time() - start_time >= 3:
+            del os.environ["http_proxy"]
+            del os.environ["https_proxy"]
+            return False
         try:
             requests.get("https://www.google.com/generate_204", timeout=1)
             return True
         except Exception:
             continue
-        if time.time() - start_time >= 3:
-            del os.environ["http_proxy"]
-            del os.environ["https_proxy"]
-            return False
 
 class Proxy:
     @staticmethod
