@@ -6,7 +6,7 @@ db = deta.Base("notes")
 
 class Proxy:
     @staticmethod
-    def set(config):
+    def add(config):
         db.put(key="proxy", data=config)
         return "OK"
         
