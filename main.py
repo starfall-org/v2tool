@@ -25,14 +25,6 @@ def process_query():
     links = '\n'.join(links).encode('utf-8')
     result = base64.b64encode(links).decode('utf-8')
     return Response(result, mimetype='text/plain')
-
-@app.route('/list/<filename>')
-def get_all_urls(filename):
-    try:
-        urls = get_data(filename)
-        return Response('\n'.join(urls), mimetype='text/plain')
-    except Exception as e:
-        return {"status": "failed", "message": str(e)}, 404
      
 @app.route('/get/<filename>')
 def process_all_config(filename):
@@ -48,3 +40,12 @@ def process_all_config(filename):
     links = '\n'.join(links).encode('utf-8')
     result = base64.b64encode(links).decode('utf-8')
     return Response(result, mimetype='text/plain')
+    
+@app.route("/proxy")
+def add_proxy():
+    config = request.args.get("add")
+    if config:
+        Proxy.add(config)
+        return Response("Thiết lập hoàn tất", mimetype="text/plain")
+    else:
+        return Response("Vui lòng cung cấp link proxy", mimetype="text/plain")
