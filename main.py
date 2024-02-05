@@ -19,7 +19,7 @@ def main(context):
         config = context.req.query.get("add")
         if config:
             init = Proxy.add(config)
-            if init
+            if init:
                 return context.res.send("Thiết lập hoàn tất")
             else:
                 return context.res.send("Proxy bị lỗi")
