@@ -5,7 +5,7 @@ import re
 import concurrent.futures
 
 def get_response(url):
-    response = requests.get(url, timeout=3, headers={"User-Agent": "v2rayNG/*.*.*"})
+    response = requests.get(url, timeout=3, headers={"User-Agent": "v2rayNG/*.*.*"}).text
     links = []
     if any(proto in response for proto in ["vmess:", "trojan:", "vless:"]):
         for link in response.splitlines():
