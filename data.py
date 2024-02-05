@@ -5,12 +5,15 @@ import os
 
 deta = Deta(os.getenv('DETA_KEY'))
 db = deta.Base("notes")
+proxy = "http://127.0.0.1:8888"
 
 class Proxy:
     @staticmethod
     def add(config):
         db.put(key="proxy", data=config)
-        Proxy.run()
+        os.system(f"./lite -p 8888 {config} &")
+        os.environ["http_proxy"]=proxy
+        os.environ["https_proxy"]=proxy
         r = requests.get("https://www.google.com/generate_204")
         if r.status_code != 204:
             del os.environ["http_proxy"]
@@ -21,7 +24,6 @@ class Proxy:
     @staticmethod
     def run():
         config = db.get("proxy")["value"]
-        proxy = "http://127.0.0.1:8888"
         os.system(f"./lite -p 8888 {config} &")
         os.environ["http_proxy"]=proxy
         os.environ["https_proxy"]=proxy
