@@ -12,11 +12,10 @@ def test_proxy():
     start_time = time.time()
     while True:
         try:
-            r = requests.get("https://www.google.com/generate_204", timeout=1)
+            requests.get("https://www.google.com/generate_204", timeout=1)
+            return True
         except Exception:
             continue
-        if r.status_code == 204:
-            return True
         if time.time() - start_time >= 3:
             del os.environ["http_proxy"]
             del os.environ["https_proxy"]
