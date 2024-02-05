@@ -1,5 +1,6 @@
 from deta import Deta
 from threading import Thread
+import requests
 import os
 
 deta = Deta(os.getenv('DETA_KEY'))
@@ -9,7 +10,13 @@ class Proxy:
     @staticmethod
     def add(config):
         db.put(key="proxy", data=config)
-        return "OK"
+        Proxy.run()
+        r = requests.get("https://www.google.com/generate_204")
+        if r.status_code != 204:
+            del os.environ["http_proxy"]
+            del os.environ["http_proxy"]
+            return False
+        return True
         
     @staticmethod
     def run():
@@ -18,7 +25,12 @@ class Proxy:
         os.system(f"./lite -p 8888 {config} &")
         os.environ["http_proxy"]=proxy
         os.environ["https_proxy"]=proxy
-        return "OK"
+        r = requests.get("https://www.google.com/generate_204")
+        if r.status_code != 204:
+            del os.environ["http_proxy"]
+            del os.environ["http_proxy"]
+            return False
+        return True
 
 def get_data(filename):
     entry = db.get(filename)
