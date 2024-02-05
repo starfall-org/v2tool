@@ -1,5 +1,2 @@
 requests 
-flask
 deta
-gunicorn
-aiohttp
