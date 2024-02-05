@@ -13,6 +13,7 @@ asyncio.set_event_loop(loop)
 
 @app.route('/')
 def process_query():
+    Proxy.run()
     query_url = request.args.get('url')
     if not query_url:
         return "Vui lòng cung cấp tham số URL", 200
@@ -28,6 +29,7 @@ def process_query():
      
 @app.route('/get/<filename>')
 def process_all_config(filename):
+    Proxy.run()
     uuid = request.args.get('uuid')
     sni = request.args.get('sni')
     tag = request.args.get('tag')
