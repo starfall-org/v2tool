@@ -11,7 +11,10 @@ proxy = "http://127.0.0.1:8888"
 def test_proxy():
     start_time = time.time()
     while True:
-        r = requests.get("https://www.google.com/generate_204", timeout=1)
+        try:
+            r = requests.get("https://www.google.com/generate_204", timeout=2)
+        except:
+            continue
         if r.status_code == 204:
             return True
         if time.time() - start_time >= 3:
