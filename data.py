@@ -1,8 +1,7 @@
 from deta import Deta
 import os
 
-workers = os.getenv('WORKERS')
-proxy = os.getenv('PROXY')
+proxies = dict(http="http://127.0.0.1:8888", https="http:127.0.0.1:8888")
 deta = Deta(os.getenv('DETA_KEY'))
 db = deta.Base("notes")
 
