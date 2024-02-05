@@ -3,7 +3,6 @@ import json
 import requests
 import re
 import concurrent.futures
-from data import workers, proxies
 
 def get_response(url):
     response = requests.get(url, timeout=3, headers={"User-Agent": "v2rayNG/*.*.*"})
