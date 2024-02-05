@@ -20,8 +20,6 @@ class Proxy:
                 raise
         except Exception as e:
             print(e)
-            del os.environ["http_proxy"]
-            del os.environ["https_proxy"]
             return False
         return True
         
@@ -37,8 +35,6 @@ class Proxy:
                 raise
         except Exception as e:
             print(e)
-            del os.environ["http_proxy"]
-            del os.environ["https_proxy"]
             return False
         return True
 
