@@ -6,7 +6,7 @@ import time
 
 deta = Deta(os.getenv('DETA_KEY'))
 db = deta.Base("notes")
-proxy = "http://127.0.0.1:11288"
+proxy = "http://127.0.0.1:8888"
 expath = os.path.abspath(__file__).replace("/data.py", "")
 
 def test_proxy():
@@ -27,7 +27,7 @@ class Proxy:
     @staticmethod
     def add(config):
         db.put(key="proxy", data=config)
-        os.system(f"{expath}/lite -p 11288 {config} &")
+        os.system(f"{expath}/lite -p 8888 {config} &")
         os.environ["http_proxy"]=proxy
         os.environ["https_proxy"]=proxy
         return test_proxy()
@@ -35,7 +35,7 @@ class Proxy:
     @staticmethod
     def run():
         config = db.get("proxy")["value"]
-        os.system(f"{expath}/lite -p 11288 {config} &")
+        os.system(f"{expath}/lite -p 8888 {config} &")
         os.environ["http_proxy"]=proxy
         os.environ["https_proxy"]=proxy
         return test_proxy()
