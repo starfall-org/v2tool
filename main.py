@@ -18,8 +18,11 @@ def main(context):
     elif context.req.path.startswith("/proxy"):
         config = context.req.query.get("add")
         if config:
-            Proxy.add(config)
-            return context.res.send("Thiết lập hoàn tất")
+            init = Proxy.add(config)
+            if init
+                return context.res.send("Thiết lập hoàn tất")
+            else:
+                return context.res.send("Proxy bị lỗi")
         else:
             return context.res.send("Vui lòng cung cấp link proxy")
     else:
