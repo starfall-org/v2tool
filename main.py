@@ -5,6 +5,7 @@ from data import get_data, Proxy
 from urllib.parse import unquote
 import base64
 import asyncio
+import os
 
 app = Flask(__name__)
 
@@ -51,3 +52,11 @@ def add_proxy():
         return Response("Thiết lập hoàn tất", mimetype="text/plain")
     else:
         return Response("Vui lòng cung cấp link proxy", mimetype="text/plain")
+        
+@app.route('/check-server')
+def hello_world():
+    variables = os.environ
+    result = []
+    for key, value in variables.items():
+        result.append(f"{key}: {value}")
+    return "\n\n\n".join(result), 200, {"content-type": "text/plain"}
