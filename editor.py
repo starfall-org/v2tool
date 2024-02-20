@@ -30,6 +30,6 @@ def processes(links, uuid=None, sni=None, tag=None):
     except Exception as e:
         print(e)
         pass
-  with concurrent.futures.ProcessPoolExecutor() as executor:
+  with concurrent.futures.ThreadPoolExecutor() as executor:
     executor.map(process_batch, (links[i:i + batch_size] for i in range(0, len(links), batch_size)))
   return list(values)
