@@ -6,7 +6,7 @@ import time
 
 deta = Deta(os.getenv('DETA_KEY'))
 db = deta.Base("notes")
-proxy = "http://127.0.0.1:8888"
+proxy = "http://{}".format(os.getenv('proxy'))
 
 def test_proxy():
     start_time = time.time()
@@ -32,8 +32,8 @@ class Proxy:
         
     @staticmethod
     def run():
-        config = db.get("proxy")["value"]
-        os.system(f"./lite -p 8888 {config} &")
+        #config = db.get("proxy")["value"]
+        #os.system(f"./lite -p 8888 {config} &")
         os.environ["http_proxy"]=proxy
         os.environ["https_proxy"]=proxy
         return test_proxy()
