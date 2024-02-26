@@ -6,7 +6,7 @@ import time
 
 deta = Deta(os.getenv('DETA_KEY'))
 db = deta.Base("notes")
-proxy = "http://{}".format(os.getenv('proxy'))
+proxy = "http://{}".format(os.getenv('PROXY'))
 
 def test_proxy():
     start_time = time.time()
