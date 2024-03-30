@@ -3,9 +3,10 @@ import json
 import requests
 import re
 import concurrent.futures
+from data import proxies
 
 def get_response(url):
-    response = requests.get(url, timeout=5, headers={"User-Agent": "v2rayNG/*.*.*"}).text
+    response = requests.get(url, timeout=5, headers={"User-Agent": "v2rayNG/*.*.*"}, proxies=proxies).text
     links = []
     if any(proto in response for proto in ["vmess:", "trojan:", "vless:"]):
         for link in response.splitlines():
@@ -25,7 +26,7 @@ def get_response(url):
 def get_responses(urls):
     links = []
     def process(url):
-        sub_response = requests.get(url, timeout=5, headers={"User-Agent": "v2rayNG/*.*.*"}).text
+        sub_response = requests.get(url, timeout=5, headers={"User-Agent": "v2rayNG/*.*.*"}, proxies=proxies).text
         if any(proto in sub_response for proto in ["vmess:", "trojan:", "vless:"]):
             links.extend(sub_response.splitlines())
         else:
