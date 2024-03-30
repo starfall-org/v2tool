@@ -4,13 +4,9 @@ from editor import processes
 from data import get_data, Proxy
 from urllib.parse import unquote
 import base64
-import asyncio
 import os
 
 app = Flask(__name__)
-
-loop = asyncio.new_event_loop()
-asyncio.set_event_loop(loop)
 
 @app.route('/')
 def process_query():
