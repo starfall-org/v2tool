@@ -1,7 +1,13 @@
 from configkit import vmess, trojan, vless
 import concurrent.futures
 
-def editor(batch, values, uuid=None, sni=None, tag=None):
+def editor(
+    batch, 
+    values, 
+    uuid=None, 
+    sni=None, 
+    tag=None
+    ):
   for link in batch:
     if link.startswith('vmess'):
       link = vmess.edit(link, uuid, sni, tag)
