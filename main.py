@@ -55,7 +55,7 @@ def process_all_config(filename):
     return Response(result, mimetype='text/plain')
 
 @app.route('/check-server')
-def hello_world():
+def check_server():
     variables = os.environ
     result = []
     for key, value in variables.items():
