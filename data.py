@@ -32,7 +32,7 @@ def test_proxy():
 
 class Proxy:
     @staticmethod
-    def add(config):
+    def add():
         db.put(
             key="proxy", 
             data=config
