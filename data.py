@@ -33,10 +33,6 @@ def test_proxy():
 class Proxy:
     @staticmethod
     def add():
-        db.put(
-            key="proxy", 
-            data=config
-            )
         os.system(f"./lite -p 10808 {config} &")
         return test_proxy()
         
