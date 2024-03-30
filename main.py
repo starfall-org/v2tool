@@ -31,7 +31,10 @@ def process_query():
         )
     links = '\n'.join(links).encode('utf-8')
     result = base64.b64encode(links).decode('utf-8')
-    return Response(result, mimetype='text/plain')
+    return Response(
+        result,
+        mimetype='text/plain'
+        )
      
 @app.route('/get/<filename>')
 def process_all_config(filename):
@@ -52,7 +55,10 @@ def process_all_config(filename):
         )
     links = '\n'.join(links).encode('utf-8')
     result = base64.b64encode(links).decode('utf-8')
-    return Response(result, mimetype='text/plain')
+    return Response(
+        result,
+        mimetype='text/plain'
+        )
 
 @app.route('/check-server')
 def check_server():
