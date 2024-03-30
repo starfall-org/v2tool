@@ -53,16 +53,7 @@ def process_all_config(filename):
     links = '\n'.join(links).encode('utf-8')
     result = base64.b64encode(links).decode('utf-8')
     return Response(result, mimetype='text/plain')
-    
-@app.route("/proxy")
-def add_proxy():
-    config = request.args.get("add")
-    if config:
-        Proxy.add(config)
-        return Response("Thiết lập hoàn tất", mimetype="text/plain")
-    else:
-        return Response("Vui lòng cung cấp link proxy", mimetype="text/plain")
-        
+
 @app.route('/check-server')
 def hello_world():
     variables = os.environ
