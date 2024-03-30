@@ -2,11 +2,11 @@ from configkit import vmess, trojan, vless
 import concurrent.futures
 
 def editor(
-    batch, 
-    values, 
-    uuid=None, 
-    sni=None, 
-    tag=None
+    batch: list, 
+    values: set, 
+    uuid: str = None, 
+    sni: str = None, 
+    tag: str = None
     ):
   for link in batch:
     if link.startswith('vmess'):
@@ -43,10 +43,10 @@ def editor(
 #   return values
   
 def processes(
-    links,
-    uuid=None,
-    sni=None,
-    tag=None
+    links: list,
+    uuid: str = None,
+    sni: str = None,
+    tag: str = None
     ):
   batch_size = 10
   values = set()
