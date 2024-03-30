@@ -1,4 +1,8 @@
-from configkit import vmess, trojan, vless
+from configkit import (
+    vmess, 
+    trojan,
+    vless
+    )
 import concurrent.futures
 
 def editor(
