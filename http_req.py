@@ -65,5 +65,8 @@ def get_responses(urls):
     with concurrent.futures.ThreadPoolExecutor(
         max_workers=10
         ) as executor:
-        executor.map(process, urls)
+        executor.map(
+            process, 
+            urls
+            )
     return links
