@@ -12,8 +12,6 @@ proxies = {
     "https": local_proxy
     }
 proxy_url = os.getenv('PROXY_URL')
-r = requests.get(proxy_url)
-config = r.text
 
 def test_proxy():
     start_time = time.time()
@@ -33,11 +31,15 @@ def test_proxy():
 class Proxy:
     @staticmethod
     def add():
+        r = requests.get(proxy_url)
+        config = r.text
         os.system(f"./lite -p 10808 {config} &")
         return test_proxy()
         
     @staticmethod
     def run():
+        r = requests.get(proxy_url)
+        config = r.text
         os.system(f"./lite -p 10808 {config} &")
         return test_proxy()
 
