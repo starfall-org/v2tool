@@ -3,7 +3,7 @@ import json
 import requests
 import re
 import concurrent.futures
-from data import proxies
+from .set_proxy import proxies
 
 def get_response(url):
     response = requests.get(
