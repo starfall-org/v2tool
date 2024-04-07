@@ -1,8 +1,6 @@
-from configkit import (
-    vmess, 
-    trojan,
-    vless
-    )
+from utils import (
+    vmess, trojan,vless
+)
 import concurrent.futures
 
 def editor(
@@ -15,24 +13,15 @@ def editor(
   for link in batch:
     if link.startswith('vmess'):
       link = vmess.edit(
-          link, 
-          uuid,
-          sni,
-          tag
+          link, uuid, sni, tag
           )
     elif link.startswith('trojan'):
       link = trojan.edit(
-          link, 
-          uuid, 
-          sni,
-          tag
+          link, uuid, sni,tag
           )
     elif link.startswith('vless'):
       link = vless.edit(
-          link,
-          uuid,
-          sni,
-          tag
+          link,buuid, sni, tag
           )
     if link:
       values.add(link)
@@ -57,11 +46,7 @@ def processes(
   def process_batch(batch):
     try:
         editor(
-            batch,
-            values,
-            uuid,
-            sni,
-            tag
+            batch, values, uuid, sni, tag
             )
     except Exception as e:
         print(e)
@@ -69,6 +54,8 @@ def processes(
   with concurrent.futures.ThreadPoolExecutor() as executor:
     executor.map(
         process_batch,
-        (links[i:i + batch_size] for i in range(0, len(links), batch_size))
-            )
+        (
+            links[i:i + batch_size] for i in range(0, len(links), batch_size)
+        )
+    )
   return list(values)
