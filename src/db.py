@@ -17,5 +17,9 @@ class Mongo:
             raise Exception("Không tìm thấy dữ liệu") 
 
 def get_data(note):
-    notes = Mongo()
-    return notes.get(note)
+    db_url = os.getenv("MONGO_URL")
+    client = MongoClient(db_url)
+    db = client.mo9973_notes
+    notes = db.notes
+    result = notes.find_one({"id": note})
+    return result["urls"]
