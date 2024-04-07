@@ -21,5 +21,5 @@ def get_data(note):
     client = MongoClient(db_url)
     db = client.mo9973_notes
     notes = db.notes
-    result = notes.find_one({"id": note})
+    result = notes.find_one({"_id": note})
     return result["urls"]
