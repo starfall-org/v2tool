@@ -21,7 +21,7 @@ def editor(
           )
     elif link.startswith('vless'):
       link = vless.edit(
-          link,buuid, sni, tag
+          link, uuid, sni, tag
           )
     if link:
       values.add(link)
