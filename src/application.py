@@ -1,5 +1,5 @@
 from flask import Flask, request, Response
-from http_req import get_response, get_responses
+from .http_req import get_response, get_responses
 from .editor import processes
 from .db import get_data
 from .set_proxy import run_proxy
