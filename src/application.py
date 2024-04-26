@@ -19,7 +19,8 @@ def get_update(name: str):
     db = Mongo()
     urls = get_data(name)
     links = get_responses(urls)
-    db.add_value(name, links)
+    if links:
+        db.add_value(name, links)
     return links
 
 
