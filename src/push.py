@@ -9,7 +9,7 @@ def publish(data):
     connection = pika.BlockingConnection(parameters)
     channel = connection.channel()
     channel.basic_publish(
-        "v2tool",
+        "mq",
         "standard_key",
         data,
         pika.BasicProperties(
