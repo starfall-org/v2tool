@@ -37,14 +37,14 @@ def handle_query():
     return Response(result, mimetype="text/plain")
 
 
-@app.route("/update/<filename>")
-def update_note(name):
+@app.route("/update/<note>")
+def update_note(note):
     run_proxy()
     uuid = request.args.get("uuid")
     sni = request.args.get("sni")
     tag = request.args.get("tag")
     try:
-        list_links = get_update(name)
+        list_links = get_update(note)
         links = processes(list_links, uuid, sni, tag)
         links = "\n".join(links).encode("utf-8")
         result = base64.b64encode(links).decode("utf-8")
