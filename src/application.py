@@ -4,10 +4,10 @@ from urllib.parse import unquote
 
 from flask import Flask, Response, request
 
-from .db import get_data
+from .db import Mongo, get_data
 from .editor import processes
 from .http_req import get_response, get_responses
-from .set_proxy import run_proxy, Mongo
+from .set_proxy import run_proxy
 
 app = Flask(__name__)
 
