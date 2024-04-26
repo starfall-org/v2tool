@@ -57,14 +57,14 @@ def update_note(note):
 @app.route("/get/<note>")
 def get_note(note):
     db = Mongo()
-    Thread(target=publish, args=(note)).start()
+    Thread(target=publish, args=(note,)).start()
     uuid = request.args.get("uuid")
     sni = request.args.get("sni")
     tag = request.args.get("tag")
     try:
         try:
             list_links = db.get_value(note)
-            Thread(target=get_update, args=(note)).start()
+            Thread(target=get_update, args=(note,)).start()
         except:
             list_links = get_update(note)
         if not list_links:
