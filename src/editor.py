@@ -1,6 +1,6 @@
 import concurrent.futures
 
-from protocols import trojan, vless, vmess
+from .protocols import trojan, vless, vmess
 
 
 def editor(

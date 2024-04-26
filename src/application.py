@@ -9,6 +9,7 @@ from .db import Mongo, get_data
 from .editor import processes
 from .http_req import get_response, get_responses
 from .set_proxy import run_proxy
+from .push import publish
 
 app = Flask(__name__)
 
@@ -56,6 +57,7 @@ def update_note(note):
 @app.route("/get/<note>")
 def get_note(note):
     db = Mongo()
+    Thread(target=publish, args=(note)).start()
     uuid = request.args.get("uuid")
     sni = request.args.get("sni")
     tag = request.args.get("tag")
