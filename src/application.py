@@ -55,18 +55,22 @@ def update_note(note):
 
 @app.route("/get/<note>")
 def get_note(note):
-    Thread(target=get_update, args=(note)).start()
     db = Mongo()
     uuid = request.args.get("uuid")
     sni = request.args.get("sni")
     tag = request.args.get("tag")
     try:
-        list_links = db.get_value(note)
+        try:
+            list_links = db.get_value(note)
+            Thread(target=get_update, args=(note)).start()
+        except:
+            list_links = get_update(note)
         links = processes(list_links, uuid, sni, tag)
         links = "\n".join(links).encode("utf-8")
         result = base64.b64encode(links).decode("utf-8")
         return Response(result, mimetype="text/plain")
     except Exception as e:
+        Thread(target=get_update, args=(note)).start()
         return {"status": "failed", "message": str(e)}, 404
 
 
