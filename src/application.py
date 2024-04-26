@@ -65,16 +65,15 @@ def get_note(note):
         try:
             list_links = db.get_value(note)
             Thread(target=get_update, args=(note,)).start()
-        except:
+        except Exception as e:
+            print(e)
             list_links = get_update(note)
-        if not list_links:
-            raise
         links = processes(list_links, uuid, sni, tag)
         links = "\n".join(links).encode("utf-8")
         result = base64.b64encode(links).decode("utf-8")
         return Response(result, mimetype="text/plain")
     except Exception as e:
-        Thread(target=get_update, args=(note)).start()
+        Thread(target=get_update, args=(note,)).start()
         return {"status": "failed", "message": str(e)}, 404
 
 
