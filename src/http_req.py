@@ -47,6 +47,6 @@ def get_responses(urls):
             except Exception as e:
                 print(e)
 
-    with concurrent.futures.ThreadPoolExecutor(max_workers=30) as executor:
+    with concurrent.futures.ThreadPoolExecutor(max_workers=50) as executor:
         executor.map(process, urls)
     return links
