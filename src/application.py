@@ -65,6 +65,8 @@ def get_note(note):
             Thread(target=get_update, args=(note)).start()
         except:
             list_links = get_update(note)
+        if not list_links:
+            raise
         links = processes(list_links, uuid, sni, tag)
         links = "\n".join(links).encode("utf-8")
         result = base64.b64encode(links).decode("utf-8")
