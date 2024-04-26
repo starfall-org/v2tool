@@ -28,7 +28,7 @@ def processes(links: list, uuid: str = None, sni: str = None, tag: str = None):
             print(e)
             pass
 
-    with concurrent.futures.ThreadPoolExecutor(max_workers=200) as executor:
+    with concurrent.futures.ThreadPoolExecutor(max_workers=100) as executor:
         executor.map(
             process_batch,
             (links[i : i + batch_size] for i in range(0, len(links), batch_size)),

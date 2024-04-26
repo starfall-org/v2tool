@@ -1,6 +1,5 @@
 import base64
 import concurrent.futures
-import json
 import re
 
 import requests

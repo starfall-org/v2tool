@@ -15,6 +15,7 @@ app = Flask(__name__)
 
 
 def get_update(name: str):
+    run_proxy()
     db = Mongo()
     urls = get_data(name)
     links = get_responses(urls)
@@ -40,7 +41,6 @@ def handle_query():
 
 @app.route("/update/<note>")
 def update_note(note):
-    run_proxy()
     uuid = request.args.get("uuid")
     sni = request.args.get("sni")
     tag = request.args.get("tag")
