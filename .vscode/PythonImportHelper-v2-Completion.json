@@ -356,7 +356,7 @@
         "kind": 2,
         "importPath": "src.editor",
         "description": "src.editor",
-        "peekOfCode": "def processes(links: list, uuid: str = None, sni: str = None, tag: str = None):\n    batch_size = 10\n    values = set()\n    def process_batch(batch):\n        try:\n            editor(batch, values, uuid, sni, tag)\n        except Exception as e:\n            print(e)\n            pass\n    with concurrent.futures.ThreadPoolExecutor(max_workers=100) as executor:",
+        "peekOfCode": "def processes(links: list, uuid: str = None, sni: str = None, tag: str = None):\n    batch_size = 10\n    values = set()\n    def process_batch(batch):\n        try:\n            editor(batch, values, uuid, sni, tag)\n        except Exception as e:\n            print(e)\n            pass\n    with concurrent.futures.ThreadPoolExecutor(max_workers=200) as executor:",
         "detail": "src.editor",
         "documentation": {}
     },
