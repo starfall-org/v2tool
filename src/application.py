@@ -2,9 +2,7 @@ import base64
 import os
 from urllib.parse import unquote
 from threading import Thread
-
 from flask import Flask, Response, request
-
 from .db import Mongo, get_data
 from .editor import processes
 from .http_req import get_response, get_responses
