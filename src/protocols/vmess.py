@@ -1,6 +1,7 @@
 import re
 import base64
 import json
+from .func import get_loc
 
 
 def edit(link, set_uuid, set_sni, set_tag):
@@ -12,6 +13,8 @@ def edit(link, set_uuid, set_sni, set_tag):
     if ip in ["127.0.0.1", "1.1.1.1", "0.0.0.0", "8.8.8.8"]:
         return
     if set_tag:
+        if set_tag == "auto":
+            set_tag = get_loc(ip)
         config["ps"] = set_tag
     if set_uuid:
         config["id"] = set_uuid

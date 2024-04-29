@@ -1,4 +1,5 @@
 from urllib.parse import urlparse, parse_qs, urlencode, urlunparse
+from .func import get_loc
 
 
 def edit(link, set_uuid, set_sni, set_tag):
@@ -20,6 +21,8 @@ def edit(link, set_uuid, set_sni, set_tag):
         query = urlencode(query, doseq=True)
         link = link._replace(query=query)
     if set_tag:
+        if set_tag == "auto":
+            set_tag = get_loc(ip)
         link = link._replace(fragment=set_tag)
     link = urlunparse(link)
     return link
