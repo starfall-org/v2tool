@@ -284,7 +284,7 @@
         "kind": 2,
         "importPath": "src.application",
         "description": "src.application",
-        "peekOfCode": "def get_note(note):\n    db = Mongo()\n    Thread(target=publish, args=(note,)).start()\n    uuid = request.args.get(\"uuid\")\n    sni = request.args.get(\"sni\")\n    tag = request.args.get(\"tag\")\n    try:\n        try:\n            list_links = db.get_value(note)\n            Thread(target=get_update, args=(note,)).start()",
+        "peekOfCode": "def get_note(note):\n    db = Mongo()\n    uuid = request.args.get(\"uuid\")\n    sni = request.args.get(\"sni\")\n    tag = request.args.get(\"tag\")\n    try:\n        try:\n            list_links = db.get_value(note)\n            Thread(target=publish, args=(note,)).start()\n        except Exception as e:",
         "detail": "src.application",
         "documentation": {}
     },
