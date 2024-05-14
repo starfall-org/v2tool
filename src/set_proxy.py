@@ -1,6 +1,4 @@
 import os
-import time
-
 import requests
 
 local_proxy = "http://127.0.0.1:10808"
@@ -9,17 +7,10 @@ proxy_url = os.getenv("PROXY_URL")
 
 
 def test_proxy():
-    start_time = time.time()
-    while True:
-        if time.time() - start_time >= 3:
-            return False
-        try:
-            requests.get(
-                "https://www.google.com/generate_204", timeout=1, proxies=proxies
-            )
-            return True
-        except Exception:
-            continue
+    req = requests.get(
+        "https://www.google.com/generate_204", timeout=2, proxies=proxies
+    )
+    return req.status_code
 
 
 def run_proxy():

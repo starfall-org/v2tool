@@ -200,15 +200,6 @@
         "documentation": {}
     },
     {
-        "label": "time",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "time",
-        "description": "time",
-        "detail": "time",
-        "documentation": {}
-    },
-    {
         "label": "app",
         "importPath": "src.application",
         "description": "src.application",
@@ -383,7 +374,7 @@
         "kind": 2,
         "importPath": "src.http_req",
         "description": "src.http_req",
-        "peekOfCode": "def get_response(url):\n    response = requests.get(\n        url, timeout=5, headers={\"User-Agent\": \"v2rayNG/*.*.*\"}, proxies=proxies\n    ).text\n    links = []\n    if any(proto in response for proto in [\"vmess:\", \"trojan:\", \"vless:\"]):\n        for link in response.splitlines():\n            if any(proto in link for proto in [\"vmess:\", \"trojan:\", \"vless:\"]):\n                links.append(link)\n    elif any(proto in response for proto in [\"http:\", \"https:\"]):",
+        "peekOfCode": "def get_response(url):\n    response = requests.get(\n        url, timeout=5, headers={\"User-Agent\": \"v2rayNG/*.*.*\"}, proxies=proxies\n    )\n    response = response.text\n    links = []\n    if any(proto in response for proto in [\"vmess:\", \"trojan:\", \"vless:\"]):\n        for link in response.splitlines():\n            if any(link.startswith(proto) for proto in [\"vmess:\", \"trojan:\", \"vless:\"]):\n                links.append(link)",
         "detail": "src.http_req",
         "documentation": {}
     },
@@ -392,7 +383,7 @@
         "kind": 2,
         "importPath": "src.http_req",
         "description": "src.http_req",
-        "peekOfCode": "def get_responses(urls):\n    links = []\n    def process(url):\n        sub_response = requests.get(\n            url, timeout=5, headers={\"User-Agent\": \"v2rayNG/*.*.*\"}, proxies=proxies\n        ).text\n        if any(proto in sub_response for proto in [\"vmess:\", \"trojan:\", \"vless:\"]):\n            links.extend(sub_response.splitlines())\n        else:\n            try:",
+        "peekOfCode": "def get_responses(urls):\n    links = []\n    def process(url):\n        sub_response = requests.get(\n            url, timeout=5, headers={\"User-Agent\": \"v2rayNG/*.*.*\"}, proxies=proxies\n        )\n        sub_response = sub_response.text\n        if any(proto in sub_response for proto in [\"vmess:\", \"trojan:\", \"vless:\"]):\n            links.extend(sub_response.splitlines())\n        else:",
         "detail": "src.http_req",
         "documentation": {}
     },
@@ -410,7 +401,7 @@
         "kind": 2,
         "importPath": "src.set_proxy",
         "description": "src.set_proxy",
-        "peekOfCode": "def test_proxy():\n    start_time = time.time()\n    while True:\n        if time.time() - start_time >= 3:\n            return False\n        try:\n            requests.get(\n                \"https://www.google.com/generate_204\", timeout=1, proxies=proxies\n            )\n            return True",
+        "peekOfCode": "def test_proxy():\n    req = requests.get(\n        \"https://www.google.com/generate_204\", timeout=2, proxies=proxies\n    )\n    return req.status_code\ndef run_proxy():\n    r = requests.get(proxy_url)\n    config = r.text\n    os.system(f\"./lite -p 10808 {config} &\")\n    return test_proxy()",
         "detail": "src.set_proxy",
         "documentation": {}
     },
@@ -428,7 +419,7 @@
         "kind": 5,
         "importPath": "src.set_proxy",
         "description": "src.set_proxy",
-        "peekOfCode": "local_proxy = \"http://127.0.0.1:10808\"\nproxies = {\"http\": local_proxy, \"https\": local_proxy}\nproxy_url = os.getenv(\"PROXY_URL\")\ndef test_proxy():\n    start_time = time.time()\n    while True:\n        if time.time() - start_time >= 3:\n            return False\n        try:\n            requests.get(",
+        "peekOfCode": "local_proxy = \"http://127.0.0.1:10808\"\nproxies = {\"http\": local_proxy, \"https\": local_proxy}\nproxy_url = os.getenv(\"PROXY_URL\")\ndef test_proxy():\n    req = requests.get(\n        \"https://www.google.com/generate_204\", timeout=2, proxies=proxies\n    )\n    return req.status_code\ndef run_proxy():\n    r = requests.get(proxy_url)",
         "detail": "src.set_proxy",
         "documentation": {}
     },
@@ -437,7 +428,7 @@
         "kind": 5,
         "importPath": "src.set_proxy",
         "description": "src.set_proxy",
-        "peekOfCode": "proxies = {\"http\": local_proxy, \"https\": local_proxy}\nproxy_url = os.getenv(\"PROXY_URL\")\ndef test_proxy():\n    start_time = time.time()\n    while True:\n        if time.time() - start_time >= 3:\n            return False\n        try:\n            requests.get(\n                \"https://www.google.com/generate_204\", timeout=1, proxies=proxies",
+        "peekOfCode": "proxies = {\"http\": local_proxy, \"https\": local_proxy}\nproxy_url = os.getenv(\"PROXY_URL\")\ndef test_proxy():\n    req = requests.get(\n        \"https://www.google.com/generate_204\", timeout=2, proxies=proxies\n    )\n    return req.status_code\ndef run_proxy():\n    r = requests.get(proxy_url)\n    config = r.text",
         "detail": "src.set_proxy",
         "documentation": {}
     },
@@ -446,7 +437,7 @@
         "kind": 5,
         "importPath": "src.set_proxy",
         "description": "src.set_proxy",
-        "peekOfCode": "proxy_url = os.getenv(\"PROXY_URL\")\ndef test_proxy():\n    start_time = time.time()\n    while True:\n        if time.time() - start_time >= 3:\n            return False\n        try:\n            requests.get(\n                \"https://www.google.com/generate_204\", timeout=1, proxies=proxies\n            )",
+        "peekOfCode": "proxy_url = os.getenv(\"PROXY_URL\")\ndef test_proxy():\n    req = requests.get(\n        \"https://www.google.com/generate_204\", timeout=2, proxies=proxies\n    )\n    return req.status_code\ndef run_proxy():\n    r = requests.get(proxy_url)\n    config = r.text\n    os.system(f\"./lite -p 10808 {config} &\")",
         "detail": "src.set_proxy",
         "documentation": {}
     }
