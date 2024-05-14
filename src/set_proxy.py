@@ -1,9 +1,9 @@
 import os
 import requests
 
-local_proxy = "http://127.0.0.1:10808"
-proxies = {"http": local_proxy, "https": local_proxy}
 proxy_url = os.getenv("PROXY_URL")
+proxy_addr = os.getenv("HTTP", "http://127.0.0.1:10808")
+proxies = {"http": proxy_addr, "https": proxy_addr}
 
 
 def run_proxy():

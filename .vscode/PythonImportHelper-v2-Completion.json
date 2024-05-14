@@ -424,11 +424,20 @@
         "documentation": {}
     },
     {
-        "label": "local_proxy",
+        "label": "proxy_url",
         "kind": 5,
         "importPath": "src.set_proxy",
         "description": "src.set_proxy",
-        "peekOfCode": "local_proxy = \"http://127.0.0.1:10808\"\nproxies = {\"http\": local_proxy, \"https\": local_proxy}\nproxy_url = os.getenv(\"PROXY_URL\")\ndef run_proxy():\n    r = requests.get(proxy_url)\n    config = r.text\n    os.system(f\"./lite -p 10808 {config} &\")\n    return \"OK\"\ndef set_proxy(config):\n    os.system(f\"./lite -p 10808 {config} &\")",
+        "peekOfCode": "proxy_url = os.getenv(\"PROXY_URL\")\nproxy_addr = os.getenv(\"HTTP\", \"http://127.0.0.1:10808\")\nproxies = {\"http\": proxy_addr, \"https\": proxy_addr}\ndef run_proxy():\n    r = requests.get(proxy_url)\n    config = r.text\n    os.system(f\"./lite -p 10808 {config} &\")\n    return \"OK\"\ndef set_proxy(config):\n    os.system(f\"./lite -p 10808 {config} &\")",
+        "detail": "src.set_proxy",
+        "documentation": {}
+    },
+    {
+        "label": "proxy_addr",
+        "kind": 5,
+        "importPath": "src.set_proxy",
+        "description": "src.set_proxy",
+        "peekOfCode": "proxy_addr = os.getenv(\"HTTP\", \"http://127.0.0.1:10808\")\nproxies = {\"http\": proxy_addr, \"https\": proxy_addr}\ndef run_proxy():\n    r = requests.get(proxy_url)\n    config = r.text\n    os.system(f\"./lite -p 10808 {config} &\")\n    return \"OK\"\ndef set_proxy(config):\n    os.system(f\"./lite -p 10808 {config} &\")\n    return \"OK\"",
         "detail": "src.set_proxy",
         "documentation": {}
     },
@@ -437,16 +446,7 @@
         "kind": 5,
         "importPath": "src.set_proxy",
         "description": "src.set_proxy",
-        "peekOfCode": "proxies = {\"http\": local_proxy, \"https\": local_proxy}\nproxy_url = os.getenv(\"PROXY_URL\")\ndef run_proxy():\n    r = requests.get(proxy_url)\n    config = r.text\n    os.system(f\"./lite -p 10808 {config} &\")\n    return \"OK\"\ndef set_proxy(config):\n    os.system(f\"./lite -p 10808 {config} &\")\n    return \"OK\"",
-        "detail": "src.set_proxy",
-        "documentation": {}
-    },
-    {
-        "label": "proxy_url",
-        "kind": 5,
-        "importPath": "src.set_proxy",
-        "description": "src.set_proxy",
-        "peekOfCode": "proxy_url = os.getenv(\"PROXY_URL\")\ndef run_proxy():\n    r = requests.get(proxy_url)\n    config = r.text\n    os.system(f\"./lite -p 10808 {config} &\")\n    return \"OK\"\ndef set_proxy(config):\n    os.system(f\"./lite -p 10808 {config} &\")\n    return \"OK\"",
+        "peekOfCode": "proxies = {\"http\": proxy_addr, \"https\": proxy_addr}\ndef run_proxy():\n    r = requests.get(proxy_url)\n    config = r.text\n    os.system(f\"./lite -p 10808 {config} &\")\n    return \"OK\"\ndef set_proxy(config):\n    os.system(f\"./lite -p 10808 {config} &\")\n    return \"OK\"",
         "detail": "src.set_proxy",
         "documentation": {}
     }
