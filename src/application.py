@@ -6,14 +6,12 @@ from flask import Flask, Response, request
 from .db import Mongo, get_data
 from .editor import processes
 from .http_req import get_response, get_responses
-from .set_proxy import run_proxy
 from .push import publish
 
 app = Flask(__name__)
 
 
 def get_update(name: str):
-    run_proxy()
     db = Mongo()
     urls = get_data(name)
     links = get_responses(urls)
@@ -27,7 +25,6 @@ def handle_query():
     query_url = request.args.get("url")
     if not query_url:
         return "Vui lòng cung cấp tham số URL", 200
-    run_proxy()
     uuid = request.args.get("uuid")
     sni = request.args.get("sni")
     tag = request.args.get("tag")
