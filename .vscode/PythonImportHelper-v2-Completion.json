@@ -374,7 +374,7 @@
         "kind": 2,
         "importPath": "src.http_req",
         "description": "src.http_req",
-        "peekOfCode": "def get_response(url):\n    response = requests.get(\n        url, timeout=5, headers={\"User-Agent\": \"v2rayNG/*.*.*\"}, proxies=proxies\n    )\n    response = response.text\n    links = []\n    if any(proto in response for proto in [\"vmess:\", \"trojan:\", \"vless:\"]):\n        for link in response.splitlines():\n            if any(link.startswith(proto) for proto in [\"vmess:\", \"trojan:\", \"vless:\"]):\n                links.append(link)",
+        "peekOfCode": "def get_response(url):\n    response = requests.get(\n        url, timeout=5, headers={\"User-Agent\": \"v2rayNG/*.*.*\"}, proxies=proxies\n    )\n    response = response.text\n    links = []\n    if any(proto in response for proto in [\"vmess:\", \"trojan:\", \"vless:\"]):\n        links.extend(response.splitlines())\n    elif any(proto in response for proto in [\"http:\", \"https:\"]):\n        url_pattern = r\"https?://(?:[-\\w.]|(?:%[\\da-fA-F]{2}))+\"",
         "detail": "src.http_req",
         "documentation": {}
     },

@@ -12,18 +12,15 @@ def get_response(url):
     response = response.text
     links = []
     if any(proto in response for proto in ["vmess:", "trojan:", "vless:"]):
-        for link in response.splitlines():
-            if any(link.startswith(proto) for proto in ["vmess:", "trojan:", "vless:"]):
-                links.append(link)
+        links.extend(response.splitlines())
     elif any(proto in response for proto in ["http:", "https:"]):
         url_pattern = r"https?://(?:[-\w.]|(?:%[\da-fA-F]{2}))+"
         sub_urls = re.findall(url_pattern, response)
         links = get_responses(sub_urls)
     else:
         decoded_line = base64.b64decode(response).decode("utf-8")
-        for link in decoded_line.splitlines():
-            if any(link.startswith(proto) for proto in ["vmess:", "trojan:", "vless:"]):
-                links.append(link)
+        if any(proto in decoded_line for proto in ["vmess:", "trojan:", "vless:"]):
+            links.extend(decoded_line.splitlines())
     return links
 
 
