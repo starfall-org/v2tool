@@ -7,6 +7,7 @@ from .db import Mongo, get_data
 from .editor import processes
 from .http_req import get_response, get_responses
 from .push import publish
+from .set_proxy import set_proxy
 
 app = Flask(__name__)
 
@@ -71,6 +72,14 @@ def get_note(note):
     except Exception as e:
         Thread(target=get_update, args=(note,)).start()
         return {"status": "failed", "message": str(e)}, 404
+
+
+@app.route("/set_proxy")
+def set_proxy_route():
+    config = request.args.get("proxy")
+    if not config:
+        return "khong tim thay proxy"
+    return set_proxy(config)
 
 
 @app.route("/check-env")

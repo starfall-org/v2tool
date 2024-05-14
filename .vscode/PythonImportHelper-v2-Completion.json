@@ -280,6 +280,15 @@
         "documentation": {}
     },
     {
+        "label": "set_proxy_route",
+        "kind": 2,
+        "importPath": "src.application",
+        "description": "src.application",
+        "peekOfCode": "def set_proxy_route():\n    config = request.args.get(\"proxy\")\n    if not config:\n        return \"khong tim thay proxy\"\n    return set_proxy(config)\n@app.route(\"/check-env\")\ndef check_server():\n    variables = os.environ\n    result = []\n    for key, value in variables.items():",
+        "detail": "src.application",
+        "documentation": {}
+    },
+    {
         "label": "check_server",
         "kind": 2,
         "importPath": "src.application",
@@ -397,20 +406,20 @@
         "documentation": {}
     },
     {
-        "label": "test_proxy",
-        "kind": 2,
-        "importPath": "src.set_proxy",
-        "description": "src.set_proxy",
-        "peekOfCode": "def test_proxy():\n    req = requests.get(\n        \"https://www.google.com/generate_204\", timeout=2, proxies=proxies\n    )\n    return req.status_code\ndef run_proxy():\n    r = requests.get(proxy_url)\n    config = r.text\n    os.system(f\"./lite -p 10808 {config} &\")\n    return test_proxy()",
-        "detail": "src.set_proxy",
-        "documentation": {}
-    },
-    {
         "label": "run_proxy",
         "kind": 2,
         "importPath": "src.set_proxy",
         "description": "src.set_proxy",
-        "peekOfCode": "def run_proxy():\n    r = requests.get(proxy_url)\n    config = r.text\n    os.system(f\"./lite -p 10808 {config} &\")\n    return test_proxy()",
+        "peekOfCode": "def run_proxy():\n    r = requests.get(proxy_url)\n    config = r.text\n    os.system(f\"./lite -p 10808 {config} &\")\n    return \"OK\"\ndef set_proxy(config):\n    os.system(f\"./lite -p 10808 {config} &\")\n    return \"OK\"",
+        "detail": "src.set_proxy",
+        "documentation": {}
+    },
+    {
+        "label": "set_proxy",
+        "kind": 2,
+        "importPath": "src.set_proxy",
+        "description": "src.set_proxy",
+        "peekOfCode": "def set_proxy(config):\n    os.system(f\"./lite -p 10808 {config} &\")\n    return \"OK\"",
         "detail": "src.set_proxy",
         "documentation": {}
     },
@@ -419,7 +428,7 @@
         "kind": 5,
         "importPath": "src.set_proxy",
         "description": "src.set_proxy",
-        "peekOfCode": "local_proxy = \"http://127.0.0.1:10808\"\nproxies = {\"http\": local_proxy, \"https\": local_proxy}\nproxy_url = os.getenv(\"PROXY_URL\")\ndef test_proxy():\n    req = requests.get(\n        \"https://www.google.com/generate_204\", timeout=2, proxies=proxies\n    )\n    return req.status_code\ndef run_proxy():\n    r = requests.get(proxy_url)",
+        "peekOfCode": "local_proxy = \"http://127.0.0.1:10808\"\nproxies = {\"http\": local_proxy, \"https\": local_proxy}\nproxy_url = os.getenv(\"PROXY_URL\")\ndef run_proxy():\n    r = requests.get(proxy_url)\n    config = r.text\n    os.system(f\"./lite -p 10808 {config} &\")\n    return \"OK\"\ndef set_proxy(config):\n    os.system(f\"./lite -p 10808 {config} &\")",
         "detail": "src.set_proxy",
         "documentation": {}
     },
@@ -428,7 +437,7 @@
         "kind": 5,
         "importPath": "src.set_proxy",
         "description": "src.set_proxy",
-        "peekOfCode": "proxies = {\"http\": local_proxy, \"https\": local_proxy}\nproxy_url = os.getenv(\"PROXY_URL\")\ndef test_proxy():\n    req = requests.get(\n        \"https://www.google.com/generate_204\", timeout=2, proxies=proxies\n    )\n    return req.status_code\ndef run_proxy():\n    r = requests.get(proxy_url)\n    config = r.text",
+        "peekOfCode": "proxies = {\"http\": local_proxy, \"https\": local_proxy}\nproxy_url = os.getenv(\"PROXY_URL\")\ndef run_proxy():\n    r = requests.get(proxy_url)\n    config = r.text\n    os.system(f\"./lite -p 10808 {config} &\")\n    return \"OK\"\ndef set_proxy(config):\n    os.system(f\"./lite -p 10808 {config} &\")\n    return \"OK\"",
         "detail": "src.set_proxy",
         "documentation": {}
     },
@@ -437,7 +446,7 @@
         "kind": 5,
         "importPath": "src.set_proxy",
         "description": "src.set_proxy",
-        "peekOfCode": "proxy_url = os.getenv(\"PROXY_URL\")\ndef test_proxy():\n    req = requests.get(\n        \"https://www.google.com/generate_204\", timeout=2, proxies=proxies\n    )\n    return req.status_code\ndef run_proxy():\n    r = requests.get(proxy_url)\n    config = r.text\n    os.system(f\"./lite -p 10808 {config} &\")",
+        "peekOfCode": "proxy_url = os.getenv(\"PROXY_URL\")\ndef run_proxy():\n    r = requests.get(proxy_url)\n    config = r.text\n    os.system(f\"./lite -p 10808 {config} &\")\n    return \"OK\"\ndef set_proxy(config):\n    os.system(f\"./lite -p 10808 {config} &\")\n    return \"OK\"",
         "detail": "src.set_proxy",
         "documentation": {}
     }
