@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title></title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://cdn.jsdelivr.net/npm/htmx.org@1.9.12/dist/htmx.min.js"></script>
+  </head>
+  <body>
+    <h1>Cong cu chuyen doi subscription</h1>
+    <form action="/" method="get">
+      <input
+        type="text"
+        name="url"
+        id="url-param"
+        placeholder="Hay nhap subscription vao day.."
+      />
+      <input type="text" name="sni" id="sni-param" placeholder="sni" />
+      <select name="endpoint" id="endpoint">
+        <option value="v2tool">v2tool</option>
+        <option value="v2ray-subscribe">v2ray-subscribe</option>
+      </select>
+      <input type="submit" value="Xac Nhan" />
+    </form>
+  </body>
+</html>

@@ -2,7 +2,7 @@ import base64
 import os
 from urllib.parse import unquote
 from threading import Thread
-from flask import Flask, Response, request
+from flask import Flask, Response, request, render_template, redirect
 from .db import Mongo, get_data
 from .editor import processes
 from .http_req import get_response, get_responses
@@ -25,10 +25,13 @@ def get_update(name: str):
 def handle_query():
     query_url = request.args.get("url")
     if not query_url:
-        return "Vui lòng cung cấp tham số URL", 200
+        return render_template('index.html')
+    endpoint = request.args.get('endpoint')
     uuid = request.args.get("uuid")
     sni = request.args.get("sni")
     tag = request.args.get("tag")
+    if endpoint == 'v2ray-subscribe':
+        return redirect(f'https://convert.v2ray-subscribe.workers.dev/?url={query_url}&sni={sni}')
     query_url = unquote(query_url)
     list_links = get_response(query_url)
     links = processes(list_links, uuid, sni, tag)

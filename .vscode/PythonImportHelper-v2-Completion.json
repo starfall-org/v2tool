@@ -158,6 +158,22 @@
         "documentation": {}
     },
     {
+        "label": "render_template",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "redirect",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
         "label": "MongoClient",
         "importPath": "pymongo",
         "description": "pymongo",
@@ -257,7 +273,7 @@
         "kind": 2,
         "importPath": "src.application",
         "description": "src.application",
-        "peekOfCode": "def handle_query():\n    query_url = request.args.get(\"url\")\n    if not query_url:\n        return \"Vui lòng cung cấp tham số URL\", 200\n    uuid = request.args.get(\"uuid\")\n    sni = request.args.get(\"sni\")\n    tag = request.args.get(\"tag\")\n    query_url = unquote(query_url)\n    list_links = get_response(query_url)\n    links = processes(list_links, uuid, sni, tag)",
+        "peekOfCode": "def handle_query():\n    query_url = request.args.get(\"url\")\n    if not query_url:\n        return render_template('index.html')\n    endpoint = request.args.get('endpoint')\n    uuid = request.args.get(\"uuid\")\n    sni = request.args.get(\"sni\")\n    tag = request.args.get(\"tag\")\n    if endpoint == 'v2ray-subscribe':\n        return redirect(f'https://convert.v2ray-subscribe.workers.dev/?url={query_url}&sni={sni}')",
         "detail": "src.application",
         "documentation": {}
     },
