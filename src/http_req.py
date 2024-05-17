@@ -7,7 +7,7 @@ from .set_proxy import proxies
 
 def get_response(url):
     response = requests.get(
-        url, timeout=5, headers={"User-Agent": "v2rayNG/*.*.*"}, proxies=proxies
+        url, timeout=10, headers={"User-Agent": "v2rayNG/*.*.*"}, proxies=proxies
     )
     response = response.text
     links = []
@@ -29,7 +29,7 @@ def get_responses(urls):
 
     def process(url):
         sub_response = requests.get(
-            url, timeout=5, headers={"User-Agent": "v2rayNG/*.*.*"}, proxies=proxies
+            url, timeout=10, headers={"User-Agent": "v2rayNG/*.*.*"}, proxies=proxies
         )
         sub_response = sub_response.text
         if any(proto in sub_response for proto in ["vmess:", "trojan:", "vless:"]):
