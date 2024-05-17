@@ -1,5 +1,94 @@
 [
     {
+        "label": "base64",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "base64",
+        "description": "base64",
+        "detail": "base64",
+        "documentation": {}
+    },
+    {
+        "label": "Flask",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "Response",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "request",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "render_template",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "redirect",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "Flask",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "Response",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "request",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "render_template",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "redirect",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
         "label": "socket",
         "kind": 6,
         "isExtraImport": true,
@@ -99,101 +188,12 @@
         "documentation": {}
     },
     {
-        "label": "base64",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "base64",
-        "description": "base64",
-        "detail": "base64",
-        "documentation": {}
-    },
-    {
         "label": "json",
         "kind": 6,
         "isExtraImport": true,
         "importPath": "json",
         "description": "json",
         "detail": "json",
-        "documentation": {}
-    },
-    {
-        "label": "Flask",
-        "importPath": "flask",
-        "description": "flask",
-        "isExtraImport": true,
-        "detail": "flask",
-        "documentation": {}
-    },
-    {
-        "label": "Response",
-        "importPath": "flask",
-        "description": "flask",
-        "isExtraImport": true,
-        "detail": "flask",
-        "documentation": {}
-    },
-    {
-        "label": "request",
-        "importPath": "flask",
-        "description": "flask",
-        "isExtraImport": true,
-        "detail": "flask",
-        "documentation": {}
-    },
-    {
-        "label": "render_template",
-        "importPath": "flask",
-        "description": "flask",
-        "isExtraImport": true,
-        "detail": "flask",
-        "documentation": {}
-    },
-    {
-        "label": "redirect",
-        "importPath": "flask",
-        "description": "flask",
-        "isExtraImport": true,
-        "detail": "flask",
-        "documentation": {}
-    },
-    {
-        "label": "Flask",
-        "importPath": "flask",
-        "description": "flask",
-        "isExtraImport": true,
-        "detail": "flask",
-        "documentation": {}
-    },
-    {
-        "label": "Response",
-        "importPath": "flask",
-        "description": "flask",
-        "isExtraImport": true,
-        "detail": "flask",
-        "documentation": {}
-    },
-    {
-        "label": "request",
-        "importPath": "flask",
-        "description": "flask",
-        "isExtraImport": true,
-        "detail": "flask",
-        "documentation": {}
-    },
-    {
-        "label": "render_template",
-        "importPath": "flask",
-        "description": "flask",
-        "isExtraImport": true,
-        "detail": "flask",
-        "documentation": {}
-    },
-    {
-        "label": "redirect",
-        "importPath": "flask",
-        "description": "flask",
-        "isExtraImport": true,
-        "detail": "flask",
         "documentation": {}
     },
     {
@@ -264,6 +264,33 @@
         "documentation": {}
     },
     {
+        "label": "handle_query",
+        "kind": 2,
+        "importPath": "api.app",
+        "description": "api.app",
+        "peekOfCode": "def handle_query():\n    query_url = request.args.get(\"url\")\n    if not query_url:\n        return render_template(\"index.html\")\n    endpoint = request.args.get(\"endpoint\")\n    sni = request.args.get(\"sni\")\n    if endpoint == \"v2ray-subscribe\":\n        return redirect(\n            f\"https://convert.v2ray-subscribe.workers.dev/?url={query_url}&sni={sni}\"\n        )",
+        "detail": "api.app",
+        "documentation": {}
+    },
+    {
+        "label": "get_note",
+        "kind": 2,
+        "importPath": "api.app",
+        "description": "api.app",
+        "peekOfCode": "def get_note(note):\n    db = Mongo()\n    uuid = request.args.get(\"uuid\")\n    sni = request.args.get(\"sni\")\n    tag = request.args.get(\"tag\")\n    try:\n        list_links = db.get_value(note)\n        links = processes(list_links, uuid, sni, tag)\n        links = \"\\n\".join(links).encode(\"utf-8\")\n        result = base64.b64encode(links).decode(\"utf-8\")",
+        "detail": "api.app",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "api.app",
+        "description": "api.app",
+        "peekOfCode": "app = Flask(__name__)\n@app.route(\"/\")\ndef handle_query():\n    query_url = request.args.get(\"url\")\n    if not query_url:\n        return render_template(\"index.html\")\n    endpoint = request.args.get(\"endpoint\")\n    sni = request.args.get(\"sni\")\n    if endpoint == \"v2ray-subscribe\":\n        return redirect(",
+        "detail": "api.app",
+        "documentation": {}
+    },
+    {
         "label": "get_loc",
         "kind": 2,
         "importPath": "src.protocols.func",
@@ -297,33 +324,6 @@
         "description": "src.protocols.vmess",
         "peekOfCode": "def edit(link, set_uuid, set_sni, set_tag):\n    code = link.split(\"://\")[1]\n    config = base64.b64decode(code).decode(\"utf-8\")\n    config = json.loads(config)\n    ip = config[\"add\"]\n    net = config[\"net\"]\n    if ip in [\"127.0.0.1\", \"1.1.1.1\", \"0.0.0.0\", \"8.8.8.8\"]:\n        return\n    if set_tag:\n        if set_tag == \"auto\":",
         "detail": "src.protocols.vmess",
-        "documentation": {}
-    },
-    {
-        "label": "handle_query",
-        "kind": 2,
-        "importPath": "src.api",
-        "description": "src.api",
-        "peekOfCode": "def handle_query():\n    query_url = request.args.get(\"url\")\n    if not query_url:\n        return render_template(\"index.html\")\n    endpoint = request.args.get(\"endpoint\")\n    sni = request.args.get(\"sni\")\n    if endpoint == \"v2ray-subscribe\":\n        return redirect(\n            f\"https://convert.v2ray-subscribe.workers.dev/?url={query_url}&sni={sni}\"\n        )",
-        "detail": "src.api",
-        "documentation": {}
-    },
-    {
-        "label": "get_note",
-        "kind": 2,
-        "importPath": "src.api",
-        "description": "src.api",
-        "peekOfCode": "def get_note(note):\n    db = Mongo()\n    uuid = request.args.get(\"uuid\")\n    sni = request.args.get(\"sni\")\n    tag = request.args.get(\"tag\")\n    try:\n        list_links = db.get_value(note)\n        links = processes(list_links, uuid, sni, tag)\n        links = \"\\n\".join(links).encode(\"utf-8\")\n        result = base64.b64encode(links).decode(\"utf-8\")",
-        "detail": "src.api",
-        "documentation": {}
-    },
-    {
-        "label": "app",
-        "kind": 5,
-        "importPath": "src.api",
-        "description": "src.api",
-        "peekOfCode": "app = Flask(__name__)\n@app.route(\"/\")\ndef handle_query():\n    query_url = request.args.get(\"url\")\n    if not query_url:\n        return render_template(\"index.html\")\n    endpoint = request.args.get(\"endpoint\")\n    sni = request.args.get(\"sni\")\n    if endpoint == \"v2ray-subscribe\":\n        return redirect(",
-        "detail": "src.api",
         "documentation": {}
     },
     {
