@@ -7,12 +7,13 @@ from .db import Mongo, get_data
 from .editor import processes
 from .http_req import get_response, get_responses
 from .push import publish
-from .set_proxy import set_proxy
+from .set_proxy import run_proxy
 
 app = Flask(__name__)
 
 
 def get_update(name: str):
+    run_proxy()
     db = Mongo()
     urls = get_data(name)
     links = get_responses(urls)
@@ -25,13 +26,15 @@ def get_update(name: str):
 def handle_query():
     query_url = request.args.get("url")
     if not query_url:
-        return render_template('index.html')
-    endpoint = request.args.get('endpoint')
+        return render_template("index.html")
+    endpoint = request.args.get("endpoint")
     uuid = request.args.get("uuid")
     sni = request.args.get("sni")
     tag = request.args.get("tag")
-    if endpoint == 'v2ray-subscribe':
-        return redirect(f'https://convert.v2ray-subscribe.workers.dev/?url={query_url}&sni={sni}')
+    if endpoint == "v2ray-subscribe":
+        return redirect(
+            f"https://convert.v2ray-subscribe.workers.dev/?url={query_url}&sni={sni}"
+        )
     query_url = unquote(query_url)
     list_links = get_response(query_url)
     links = processes(list_links, uuid, sni, tag)
@@ -75,14 +78,6 @@ def get_note(note):
     except Exception as e:
         Thread(target=get_update, args=(note,)).start()
         return {"status": "failed", "message": str(e)}, 404
-
-
-@app.route("/set_proxy")
-def set_proxy_route():
-    config = request.args.get("proxy")
-    if not config:
-        return "khong tim thay proxy"
-    return set_proxy(config)
 
 
 @app.route("/check-env")

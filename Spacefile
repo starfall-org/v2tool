@@ -1,0 +1,14 @@
+# Spacefile Docs: https://go.deta.dev/docs/spacefile/v0
+v: 0
+micros:
+  - name: v2tool
+    src: ./
+    engine: python3.9
+    primary: true
+    public: true
+    presets:
+      env:
+        - name: PROXY_URL
+          default:
+        - name: MONGO_URL
+          default:
