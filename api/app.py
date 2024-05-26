@@ -1,7 +1,7 @@
 import base64
 from flask import Flask, Response, request, render_template, redirect
-from ..db import Mongo
-from ..editor import processes
+from src.db import Mongo
+from src.editor import processes
 
 
 app = Flask(__name__)
