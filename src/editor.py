@@ -1,5 +1,4 @@
 import concurrent.futures
-
 from .protocols import trojan, vless, vmess
 
 

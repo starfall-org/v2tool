@@ -8,6 +8,7 @@ def edit(link, set_uuid, set_sni, set_tag):
     code = link.split("://")[1]
     config = base64.b64decode(code).decode("utf-8")
     config = json.loads(config)
+    netloc = config["id"] + "@" + config["add"] + ":" + config["port"]
     ip = config["add"]
     net = config["net"]
     if ip in ["127.0.0.1", "1.1.1.1", "0.0.0.0", "8.8.8.8"]:
@@ -26,5 +27,4 @@ def edit(link, set_uuid, set_sni, set_tag):
     config = json.dumps(config).encode("utf-8")
     code = base64.b64encode(config).decode("utf-8")
     link = f"vmess://{code}"
-    netloc = config["id"] + "@" + config["add"] + ":" + config["port"]
     return link, netloc

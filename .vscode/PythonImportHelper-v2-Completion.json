@@ -347,7 +347,7 @@
         "kind": 2,
         "importPath": "src.protocols.vmess",
         "description": "src.protocols.vmess",
-        "peekOfCode": "def edit(link, set_uuid, set_sni, set_tag):\n    code = link.split(\"://\")[1]\n    config = base64.b64decode(code).decode(\"utf-8\")\n    config = json.loads(config)\n    ip = config[\"add\"]\n    net = config[\"net\"]\n    if ip in [\"127.0.0.1\", \"1.1.1.1\", \"0.0.0.0\", \"8.8.8.8\"]:\n        return\n    if set_tag:\n        if set_tag == \"auto\":",
+        "peekOfCode": "def edit(link, set_uuid, set_sni, set_tag):\n    code = link.split(\"://\")[1]\n    config = base64.b64decode(code).decode(\"utf-8\")\n    config = json.loads(config)\n    netloc = config[\"id\"] + \"@\" + config[\"add\"] + \":\" + config[\"port\"]\n    ip = config[\"add\"]\n    net = config[\"net\"]\n    if ip in [\"127.0.0.1\", \"1.1.1.1\", \"0.0.0.0\", \"8.8.8.8\"]:\n        return\n    if set_tag:",
         "detail": "src.protocols.vmess",
         "documentation": {}
     },
