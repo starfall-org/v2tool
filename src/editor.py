@@ -20,6 +20,8 @@ def editor(
 def processes(links: list, uuid: str = None, sni: str = None, tag: str = None):
     batch_size = 10
     values = set()
+    duplicate = []
+    result = []
 
     def process_batch(batch):
         try:
@@ -31,6 +33,10 @@ def processes(links: list, uuid: str = None, sni: str = None, tag: str = None):
     with concurrent.futures.ThreadPoolExecutor(max_workers=200) as executor:
         executor.map(
             process_batch,
-            (links[i : i + batch_size] for i in range(0, len(links), batch_size)), 
+            (links[i : i + batch_size] for i in range(0, len(links), batch_size)),
         )
-    return list(values)
+    for value in values:
+        if value[1] not in duplicate:
+            result.append(value[0])
+            duplicate.append(value[1])
+    return result

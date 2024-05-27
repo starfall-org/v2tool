@@ -3,7 +3,6 @@ from flask import Flask, Response, request, render_template, redirect
 from src.db import Mongo
 from src.editor import processes
 
-
 app = Flask(__name__)
 
 

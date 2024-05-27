@@ -22,4 +22,4 @@ def edit(link, set_uuid, set_sni, set_tag):
             set_tag = get_loc(ip)
         link = link._replace(fragment=set_tag)
     link = urlunparse(link)
-    return link
+    return link, netloc

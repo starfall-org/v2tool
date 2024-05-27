@@ -26,4 +26,5 @@ def edit(link, set_uuid, set_sni, set_tag):
     config = json.dumps(config).encode("utf-8")
     code = base64.b64encode(config).decode("utf-8")
     link = f"vmess://{code}"
-    return link
+    netloc = config["id"] + "@" + config["add"] + ":" + config["port"]
+    return link, netloc
