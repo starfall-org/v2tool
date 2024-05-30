@@ -113,6 +113,63 @@
         "documentation": {}
     },
     {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "create_engine",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "String",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "DeclarativeBase",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
+        "label": "Mapped",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
+        "label": "mapped_column",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
+        "label": "sessionmaker",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
         "label": "socket",
         "kind": 6,
         "isExtraImport": true,
@@ -221,15 +278,6 @@
         "documentation": {}
     },
     {
-        "label": "os",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "os",
-        "description": "os",
-        "detail": "os",
-        "documentation": {}
-    },
-    {
         "label": "Thread",
         "importPath": "threading",
         "description": "threading",
@@ -330,6 +378,33 @@
         "description": "api.app",
         "peekOfCode": "app = Flask(__name__)\n@app.route(\"/\")\ndef handle_query():\n    query_url = request.args.get(\"url\")\n    if not query_url:\n        return render_template(\"index.html\")\n    endpoint = request.args.get(\"endpoint\")\n    sni = request.args.get(\"sni\")\n    if endpoint == \"v2ray-subscribe\":\n        return redirect(",
         "detail": "api.app",
+        "documentation": {}
+    },
+    {
+        "label": "Base",
+        "kind": 6,
+        "importPath": "src.database.turso",
+        "description": "src.database.turso",
+        "peekOfCode": "class Base(DeclarativeBase):\n    pass\nclass Note(Base):\n    __tablename__ = \"notes\"\n    name: Mapped[str] = mapped_column(String, primary_key=True)\n    urls: Mapped[str] = mapped_column(String)\n    content: Mapped[str] = mapped_column(String, nullable=True)\n    def __repr__(self) -> str:\n        return str({\"name\": self.id, \"bar\": self.bar})\nclass TursoDB:",
+        "detail": "src.database.turso",
+        "documentation": {}
+    },
+    {
+        "label": "Note",
+        "kind": 6,
+        "importPath": "src.database.turso",
+        "description": "src.database.turso",
+        "peekOfCode": "class Note(Base):\n    __tablename__ = \"notes\"\n    name: Mapped[str] = mapped_column(String, primary_key=True)\n    urls: Mapped[str] = mapped_column(String)\n    content: Mapped[str] = mapped_column(String, nullable=True)\n    def __repr__(self) -> str:\n        return str({\"name\": self.id, \"bar\": self.bar})\nclass TursoDB:\n    def __init__(self):\n        TURSO_DATABASE_URL = os.environ.get(\"TURSO_URL\")",
+        "detail": "src.database.turso",
+        "documentation": {}
+    },
+    {
+        "label": "TursoDB",
+        "kind": 6,
+        "importPath": "src.database.turso",
+        "description": "src.database.turso",
+        "peekOfCode": "class TursoDB:\n    def __init__(self):\n        TURSO_DATABASE_URL = os.environ.get(\"TURSO_URL\")\n        TURSO_AUTH_TOKEN = os.environ.get(\"TURSO_TOKEN\")\n        dbUrl = f\"sqlite+{TURSO_DATABASE_URL}/?authToken={TURSO_AUTH_TOKEN}&secure=true\"\n        engine = create_engine(\n            dbUrl, connect_args={\"check_same_thread\": False}, echo=True\n        )\n        Base.metadata.create_all(engine)\n        Session = sessionmaker(bind=engine)",
+        "detail": "src.database.turso",
         "documentation": {}
     },
     {
