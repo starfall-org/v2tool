@@ -39,4 +39,4 @@ def get_note(note):
 
 @app.route("/headers")
 def get_headers():
-    return jsonify(request.args)
+    return jsonify(request.headers)
