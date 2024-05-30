@@ -393,7 +393,7 @@
         "kind": 6,
         "importPath": "src.database.turso",
         "description": "src.database.turso",
-        "peekOfCode": "class Base(DeclarativeBase):\n    pass\nclass Notes(Base):\n    __tablename__ = \"notes\"\n    name = mapped_column(String, primary_key=True)\n    urls = mapped_column(String)\n    content = mapped_column(String)\nclass Turso:\n    def __init__(self):\n        TURSO_DATABASE_URL = os.environ.get(\"TURSO_DATABASE_URL\")",
+        "peekOfCode": "class Base(DeclarativeBase):\n    pass\nclass Notes(Base):\n    __tablename__ = \"notes\"\n    name = mapped_column(String, primary_key=True)\n    urls = mapped_column(String)\n    content = mapped_column(String)\nclass Turso:\n    def __iniks.name == name).first()\n    def get_all(self):",
         "detail": "src.database.turso",
         "documentation": {}
     },
@@ -402,7 +402,7 @@
         "kind": 6,
         "importPath": "src.database.turso",
         "description": "src.database.turso",
-        "peekOfCode": "class Notes(Base):\n    __tablename__ = \"notes\"\n    name = mapped_column(String, primary_key=True)\n    urls = mapped_column(String)\n    content = mapped_column(String)\nclass Turso:\n    def __init__(self):\n        TURSO_DATABASE_URL = os.environ.get(\"TURSO_DATABASE_URL\")\n        TURSO_AUTH_TOKEN = os.environ.get(\"TURSO_AUTH_TOKEN\")\n        dbUrl = f\"sqlite+{TURSO_DATABASE_URL}/?authToken={TURSO_AUTH_TOKEN}&secure=true\"",
+        "peekOfCode": "class Notes(Base):\n    __tablename__ = \"notes\"\n    name = mapped_column(String, primary_key=True)\n    urls = mapped_column(String)\n    content = mapped_column(String)\nclass Turso:\n    def __iniks.name == name).first()\n    def get_all(self):\n        files = self.session.query(File).all()\n        for item in files:",
         "detail": "src.database.turso",
         "documentation": {}
     },
@@ -411,7 +411,7 @@
         "kind": 6,
         "importPath": "src.database.turso",
         "description": "src.database.turso",
-        "peekOfCode": "class Turso:\n    def __init__(self):\n        TURSO_DATABASE_URL = os.environ.get(\"TURSO_DATABASE_URL\")\n        TURSO_AUTH_TOKEN = os.environ.get(\"TURSO_AUTH_TOKEN\")\n        dbUrl = f\"sqlite+{TURSO_DATABASE_URL}/?authToken={TURSO_AUTH_TOKEN}&secure=true\"\n        engine = create_engine(\n            dbUrl, connect_args={\"check_same_thread\": False}, echo=True\n        )\n        Base.metadata.create_all(engine)\n        Session = sessionmaker(bind=engine)",
+        "peekOfCode": "class Turso:\n    def __iniks.name == name).first()\n    def get_all(self):\n        files = self.session.query(File).all()\n        for item in files:\n            print(item)\n        self.session.close()",
         "detail": "src.database.turso",
         "documentation": {}
     },
