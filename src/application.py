@@ -3,7 +3,7 @@ import os
 from urllib.parse import unquote
 from threading import Thread
 from flask import Flask, Response, request, render_template, redirect
-from .db import Mongo, get_data
+from .db import Mongo
 from .editor import processes
 from .http_req import get_response, get_responses
 from .push import publish
@@ -15,7 +15,7 @@ app = Flask(__name__)
 def get_update(name: str):
     run_proxy()
     db = Mongo()
-    urls = get_data(name)
+    urls = db.get(name)
     links = get_responses(urls)
     if links:
         db.add_value(name, links)

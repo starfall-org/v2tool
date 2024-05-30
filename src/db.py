@@ -34,10 +34,3 @@ class Mongo:
             raise NoKeyError("Không tìm thấy dữ liệu")
 
 
-def get_data(note):
-    db_url = os.getenv("MONGO_URL")
-    client = MongoClient(db_url)
-    db = client.mo9973_notes
-    notes = db.notes
-    result = notes.find_one({"_id": note})
-    return result["urls"]

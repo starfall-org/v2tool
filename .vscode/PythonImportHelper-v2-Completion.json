@@ -49,6 +49,14 @@
         "documentation": {}
     },
     {
+        "label": "jsonify",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
         "label": "Flask",
         "importPath": "flask",
         "description": "flask",
@@ -102,6 +110,71 @@
         "description": "src.editor",
         "isExtraImport": true,
         "detail": "src.editor",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "create_engine",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "String",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "DeclarativeBase",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
+        "label": "Mapped",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
+        "label": "mapped_column",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
+        "label": "sessionmaker",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
+        "label": "LargeBinary",
+        "importPath": "sqlalchemy.types",
+        "description": "sqlalchemy.types",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.types",
         "documentation": {}
     },
     {
@@ -213,15 +286,6 @@
         "documentation": {}
     },
     {
-        "label": "os",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "os",
-        "description": "os",
-        "detail": "os",
-        "documentation": {}
-    },
-    {
         "label": "Thread",
         "importPath": "threading",
         "description": "threading",
@@ -307,12 +371,48 @@
         "documentation": {}
     },
     {
+        "label": "get_headers",
+        "kind": 2,
+        "importPath": "api.app",
+        "description": "api.app",
+        "peekOfCode": "def get_headers():\n    headers = []\n    for key, value in request.headers:\n        headers.append({key: value})\n    return jsonify(headers)",
+        "detail": "api.app",
+        "documentation": {}
+    },
+    {
         "label": "app",
         "kind": 5,
         "importPath": "api.app",
         "description": "api.app",
         "peekOfCode": "app = Flask(__name__)\n@app.route(\"/\")\ndef handle_query():\n    query_url = request.args.get(\"url\")\n    if not query_url:\n        return render_template(\"index.html\")\n    endpoint = request.args.get(\"endpoint\")\n    sni = request.args.get(\"sni\")\n    if endpoint == \"v2ray-subscribe\":\n        return redirect(",
         "detail": "api.app",
+        "documentation": {}
+    },
+    {
+        "label": "Base",
+        "kind": 6,
+        "importPath": "src.database.turso",
+        "description": "src.database.turso",
+        "peekOfCode": "class Base(DeclarativeBase):\n    pass\nclass Notes(Base):\n    __tablename__ = \"notes\"\n    name = mapped_column(String, primary_key=True)\n    urls = mapped_column(String)\n    content = mapped_column(String)\nclass Turso:\n    def __init__(self):\n        TURSO_DATABASE_URL = os.environ.get(\"TURSO_DATABASE_URL\")",
+        "detail": "src.database.turso",
+        "documentation": {}
+    },
+    {
+        "label": "Notes",
+        "kind": 6,
+        "importPath": "src.database.turso",
+        "description": "src.database.turso",
+        "peekOfCode": "class Notes(Base):\n    __tablename__ = \"notes\"\n    name = mapped_column(String, primary_key=True)\n    urls = mapped_column(String)\n    content = mapped_column(String)\nclass Turso:\n    def __init__(self):\n        TURSO_DATABASE_URL = os.environ.get(\"TURSO_DATABASE_URL\")\n        TURSO_AUTH_TOKEN = os.environ.get(\"TURSO_AUTH_TOKEN\")\n        dbUrl = f\"sqlite+{TURSO_DATABASE_URL}/?authToken={TURSO_AUTH_TOKEN}&secure=true\"",
+        "detail": "src.database.turso",
+        "documentation": {}
+    },
+    {
+        "label": "Turso",
+        "kind": 6,
+        "importPath": "src.database.turso",
+        "description": "src.database.turso",
+        "peekOfCode": "class Turso:\n    def __init__(self):\n        TURSO_DATABASE_URL = os.environ.get(\"TURSO_DATABASE_URL\")\n        TURSO_AUTH_TOKEN = os.environ.get(\"TURSO_AUTH_TOKEN\")\n        dbUrl = f\"sqlite+{TURSO_DATABASE_URL}/?authToken={TURSO_AUTH_TOKEN}&secure=true\"\n        engine = create_engine(\n            dbUrl, connect_args={\"check_same_thread\": False}, echo=True\n        )\n        Base.metadata.create_all(engine)\n        Session = sessionmaker(bind=engine)",
+        "detail": "src.database.turso",
         "documentation": {}
     },
     {
@@ -356,7 +456,7 @@
         "kind": 2,
         "importPath": "src.application",
         "description": "src.application",
-        "peekOfCode": "def get_update(name: str):\n    run_proxy()\n    db = Mongo()\n    urls = get_data(name)\n    links = get_responses(urls)\n    if links:\n        db.add_value(name, links)\n    return links\n@app.route(\"/\")\ndef handle_query():",
+        "peekOfCode": "def get_update(name: str):\n    run_proxy()\n    db = Mongo()\n    urls = db.get(name)\n    links = get_responses(urls)\n    if links:\n        db.add_value(name, links)\n    return links\n@app.route(\"/\")\ndef handle_query():",
         "detail": "src.application",
         "documentation": {}
     },
@@ -401,7 +501,7 @@
         "kind": 5,
         "importPath": "src.application",
         "description": "src.application",
-        "peekOfCode": "app = Flask(__name__)\ndef get_update(name: str):\n    run_proxy()\n    db = Mongo()\n    urls = get_data(name)\n    links = get_responses(urls)\n    if links:\n        db.add_value(name, links)\n    return links\n@app.route(\"/\")",
+        "peekOfCode": "app = Flask(__name__)\ndef get_update(name: str):\n    run_proxy()\n    db = Mongo()\n    urls = db.get(name)\n    links = get_responses(urls)\n    if links:\n        db.add_value(name, links)\n    return links\n@app.route(\"/\")",
         "detail": "src.application",
         "documentation": {}
     },
@@ -420,15 +520,6 @@
         "importPath": "src.db",
         "description": "src.db",
         "peekOfCode": "class Mongo:\n    def __init__(self):\n        db_url = os.getenv(\"MONGO_URL\")\n        client = MongoClient(db_url)\n        db = client.mo9973_notes\n        self.notes = db.notes\n        self.content = db.content\n    def get(self, note):\n        result = self.notes.find_one({\"_id\": note})\n        if result:",
-        "detail": "src.db",
-        "documentation": {}
-    },
-    {
-        "label": "get_data",
-        "kind": 2,
-        "importPath": "src.db",
-        "description": "src.db",
-        "peekOfCode": "def get_data(note):\n    db_url = os.getenv(\"MONGO_URL\")\n    client = MongoClient(db_url)\n    db = client.mo9973_notes\n    notes = db.notes\n    result = notes.find_one({\"_id\": note})\n    return result[\"urls\"]",
         "detail": "src.db",
         "documentation": {}
     },
