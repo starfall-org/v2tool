@@ -113,71 +113,6 @@
         "documentation": {}
     },
     {
-        "label": "os",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "os",
-        "description": "os",
-        "detail": "os",
-        "documentation": {}
-    },
-    {
-        "label": "create_engine",
-        "importPath": "sqlalchemy",
-        "description": "sqlalchemy",
-        "isExtraImport": true,
-        "detail": "sqlalchemy",
-        "documentation": {}
-    },
-    {
-        "label": "String",
-        "importPath": "sqlalchemy",
-        "description": "sqlalchemy",
-        "isExtraImport": true,
-        "detail": "sqlalchemy",
-        "documentation": {}
-    },
-    {
-        "label": "DeclarativeBase",
-        "importPath": "sqlalchemy.orm",
-        "description": "sqlalchemy.orm",
-        "isExtraImport": true,
-        "detail": "sqlalchemy.orm",
-        "documentation": {}
-    },
-    {
-        "label": "Mapped",
-        "importPath": "sqlalchemy.orm",
-        "description": "sqlalchemy.orm",
-        "isExtraImport": true,
-        "detail": "sqlalchemy.orm",
-        "documentation": {}
-    },
-    {
-        "label": "mapped_column",
-        "importPath": "sqlalchemy.orm",
-        "description": "sqlalchemy.orm",
-        "isExtraImport": true,
-        "detail": "sqlalchemy.orm",
-        "documentation": {}
-    },
-    {
-        "label": "sessionmaker",
-        "importPath": "sqlalchemy.orm",
-        "description": "sqlalchemy.orm",
-        "isExtraImport": true,
-        "detail": "sqlalchemy.orm",
-        "documentation": {}
-    },
-    {
-        "label": "LargeBinary",
-        "importPath": "sqlalchemy.types",
-        "description": "sqlalchemy.types",
-        "isExtraImport": true,
-        "detail": "sqlalchemy.types",
-        "documentation": {}
-    },
-    {
         "label": "socket",
         "kind": 6,
         "isExtraImport": true,
@@ -286,6 +221,15 @@
         "documentation": {}
     },
     {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
         "label": "Thread",
         "importPath": "threading",
         "description": "threading",
@@ -389,33 +333,6 @@
         "documentation": {}
     },
     {
-        "label": "Base",
-        "kind": 6,
-        "importPath": "src.database.turso",
-        "description": "src.database.turso",
-        "peekOfCode": "class Base(DeclarativeBase):\n    pass\nclass Notes(Base):\n    __tablename__ = \"notes\"\n    name = mapped_column(String, primary_key=True)\n    urls = mapped_column(String)\n    content = mapped_column(String)\nclass Turso:\n    def __iniks.name == name).first()\n    def get_all(self):",
-        "detail": "src.database.turso",
-        "documentation": {}
-    },
-    {
-        "label": "Notes",
-        "kind": 6,
-        "importPath": "src.database.turso",
-        "description": "src.database.turso",
-        "peekOfCode": "class Notes(Base):\n    __tablename__ = \"notes\"\n    name = mapped_column(String, primary_key=True)\n    urls = mapped_column(String)\n    content = mapped_column(String)\nclass Turso:\n    def __iniks.name == name).first()\n    def get_all(self):\n        files = self.session.query(File).all()\n        for item in files:",
-        "detail": "src.database.turso",
-        "documentation": {}
-    },
-    {
-        "label": "Turso",
-        "kind": 6,
-        "importPath": "src.database.turso",
-        "description": "src.database.turso",
-        "peekOfCode": "class Turso:\n    def __iniks.name == name).first()\n    def get_all(self):\n        files = self.session.query(File).all()\n        for item in files:\n            print(item)\n        self.session.close()",
-        "detail": "src.database.turso",
-        "documentation": {}
-    },
-    {
         "label": "get_loc",
         "kind": 2,
         "importPath": "src.protocols.func",
@@ -429,7 +346,7 @@
         "kind": 2,
         "importPath": "src.protocols.trojan",
         "description": "src.protocols.trojan",
-        "peekOfCode": "def edit(link, set_uuid, set_sni, set_tag):\n    link = urlparse(link)\n    query = parse_qs(link.query)\n    netloc = link.netloc.split(\"@\")\n    ip = netloc[1].split(\":\")[0]\n    if ip in [\"127.0.0.1\", \"1.1.1.1\", \"0.0.0.0\", \"8.8.8.8\"]:\n        return\n    if set_uuid:\n        netloc[0] = set_uuid\n        netloc = \"@\".join(netloc)",
+        "peekOfCode": "def edit(link, set_uuid, set_sni, set_tag):\n    link = urlparse(link)\n    query = parse_qs(link.query)\n    full_netloc = link.netloc\n    netloc = full_netloc.split(\"@\")\n    ip = netloc[1].split(\":\")[0]\n    if ip in [\"127.0.0.1\", \"1.1.1.1\", \"0.0.0.0\", \"8.8.8.8\"]:\n        return\n    if set_uuid:\n        netloc[0] = set_uuid",
         "detail": "src.protocols.trojan",
         "documentation": {}
     },
@@ -438,7 +355,7 @@
         "kind": 2,
         "importPath": "src.protocols.vless",
         "description": "src.protocols.vless",
-        "peekOfCode": "def edit(link, set_uuid, set_sni, set_tag):\n    link = urlparse(link)\n    query = parse_qs(link.query)\n    netloc = link.netloc.split(\"@\")\n    ip = netloc[1].split(\":\")[0]\n    if ip in [\"127.0.0.1\", \"1.1.1.1\", \"0.0.0.0\", \"8.8.8.8\"]:\n        return\n    if set_uuid:\n        netloc[0] = set_uuid\n        netloc = \"@\".join(netloc)",
+        "peekOfCode": "def edit(link, set_uuid, set_sni, set_tag):\n    link = urlparse(link)\n    query = parse_qs(link.query)\n    full_netloc = link.netloc\n    netloc = full_netloc.split(\"@\")\n    ip = netloc[1].split(\":\")[0]\n    if ip in [\"127.0.0.1\", \"1.1.1.1\", \"0.0.0.0\", \"8.8.8.8\"]:\n        return\n    if set_uuid:\n        netloc[0] = set_uuid",
         "detail": "src.protocols.vless",
         "documentation": {}
     },

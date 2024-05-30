@@ -5,7 +5,8 @@ from .func import get_loc
 def edit(link, set_uuid, set_sni, set_tag):
     link = urlparse(link)
     query = parse_qs(link.query)
-    netloc = link.netloc.split("@")
+    full_netloc = link.netloc
+    netloc = full_netloc.split("@")
     ip = netloc[1].split(":")[0]
     if ip in ["127.0.0.1", "1.1.1.1", "0.0.0.0", "8.8.8.8"]:
         return
@@ -22,4 +23,4 @@ def edit(link, set_uuid, set_sni, set_tag):
             set_tag = get_loc(ip)
         link = link._replace(fragment=set_tag)
     link = urlunparse(link)
-    return link, link.netloc
+    return link, full_netloc
