@@ -1,5 +1,5 @@
 import base64
-from flask import Flask, Response, request, render_template, redirect
+from flask import Flask, Response, request, render_template, redirect, jsonify
 from src.db import Mongo
 from src.editor import processes
 
@@ -35,3 +35,8 @@ def get_note(note):
         return Response(result, mimetype="text/plain")
     except Exception as e:
         return {"status": "failed", "message": str(e)}, 404
+
+
+@app.route("/headers")
+def get_headers():
+    return jsonify(request.args)
