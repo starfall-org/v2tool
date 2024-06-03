@@ -98,10 +98,10 @@
     },
     {
         "label": "Turso",
-        "importPath": "src.db",
-        "description": "src.db",
+        "importPath": "src.database.client",
+        "description": "src.database.client",
         "isExtraImport": true,
-        "detail": "src.db",
+        "detail": "src.database.client",
         "documentation": {}
     },
     {
