@@ -3,7 +3,7 @@ import os
 from urllib.parse import unquote
 from threading import Thread
 from flask import Flask, Response, request, render_template, redirect
-from .db import Mongo
+from .database.client import Turso
 from .editor import processes
 from .http_req import get_response, get_responses
 from .push import publish
@@ -14,11 +14,11 @@ app = Flask(__name__)
 
 def get_update(name: str):
     run_proxy()
-    db = Mongo()
-    urls = db.get(name)
+    db = Turso()
+    urls = db.list(name)
     links = get_responses(urls)
     if links:
-        db.add_value(name, links)
+        db.update(name, links)
     return links
 
 
@@ -60,13 +60,13 @@ def update_note(note):
 
 @app.route("/get/<note>")
 def get_note(note):
-    db = Mongo()
+    db = Turso()
     uuid = request.args.get("uuid")
     sni = request.args.get("sni")
     tag = request.args.get("tag")
     try:
         try:
-            list_links = db.get_value(note)
+            list_links = db.get(note).content
             Thread(target=publish, args=(note,)).start()
         except Exception as e:
             print(e)

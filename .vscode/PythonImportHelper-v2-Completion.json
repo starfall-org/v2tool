@@ -138,14 +138,6 @@
         "documentation": {}
     },
     {
-        "label": "and_",
-        "importPath": "sqlalchemy",
-        "description": "sqlalchemy",
-        "isExtraImport": true,
-        "detail": "sqlalchemy",
-        "documentation": {}
-    },
-    {
         "label": "String",
         "importPath": "sqlalchemy",
         "description": "sqlalchemy",
@@ -409,7 +401,7 @@
         "kind": 6,
         "importPath": "src.database.client",
         "description": "src.database.client",
-        "peekOfCode": "class Turso:\n    def __init__(self) -> None:\n        TURSO_DATABASE_URL = os.environ.get(\"TURSO_DATABASE_URL\")\n        TURSO_AUTH_TOKEN = os.environ.get(\"TURSO_AUTH_TOKEN\")\n        dbUrl = f\"sqlite+{TURSO_DATABASE_URL}/?authToken={TURSO_AUTH_TOKEN}&secure=true\"\n        engine = create_engine(\n            dbUrl, connect_args={\"check_same_thread\": False}, echo=True\n        )\n        Base.metadata.create_all(engine)\n        self.session = Session(engine)",
+        "peekOfCode": "class Turso:\n    def __init__(self) -> None:\n        TURSO_URL = os.environ.get(\"TURSO_URL\")\n        engine = create_engine(\n            TURSO_URL, connect_args={\"check_same_thread\": False}, echo=True\n        )\n        Base.metadata.create_all(engine)\n        self.session = Session(engine)\n    def get(self, name: str) -> Note | None:\n        sql = select(Note).where(Note.name == name)",
         "detail": "src.database.client",
         "documentation": {}
     },
@@ -472,7 +464,7 @@
         "kind": 2,
         "importPath": "src.application",
         "description": "src.application",
-        "peekOfCode": "def get_update(name: str):\n    run_proxy()\n    db = Mongo()\n    urls = db.get(name)\n    links = get_responses(urls)\n    if links:\n        db.add_value(name, links)\n    return links\n@app.route(\"/\")\ndef handle_query():",
+        "peekOfCode": "def get_update(name: str):\n    run_proxy()\n    db = Turso()\n    urls = db.list(name)\n    links = get_responses(urls)\n    if links:\n        db.update(name, links)\n    return links\n@app.route(\"/\")\ndef handle_query():",
         "detail": "src.application",
         "documentation": {}
     },
@@ -499,7 +491,7 @@
         "kind": 2,
         "importPath": "src.application",
         "description": "src.application",
-        "peekOfCode": "def get_note(note):\n    db = Mongo()\n    uuid = request.args.get(\"uuid\")\n    sni = request.args.get(\"sni\")\n    tag = request.args.get(\"tag\")\n    try:\n        try:\n            list_links = db.get_value(note)\n            Thread(target=publish, args=(note,)).start()\n        except Exception as e:",
+        "peekOfCode": "def get_note(note):\n    db = Turso()\n    uuid = request.args.get(\"uuid\")\n    sni = request.args.get(\"sni\")\n    tag = request.args.get(\"tag\")\n    try:\n        try:\n            list_links = db.get(note).content\n            Thread(target=publish, args=(note,)).start()\n        except Exception as e:",
         "detail": "src.application",
         "documentation": {}
     },
@@ -517,7 +509,7 @@
         "kind": 5,
         "importPath": "src.application",
         "description": "src.application",
-        "peekOfCode": "app = Flask(__name__)\ndef get_update(name: str):\n    run_proxy()\n    db = Mongo()\n    urls = db.get(name)\n    links = get_responses(urls)\n    if links:\n        db.add_value(name, links)\n    return links\n@app.route(\"/\")",
+        "peekOfCode": "app = Flask(__name__)\ndef get_update(name: str):\n    run_proxy()\n    db = Turso()\n    urls = db.list(name)\n    links = get_responses(urls)\n    if links:\n        db.update(name, links)\n    return links\n@app.route(\"/\")",
         "detail": "src.application",
         "documentation": {}
     },

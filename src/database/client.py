@@ -1,16 +1,14 @@
 import os
-from sqlalchemy import create_engine, select, and_
+from sqlalchemy import create_engine, select
 from sqlalchemy.orm import Session
 from .model import Base, Note
 
 
 class Turso:
     def __init__(self) -> None:
-        TURSO_DATABASE_URL = os.environ.get("TURSO_DATABASE_URL")
-        TURSO_AUTH_TOKEN = os.environ.get("TURSO_AUTH_TOKEN")
-        dbUrl = f"sqlite+{TURSO_DATABASE_URL}/?authToken={TURSO_AUTH_TOKEN}&secure=true"
+        TURSO_URL = os.environ.get("TURSO_URL")
         engine = create_engine(
-            dbUrl, connect_args={"check_same_thread": False}, echo=True
+            TURSO_URL, connect_args={"check_same_thread": False}, echo=True
         )
         Base.metadata.create_all(engine)
         self.session = Session(engine)
