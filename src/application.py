@@ -18,7 +18,7 @@ def get_update(name: str):
     urls = db.list(name)
     links = get_responses(urls)
     if links:
-        db.update(name, links)
+        db.update(name, "\n".join(links))
     return links
 
 
@@ -48,14 +48,13 @@ def update_note(note):
     uuid = request.args.get("uuid")
     sni = request.args.get("sni")
     tag = request.args.get("tag")
-    try:
-        list_links = get_update(note)
-        links = processes(list_links, uuid, sni, tag)
-        links = "\n".join(links).encode("utf-8")
-        result = base64.b64encode(links).decode("utf-8")
-        return Response(result, mimetype="text/plain")
-    except Exception as e:
-        return {"status": "failed", "message": str(e)}, 404
+    list_links = get_update(note)
+    links = processes(list_links, uuid, sni, tag)
+    links = "\n".join(links).encode("utf-8")
+    result = base64.b64encode(links).decode("utf-8")
+    return Response(result, mimetype="text/plain")
+    # except Exception as e:
+    #   return {"status": "failed", "message": str(e)}, 404
 
 
 @app.route("/get/<note>")
@@ -66,7 +65,7 @@ def get_note(note):
     tag = request.args.get("tag")
     try:
         try:
-            list_links = db.get(note).content
+            list_links = db.get(note).content.splitlines()
             Thread(target=publish, args=(note,)).start()
         except Exception as e:
             print(e)

@@ -28,7 +28,7 @@ def get_note(note):
     sni = request.args.get("sni")
     tag = request.args.get("tag")
     try:
-        list_links = db.get(note).content
+        list_links = db.get(note).content.splitlines()
         links = processes(list_links, uuid, sni, tag)
         links = "\n".join(links).encode("utf-8")
         result = base64.b64encode(links).decode("utf-8")

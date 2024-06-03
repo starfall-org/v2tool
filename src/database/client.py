@@ -6,22 +6,22 @@ from .model import Base, Note
 
 class Turso:
     def __init__(self) -> None:
-        TURSO_URL = os.environ.get("TURSO_URL")
+        turso_url = os.getenv("TURSO_URL")
         engine = create_engine(
-            TURSO_URL, connect_args={"check_same_thread": False}, echo=True
+            turso_url, connect_args={"check_same_thread": False}, echo=True
         )
         Base.metadata.create_all(engine)
         self.session = Session(engine)
 
-    def get(self, name: str) -> Note | None:
+    def get(self, name: str) -> Note:
         sql = select(Note).where(Note.name == name)
         return self.session.scalars(sql).first()
 
-    def list(self, name: str) -> list | None:
+    def list(self, name: str) -> list:
         note = self.get(name)
         if note:
             return note.urls.splitlines()
-        return None
+        return []
 
     def update(self, name: str, content: str) -> None:
         note = self.get(name)
