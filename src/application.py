@@ -48,13 +48,14 @@ def update_note(note):
     uuid = request.args.get("uuid")
     sni = request.args.get("sni")
     tag = request.args.get("tag")
-    list_links = get_update(note)
-    links = processes(list_links, uuid, sni, tag)
-    links = "\n".join(links).encode("utf-8")
-    result = base64.b64encode(links).decode("utf-8")
-    return Response(result, mimetype="text/plain")
-    # except Exception as e:
-    #   return {"status": "failed", "message": str(e)}, 404
+    try:
+        list_links = get_update(note)
+        links = processes(list_links, uuid, sni, tag)
+        links = "\n".join(links).encode("utf-8")
+        result = base64.b64encode(links).decode("utf-8")
+        return Response(result, mimetype="text/plain")
+    except Exception as e:
+        return {"status": "failed", "message": str(e)}, 404
 
 
 @app.route("/get/<note>")

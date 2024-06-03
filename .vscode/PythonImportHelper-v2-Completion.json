@@ -482,7 +482,7 @@
         "kind": 2,
         "importPath": "src.application",
         "description": "src.application",
-        "peekOfCode": "def update_note(note):\n    uuid = request.args.get(\"uuid\")\n    sni = request.args.get(\"sni\")\n    tag = request.args.get(\"tag\")\n    list_links = get_update(note)\n    links = processes(list_links, uuid, sni, tag)\n    links = \"\\n\".join(links).encode(\"utf-8\")\n    result = base64.b64encode(links).decode(\"utf-8\")\n    return Response(result, mimetype=\"text/plain\")\n    # except Exception as e:",
+        "peekOfCode": "def update_note(note):\n    uuid = request.args.get(\"uuid\")\n    sni = request.args.get(\"sni\")\n    tag = request.args.get(\"tag\")\n    try:\n        list_links = get_update(note)\n        links = processes(list_links, uuid, sni, tag)\n        links = \"\\n\".join(links).encode(\"utf-8\")\n        result = base64.b64encode(links).decode(\"utf-8\")\n        return Response(result, mimetype=\"text/plain\")",
         "detail": "src.application",
         "documentation": {}
     },
