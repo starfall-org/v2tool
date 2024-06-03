@@ -1,6 +1,6 @@
 import base64
 from flask import Flask, Response, request, render_template, redirect, jsonify
-from src.db import Mongo
+from src.db import Turso
 from src.editor import processes
 
 app = Flask(__name__)
@@ -23,12 +23,12 @@ def handle_query():
 
 @app.route("/get/<note>")
 def get_note(note):
-    db = Mongo()
+    db = Turso()
     uuid = request.args.get("uuid")
     sni = request.args.get("sni")
     tag = request.args.get("tag")
     try:
-        list_links = db.get_value(note)
+        list_links = db.get(note).content
         links = processes(list_links, uuid, sni, tag)
         links = "\n".join(links).encode("utf-8")
         result = base64.b64encode(links).decode("utf-8")
