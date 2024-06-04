@@ -186,6 +186,22 @@
         "documentation": {}
     },
     {
+        "label": "Deta",
+        "importPath": "database.deta",
+        "description": "database.deta",
+        "isExtraImport": true,
+        "detail": "database.deta",
+        "documentation": {}
+    },
+    {
+        "label": "MongoClient",
+        "importPath": "pymongo",
+        "description": "pymongo",
+        "isExtraImport": true,
+        "detail": "pymongo",
+        "documentation": {}
+    },
+    {
         "label": "socket",
         "kind": 6,
         "isExtraImport": true,
@@ -302,22 +318,6 @@
         "documentation": {}
     },
     {
-        "label": "MongoClient",
-        "importPath": "pymongo",
-        "description": "pymongo",
-        "isExtraImport": true,
-        "detail": "pymongo",
-        "documentation": {}
-    },
-    {
-        "label": "Deta",
-        "importPath": "deta",
-        "description": "deta",
-        "isExtraImport": true,
-        "detail": "deta",
-        "documentation": {}
-    },
-    {
         "label": "concurrent.futures",
         "kind": 6,
         "isExtraImport": true,
@@ -406,6 +406,33 @@
         "documentation": {}
     },
     {
+        "label": "get_data",
+        "kind": 2,
+        "importPath": "src.database.deta",
+        "description": "src.database.deta",
+        "peekOfCode": "def get_data(filename):\n    entry = db.get(filename)\n    if entry:\n        return entry[\"urls\"]\n    else:\n        raise Exception(\"Không tìm thấy dữ liệu\")",
+        "detail": "src.database.deta",
+        "documentation": {}
+    },
+    {
+        "label": "deta",
+        "kind": 5,
+        "importPath": "src.database.deta",
+        "description": "src.database.deta",
+        "peekOfCode": "deta = Deta(os.getenv(\"DETA_KEY\"))\ndb = deta.Base(\"notes\")\ndef get_data(filename):\n    entry = db.get(filename)\n    if entry:\n        return entry[\"urls\"]\n    else:\n        raise Exception(\"Không tìm thấy dữ liệu\")",
+        "detail": "src.database.deta",
+        "documentation": {}
+    },
+    {
+        "label": "db",
+        "kind": 5,
+        "importPath": "src.database.deta",
+        "description": "src.database.deta",
+        "peekOfCode": "db = deta.Base(\"notes\")\ndef get_data(filename):\n    entry = db.get(filename)\n    if entry:\n        return entry[\"urls\"]\n    else:\n        raise Exception(\"Không tìm thấy dữ liệu\")",
+        "detail": "src.database.deta",
+        "documentation": {}
+    },
+    {
         "label": "Base",
         "kind": 6,
         "importPath": "src.database.model",
@@ -421,6 +448,24 @@
         "description": "src.database.model",
         "peekOfCode": "class Note(Base):\n    __tablename__ = \"notes\"\n    name: Mapped[str] = mapped_column(String, primary_key=True)\n    urls: Mapped[str] = mapped_column(String)\n    content: Mapped[str] = mapped_column(String)\n    user_id: Mapped[int] = mapped_column(BigInteger)\n    def __repr__(self) -> str:\n        obj = dict(\n            name=self.name,\n            urls=self.urls.splitlines(),",
         "detail": "src.database.model",
+        "documentation": {}
+    },
+    {
+        "label": "NoKeyError",
+        "kind": 6,
+        "importPath": "src.database.mongo",
+        "description": "src.database.mongo",
+        "peekOfCode": "class NoKeyError(Exception):\n    pass\nclass Mongo:\n    def __init__(self):\n        db_url = os.getenv(\"MONGO_URL\")\n        client = MongoClient(db_url)\n        db = client.mo9973_notes\n        self.notes = db.notes\n        self.content = db.content\n    def get(self, note):",
+        "detail": "src.database.mongo",
+        "documentation": {}
+    },
+    {
+        "label": "Mongo",
+        "kind": 6,
+        "importPath": "src.database.mongo",
+        "description": "src.database.mongo",
+        "peekOfCode": "class Mongo:\n    def __init__(self):\n        db_url = os.getenv(\"MONGO_URL\")\n        client = MongoClient(db_url)\n        db = client.mo9973_notes\n        self.notes = db.notes\n        self.content = db.content\n    def get(self, note):\n        result = self.notes.find_one({\"_id\": note})\n        if result:",
+        "detail": "src.database.mongo",
         "documentation": {}
     },
     {
@@ -511,51 +556,6 @@
         "description": "src.application",
         "peekOfCode": "app = Flask(__name__)\ndef get_update(name: str):\n    run_proxy()\n    db = Turso()\n    urls = db.list(name)\n    links = get_responses(urls)\n    if links:\n        db.update(name, \"\\n\".join(links))\n    return links\n@app.route(\"/\")",
         "detail": "src.application",
-        "documentation": {}
-    },
-    {
-        "label": "NoKeyError",
-        "kind": 6,
-        "importPath": "src.db",
-        "description": "src.db",
-        "peekOfCode": "class NoKeyError(Exception):\n    pass\nclass Mongo:\n    def __init__(self):\n        db_url = os.getenv(\"MONGO_URL\")\n        client = MongoClient(db_url)\n        db = client.mo9973_notes\n        self.notes = db.notes\n        self.content = db.content\n    def get(self, note):",
-        "detail": "src.db",
-        "documentation": {}
-    },
-    {
-        "label": "Mongo",
-        "kind": 6,
-        "importPath": "src.db",
-        "description": "src.db",
-        "peekOfCode": "class Mongo:\n    def __init__(self):\n        db_url = os.getenv(\"MONGO_URL\")\n        client = MongoClient(db_url)\n        db = client.mo9973_notes\n        self.notes = db.notes\n        self.content = db.content\n    def get(self, note):\n        result = self.notes.find_one({\"_id\": note})\n        if result:",
-        "detail": "src.db",
-        "documentation": {}
-    },
-    {
-        "label": "get_data",
-        "kind": 2,
-        "importPath": "src.deta",
-        "description": "src.deta",
-        "peekOfCode": "def get_data(filename):\n    entry = db.get(filename)\n    if entry:\n        return entry[\"urls\"]\n    else:\n        raise Exception(\"Không tìm thấy dữ liệu\")",
-        "detail": "src.deta",
-        "documentation": {}
-    },
-    {
-        "label": "deta",
-        "kind": 5,
-        "importPath": "src.deta",
-        "description": "src.deta",
-        "peekOfCode": "deta = Deta(os.getenv(\"DETA_KEY\"))\ndb = deta.Base(\"notes\")\ndef get_data(filename):\n    entry = db.get(filename)\n    if entry:\n        return entry[\"urls\"]\n    else:\n        raise Exception(\"Không tìm thấy dữ liệu\")",
-        "detail": "src.deta",
-        "documentation": {}
-    },
-    {
-        "label": "db",
-        "kind": 5,
-        "importPath": "src.deta",
-        "description": "src.deta",
-        "peekOfCode": "db = deta.Base(\"notes\")\ndef get_data(filename):\n    entry = db.get(filename)\n    if entry:\n        return entry[\"urls\"]\n    else:\n        raise Exception(\"Không tìm thấy dữ liệu\")",
-        "detail": "src.deta",
         "documentation": {}
     },
     {

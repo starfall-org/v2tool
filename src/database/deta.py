@@ -1,7 +1,7 @@
 import os
 
 
-from deta import Deta
+from database.deta import Deta
 
 deta = Deta(os.getenv("DETA_KEY"))
 db = deta.Base("notes")
