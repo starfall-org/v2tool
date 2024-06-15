@@ -401,7 +401,7 @@
         "kind": 6,
         "importPath": "src.database.client",
         "description": "src.database.client",
-        "peekOfCode": "class Turso:\n    def __init__(self) -> None:\n        turso_url = os.getenv(\"TURSO_URL\")\n        engine = create_engine(\n            turso_url, connect_args={\"check_same_thread\": False}, echo=True\n        )\n        Base.metadata.create_all(engine)\n        self.session = Session(engine)\n    def get(self, name: str) -> Note:\n        sql = select(Note).where(Note.name == name)",
+        "peekOfCode": "class Turso:\n    def __init__(self) -> None:\n        engine = create_engine(db_url)\n        Base.metadata.create_all(engine)\n        self.session = Session(engine)\n    def get(self, name: str) -> Note:\n        sql = select(Note).where(Note.name == name)\n        return self.session.scalars(sql).first()\n    def list(self, name: str) -> list:\n        note = self.get(name)",
         "detail": "src.database.client",
         "documentation": {}
     },
@@ -574,6 +574,42 @@
         "description": "src.editor",
         "peekOfCode": "def processes(links: list, uuid: str = None, sni: str = None, tag: str = None):\n    batch_size = 10\n    values = set()\n    duplicate = []\n    result = []\n    def process_batch(batch):\n        try:\n            editor(batch, values, uuid, sni, tag)\n        except Exception as e:\n            print(e)",
         "detail": "src.editor",
+        "documentation": {}
+    },
+    {
+        "label": "keys_url",
+        "kind": 5,
+        "importPath": "src.environment",
+        "description": "src.environment",
+        "peekOfCode": "keys_url = os.environ[\"SECRET\"]\nreq = requests.get(keys_url, timeout=99)\nresponse = req.json()\ndb_url = response[\"database\"][\"notes\"]",
+        "detail": "src.environment",
+        "documentation": {}
+    },
+    {
+        "label": "req",
+        "kind": 5,
+        "importPath": "src.environment",
+        "description": "src.environment",
+        "peekOfCode": "req = requests.get(keys_url, timeout=99)\nresponse = req.json()\ndb_url = response[\"database\"][\"notes\"]",
+        "detail": "src.environment",
+        "documentation": {}
+    },
+    {
+        "label": "response",
+        "kind": 5,
+        "importPath": "src.environment",
+        "description": "src.environment",
+        "peekOfCode": "response = req.json()\ndb_url = response[\"database\"][\"notes\"]",
+        "detail": "src.environment",
+        "documentation": {}
+    },
+    {
+        "label": "db_url",
+        "kind": 5,
+        "importPath": "src.environment",
+        "description": "src.environment",
+        "peekOfCode": "db_url = response[\"database\"][\"notes\"]",
+        "detail": "src.environment",
         "documentation": {}
     },
     {

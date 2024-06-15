@@ -2,14 +2,12 @@ import os
 from sqlalchemy import create_engine, select
 from sqlalchemy.orm import Session
 from .model import Base, Note
+from ..environment import db_url
 
 
 class Turso:
     def __init__(self) -> None:
-        turso_url = os.getenv("TURSO_URL")
-        engine = create_engine(
-            turso_url, connect_args={"check_same_thread": False}, echo=True
-        )
+        engine = create_engine(db_url)
         Base.metadata.create_all(engine)
         self.session = Session(engine)
 
