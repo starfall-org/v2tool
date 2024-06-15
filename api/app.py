@@ -1,6 +1,6 @@
 import base64
 from flask import Flask, Response, request, render_template, redirect, jsonify
-from src.database.client import Turso
+from src.database.client import Client
 from src.editor import processes
 
 app = Flask(__name__)
@@ -23,7 +23,7 @@ def handle_query():
 
 @app.route("/get/<note>")
 def get_note(note):
-    db = Turso()
+    db = Client()
     uuid = request.args.get("uuid")
     sni = request.args.get("sni")
     tag = request.args.get("tag")

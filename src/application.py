@@ -3,7 +3,7 @@ import os
 from urllib.parse import unquote
 from threading import Thread
 from flask import Flask, Response, request, render_template, redirect
-from .database.client import Turso
+from .database.client import Client
 from .editor import processes
 from .http_req import get_response, get_responses
 from .push import publish
@@ -14,7 +14,7 @@ app = Flask(__name__)
 
 def get_update(name: str):
     run_proxy()
-    db = Turso()
+    db = Client()
     urls = db.list(name)
     links = get_responses(urls)
     if links:
@@ -60,7 +60,7 @@ def update_note(note):
 
 @app.route("/get/<note>")
 def get_note(note):
-    db = Turso()
+    db = Client()
     uuid = request.args.get("uuid")
     sni = request.args.get("sni")
     tag = request.args.get("tag")

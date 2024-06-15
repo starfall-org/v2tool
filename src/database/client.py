@@ -5,7 +5,7 @@ from .model import Base, Note
 from ..environment import db_url
 
 
-class Turso:
+class Client:
     def __init__(self) -> None:
         engine = create_engine(db_url)
         Base.metadata.create_all(engine)
