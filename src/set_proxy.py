@@ -24,5 +24,6 @@ def test_proxy():
 def run_proxy():
     r = requests.get(proxy_url)
     config = r.text
+    os.system("pkill -9 lite")
     os.system(f"./lite -p 10808 {config} &")
     return test_proxy()
