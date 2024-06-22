@@ -25,3 +25,4 @@ def updater():
 
 
 scheduler.add_job(updater, "interval", minutes=30)
+scheduler.start()

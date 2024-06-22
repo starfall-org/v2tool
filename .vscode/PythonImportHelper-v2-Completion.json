@@ -730,7 +730,7 @@
         "kind": 2,
         "importPath": "updater",
         "description": "updater",
-        "peekOfCode": "def updater():\n    get_update(\"share\")\n    get_update(\"v2ray\")\n    os.system(\"pkill -9 lite\")\nscheduler.add_job(updater, \"interval\", minutes=30)",
+        "peekOfCode": "def updater():\n    get_update(\"share\")\n    get_update(\"v2ray\")\n    os.system(\"pkill -9 lite\")\nscheduler.add_job(updater, \"interval\", minutes=30)\nscheduler.start()",
         "detail": "updater",
         "documentation": {}
     },
