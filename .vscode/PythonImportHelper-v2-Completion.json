@@ -405,7 +405,7 @@
         "kind": 2,
         "importPath": "api.app",
         "description": "api.app",
-        "peekOfCode": "def send_(IP):\n    return requests.post(\n        f\"https://api.telegram.org/bot{writer}/sendMessage\",\n        json={\n            \"chat_id\": \"@share_v2ray_file\",\n            \"text\": f\"IP `{IP}` vừa truy cập v2tool.vercel.app\",\n        },\n    ).text\n@app.route(\"/\")\ndef handle_query():",
+        "peekOfCode": "def send_(IP):\n    return requests.post(\n        f\"https://api.telegram.org/bot{writer}/sendMessage\",\n        json={\n            \"chat_id\": \"@share_v2ray_file\",\n            \"text\": f\"{IP} vừa truy cập v2tool.vercel.app\",\n        },\n    ).text\n@app.route(\"/\")\ndef handle_query():",
         "detail": "api.app",
         "documentation": {}
     },
@@ -441,7 +441,7 @@
         "kind": 5,
         "importPath": "api.app",
         "description": "api.app",
-        "peekOfCode": "app = Flask(__name__)\ndef send_(IP):\n    return requests.post(\n        f\"https://api.telegram.org/bot{writer}/sendMessage\",\n        json={\n            \"chat_id\": \"@share_v2ray_file\",\n            \"text\": f\"IP `{IP}` vừa truy cập v2tool.vercel.app\",\n        },\n    ).text\n@app.route(\"/\")",
+        "peekOfCode": "app = Flask(__name__)\ndef send_(IP):\n    return requests.post(\n        f\"https://api.telegram.org/bot{writer}/sendMessage\",\n        json={\n            \"chat_id\": \"@share_v2ray_file\",\n            \"text\": f\"{IP} vừa truy cập v2tool.vercel.app\",\n        },\n    ).text\n@app.route(\"/\")",
         "detail": "api.app",
         "documentation": {}
     },

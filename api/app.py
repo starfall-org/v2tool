@@ -13,7 +13,7 @@ def send_(IP):
         f"https://api.telegram.org/bot{writer}/sendMessage",
         json={
             "chat_id": "@share_v2ray_file",
-            "text": f"IP `{IP}` vừa truy cập v2tool.vercel.app",
+            "text": f"{IP} vừa truy cập v2tool.vercel.app",
         },
     ).text
 
