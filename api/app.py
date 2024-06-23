@@ -9,7 +9,8 @@ app = Flask(__name__)
 
 
 def send_(IP):
-    return requests.post(
+    return
+    requests.post(
         f"https://api.telegram.org/bot{writer}/sendMessage",
         json={
             "chat_id": "@share_v2ray_file",
