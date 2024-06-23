@@ -423,7 +423,7 @@
         "kind": 2,
         "importPath": "api.app",
         "description": "api.app",
-        "peekOfCode": "def get_note(note):\n    headers = request.headers\n    db = Client()\n    uuid = request.args.get(\"uuid\")\n    sni = request.args.get(\"sni\")\n    tag = request.args.get(\"tag\")\n    try:\n        list_links = db.get(note).content.splitlines()\n        links = processes(list_links, uuid, sni, tag)\n        links = \"\\n\".join(links).encode(\"utf-8\")",
+        "peekOfCode": "def get_note(note):\n    headers = request.headers\n    send_(headers[\"X-Real-Ip\"])\n    db = Client()\n    uuid = request.args.get(\"uuid\")\n    sni = request.args.get(\"sni\")\n    tag = request.args.get(\"tag\")\n    try:\n        list_links = db.get(note).content.splitlines()\n        links = processes(list_links, uuid, sni, tag)",
         "detail": "api.app",
         "documentation": {}
     },

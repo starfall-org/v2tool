@@ -36,6 +36,7 @@ def handle_query():
 @app.route("/get/<note>")
 def get_note(note):
     headers = request.headers
+    send_(headers["X-Real-Ip"])
     db = Client()
     uuid = request.args.get("uuid")
     sni = request.args.get("sni")
