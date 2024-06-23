@@ -405,7 +405,7 @@
         "kind": 2,
         "importPath": "api.app",
         "description": "api.app",
-        "peekOfCode": "def send_(IP):\n    return requests.post(\n        f\"https://api.telegram.org/bot{writer}/sendMessage\",\n        json={\n            \"chat_id\": \"share_v2ray_file\",\n            \"text\": f\"IP `{IP}` vừa truy cập v2tool.vercel.app\",\n        },\n    )\n@app.route(\"/\")\ndef handle_query():",
+        "peekOfCode": "def send_(IP):\n    return requests.post(\n        f\"https://api.telegram.org/bot{writer}/sendMessage\",\n        json={\n            \"chat_id\": \"share_v2ray_file\",\n            \"text\": f\"IP `{IP}` vừa truy cập v2tool.vercel.app\",\n        },\n    ).text\n@app.route(\"/\")\ndef handle_query():",
         "detail": "api.app",
         "documentation": {}
     },
@@ -414,7 +414,7 @@
         "kind": 2,
         "importPath": "api.app",
         "description": "api.app",
-        "peekOfCode": "def handle_query():\n    headers = request.headers\n    send_(headers[\"X-Real-Ip\"])\n    query_url = request.args.get(\"url\")\n    if not query_url:\n        return render_template(\"index.html\")\n    endpoint = request.args.get(\"endpoint\")\n    sni = request.args.get(\"sni\")\n    if endpoint == \"v2ray-subscribe\":\n        return redirect(",
+        "peekOfCode": "def handle_query():\n    headers = request.headers\n    print(send_(headers[\"X-Real-Ip\"]))\n    query_url = request.args.get(\"url\")\n    if not query_url:\n        return render_template(\"index.html\")\n    endpoint = request.args.get(\"endpoint\")\n    sni = request.args.get(\"sni\")\n    if endpoint == \"v2ray-subscribe\":\n        return redirect(",
         "detail": "api.app",
         "documentation": {}
     },
@@ -423,7 +423,7 @@
         "kind": 2,
         "importPath": "api.app",
         "description": "api.app",
-        "peekOfCode": "def get_note(note):\n    headers = request.headers\n    send_(headers[\"X-Real-Ip\"])\n    db = Client()\n    uuid = request.args.get(\"uuid\")\n    sni = request.args.get(\"sni\")\n    tag = request.args.get(\"tag\")\n    try:\n        list_links = db.get(note).content.splitlines()\n        links = processes(list_links, uuid, sni, tag)",
+        "peekOfCode": "def get_note(note):\n    headers = request.headers\n    print(send_(headers[\"X-Real-Ip\"]))\n    db = Client()\n    uuid = request.args.get(\"uuid\")\n    sni = request.args.get(\"sni\")\n    tag = request.args.get(\"tag\")\n    try:\n        list_links = db.get(note).content.splitlines()\n        links = processes(list_links, uuid, sni, tag)",
         "detail": "api.app",
         "documentation": {}
     },
@@ -441,7 +441,7 @@
         "kind": 5,
         "importPath": "api.app",
         "description": "api.app",
-        "peekOfCode": "app = Flask(__name__)\ndef send_(IP):\n    return requests.post(\n        f\"https://api.telegram.org/bot{writer}/sendMessage\",\n        json={\n            \"chat_id\": \"share_v2ray_file\",\n            \"text\": f\"IP `{IP}` vừa truy cập v2tool.vercel.app\",\n        },\n    )\n@app.route(\"/\")",
+        "peekOfCode": "app = Flask(__name__)\ndef send_(IP):\n    return requests.post(\n        f\"https://api.telegram.org/bot{writer}/sendMessage\",\n        json={\n            \"chat_id\": \"share_v2ray_file\",\n            \"text\": f\"IP `{IP}` vừa truy cập v2tool.vercel.app\",\n        },\n    ).text\n@app.route(\"/\")",
         "detail": "api.app",
         "documentation": {}
     },

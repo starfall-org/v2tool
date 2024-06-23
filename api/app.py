@@ -15,13 +15,13 @@ def send_(IP):
             "chat_id": "share_v2ray_file",
             "text": f"IP `{IP}` vừa truy cập v2tool.vercel.app",
         },
-    )
+    ).text
 
 
 @app.route("/")
 def handle_query():
     headers = request.headers
-    send_(headers["X-Real-Ip"])
+    print(send_(headers["X-Real-Ip"]))
     query_url = request.args.get("url")
     if not query_url:
         return render_template("index.html")
@@ -38,7 +38,7 @@ def handle_query():
 @app.route("/get/<note>")
 def get_note(note):
     headers = request.headers
-    send_(headers["X-Real-Ip"])
+    print(send_(headers["X-Real-Ip"]))
     db = Client()
     uuid = request.args.get("uuid")
     sni = request.args.get("sni")
