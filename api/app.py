@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 
 def send_(IP):
-    requests.post(
+    return requests.post(
         f"https://api.telegram.org/bot{writer}/sendMessage",
         json={
             "chat_id": "share_v2ray_file",
@@ -20,6 +20,8 @@ def send_(IP):
 
 @app.route("/")
 def handle_query():
+    headers = request.headers
+    send_(headers["X-Real-Ip"])
     query_url = request.args.get("url")
     if not query_url:
         return render_template("index.html")
