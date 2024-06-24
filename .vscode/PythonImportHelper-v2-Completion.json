@@ -405,7 +405,7 @@
         "kind": 2,
         "importPath": "api.app",
         "description": "api.app",
-        "peekOfCode": "def send_(IP):\n    return requests.post(\n        f\"https://api.telegram.org/bot{writer}/sendMessage\",\n        json={\n            \"chat_id\": \"@share_v2ray_file\",\n            \"text\": f\"{IP} vừa truy cập v2tool.vercel.app\",\n        },\n    ).text\n@app.route(\"/\")\ndef handle_query():",
+        "peekOfCode": "def send_(IP):\n    return\n    requests.post(\n        f\"https://api.telegram.org/bot{writer}/sendMessage\",\n        json={\n            \"chat_id\": \"@share_v2ray_file\",\n            \"text\": f\"{IP} vừa truy cập v2tool.vercel.app\",\n        },\n    ).text\n@app.route(\"/\")",
         "detail": "api.app",
         "documentation": {}
     },
@@ -441,7 +441,7 @@
         "kind": 5,
         "importPath": "api.app",
         "description": "api.app",
-        "peekOfCode": "app = Flask(__name__)\ndef send_(IP):\n    return requests.post(\n        f\"https://api.telegram.org/bot{writer}/sendMessage\",\n        json={\n            \"chat_id\": \"@share_v2ray_file\",\n            \"text\": f\"{IP} vừa truy cập v2tool.vercel.app\",\n        },\n    ).text\n@app.route(\"/\")",
+        "peekOfCode": "app = Flask(__name__)\ndef send_(IP):\n    return\n    requests.post(\n        f\"https://api.telegram.org/bot{writer}/sendMessage\",\n        json={\n            \"chat_id\": \"@share_v2ray_file\",\n            \"text\": f\"{IP} vừa truy cập v2tool.vercel.app\",\n        },\n    ).text",
         "detail": "api.app",
         "documentation": {}
     },
@@ -630,7 +630,7 @@
         "kind": 5,
         "importPath": "src.environment",
         "description": "src.environment",
-        "peekOfCode": "keys_url = os.environ[\"SECRET\"]\nreq = requests.get(keys_url, timeout=99)\nresponse = req.json()\ndb_url = response[\"database\"][\"notes\"]\nwriter = response[\"bot\"][\"writer\"]",
+        "peekOfCode": "keys_url = os.environ[\"SECRET\"]\nreq = requests.get(keys_url, timeout=99)\nresponse = req.json()\ndb_url = response[\"postgres\"][\"neon\"]\nwriter = response[\"bot\"][\"writer\"]",
         "detail": "src.environment",
         "documentation": {}
     },
@@ -639,7 +639,7 @@
         "kind": 5,
         "importPath": "src.environment",
         "description": "src.environment",
-        "peekOfCode": "req = requests.get(keys_url, timeout=99)\nresponse = req.json()\ndb_url = response[\"database\"][\"notes\"]\nwriter = response[\"bot\"][\"writer\"]",
+        "peekOfCode": "req = requests.get(keys_url, timeout=99)\nresponse = req.json()\ndb_url = response[\"postgres\"][\"neon\"]\nwriter = response[\"bot\"][\"writer\"]",
         "detail": "src.environment",
         "documentation": {}
     },
@@ -648,7 +648,7 @@
         "kind": 5,
         "importPath": "src.environment",
         "description": "src.environment",
-        "peekOfCode": "response = req.json()\ndb_url = response[\"database\"][\"notes\"]\nwriter = response[\"bot\"][\"writer\"]",
+        "peekOfCode": "response = req.json()\ndb_url = response[\"postgres\"][\"neon\"]\nwriter = response[\"bot\"][\"writer\"]",
         "detail": "src.environment",
         "documentation": {}
     },
@@ -657,7 +657,7 @@
         "kind": 5,
         "importPath": "src.environment",
         "description": "src.environment",
-        "peekOfCode": "db_url = response[\"database\"][\"notes\"]\nwriter = response[\"bot\"][\"writer\"]",
+        "peekOfCode": "db_url = response[\"postgres\"][\"neon\"]\nwriter = response[\"bot\"][\"writer\"]",
         "detail": "src.environment",
         "documentation": {}
     },
