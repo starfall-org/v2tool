@@ -114,14 +114,6 @@
         "documentation": {}
     },
     {
-        "label": "Client",
-        "importPath": "src.database.client",
-        "description": "src.database.client",
-        "isExtraImport": true,
-        "detail": "src.database.client",
-        "documentation": {}
-    },
-    {
         "label": "processes",
         "importPath": "src.editor",
         "description": "src.editor",
@@ -374,30 +366,6 @@
         "description": "src.application",
         "isExtraImport": true,
         "detail": "src.application",
-        "documentation": {}
-    },
-    {
-        "label": "BlockingScheduler",
-        "importPath": "apscheduler.schedulers.blocking",
-        "description": "apscheduler.schedulers.blocking",
-        "isExtraImport": true,
-        "detail": "apscheduler.schedulers.blocking",
-        "documentation": {}
-    },
-    {
-        "label": "get_responses",
-        "importPath": "src.http_req",
-        "description": "src.http_req",
-        "isExtraImport": true,
-        "detail": "src.http_req",
-        "documentation": {}
-    },
-    {
-        "label": "run_proxy",
-        "importPath": "src.set_proxy",
-        "description": "src.set_proxy",
-        "isExtraImport": true,
-        "detail": "src.set_proxy",
         "documentation": {}
     },
     {
@@ -740,33 +708,6 @@
         "description": "src.set_proxy",
         "peekOfCode": "proxy_url = os.getenv(\"PROXY_URL\")\ndef test_proxy():\n    start_time = time.time()\n    while True:\n        if time.time() - start_time >= 3:\n            return False\n        try:\n            requests.get(\n                \"https://www.google.com/generate_204\", timeout=1, proxies=proxies\n            )",
         "detail": "src.set_proxy",
-        "documentation": {}
-    },
-    {
-        "label": "get_update",
-        "kind": 2,
-        "importPath": "updater",
-        "description": "updater",
-        "peekOfCode": "def get_update(name: str):\n    run_proxy()\n    db = Client()\n    urls = db.list(name)\n    links = get_responses(urls)\n    if links:\n        db.update(name, \"\\n\".join(links))\n    return links\ndef updater():\n    get_update(\"share\")",
-        "detail": "updater",
-        "documentation": {}
-    },
-    {
-        "label": "updater",
-        "kind": 2,
-        "importPath": "updater",
-        "description": "updater",
-        "peekOfCode": "def updater():\n    get_update(\"share\")\n    get_update(\"v2ray\")\n    os.system(\"pkill -9 lite\")\nscheduler.add_job(updater, \"interval\", minutes=30)\nprint(\"starting...\")\nscheduler.start()",
-        "detail": "updater",
-        "documentation": {}
-    },
-    {
-        "label": "scheduler",
-        "kind": 5,
-        "importPath": "updater",
-        "description": "updater",
-        "peekOfCode": "scheduler = BlockingScheduler()\ndef get_update(name: str):\n    run_proxy()\n    db = Client()\n    urls = db.list(name)\n    links = get_responses(urls)\n    if links:\n        db.update(name, \"\\n\".join(links))\n    return links\ndef updater():",
-        "detail": "updater",
         "documentation": {}
     }
 ]
