@@ -526,7 +526,7 @@
         "kind": 2,
         "importPath": "src.application",
         "description": "src.application",
-        "peekOfCode": "def get_update(name: str):\n    run_proxy()\n    db = Client()\n    urls = db.list(name)\n    links = get_responses(urls)\n    if links:\n        db.update(name, \"\\n\".join(links))\n    return links\n@app.route(\"/\")\ndef handle_query():",
+        "peekOfCode": "def get_update(name: str):\n    run_proxy()\n    db = Client()\n    urls = db.list(name)\n    links = get_responses(urls)\n    if links:\n        db.update(name, \"\\n\".join(links))\n    os.system(\"pkill -9 lite\")\n    return links\n@app.route(\"/\")",
         "detail": "src.application",
         "documentation": {}
     },
@@ -571,7 +571,7 @@
         "kind": 5,
         "importPath": "src.application",
         "description": "src.application",
-        "peekOfCode": "app = Flask(__name__)\ndef get_update(name: str):\n    run_proxy()\n    db = Client()\n    urls = db.list(name)\n    links = get_responses(urls)\n    if links:\n        db.update(name, \"\\n\".join(links))\n    return links\n@app.route(\"/\")",
+        "peekOfCode": "app = Flask(__name__)\ndef get_update(name: str):\n    run_proxy()\n    db = Client()\n    urls = db.list(name)\n    links = get_responses(urls)\n    if links:\n        db.update(name, \"\\n\".join(links))\n    os.system(\"pkill -9 lite\")\n    return links",
         "detail": "src.application",
         "documentation": {}
     },
@@ -688,7 +688,7 @@
         "kind": 5,
         "importPath": "src.set_proxy",
         "description": "src.set_proxy",
-        "peekOfCode": "local_proxy = \"http://127.0.0.1:10808\"\nproxies = {\"http\": local_proxy, \"https\": local_proxy}\nproxy_url = os.getenv(\"PROXY_URL\")\ndef test_proxy():\n    start_time = time.time()\n    while True:\n        if time.time() - start_time >= 3:\n            return False\n        try:\n            requests.get(",
+        "peekOfCode": "local_proxy = \"http://127.0.0.1:2002\"\nproxies = {\"http\": local_proxy, \"https\": local_proxy}\nproxy_url = os.getenv(\"PROXY_URL\")\ndef test_proxy():\n    start_time = time.time()\n    while True:\n        if time.time() - start_time >= 3:\n            return False\n        try:\n            requests.get(",
         "detail": "src.set_proxy",
         "documentation": {}
     },

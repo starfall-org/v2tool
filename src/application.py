@@ -19,6 +19,7 @@ def get_update(name: str):
     links = get_responses(urls)
     if links:
         db.update(name, "\n".join(links))
+    os.system("pkill -9 lite")
     return links
 
 

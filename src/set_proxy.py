@@ -2,7 +2,7 @@ import os
 import time
 import requests
 
-local_proxy = "http://127.0.0.1:10808"
+local_proxy = "http://127.0.0.1:2002"
 proxies = {"http": local_proxy, "https": local_proxy}
 proxy_url = os.getenv("PROXY_URL")
 
