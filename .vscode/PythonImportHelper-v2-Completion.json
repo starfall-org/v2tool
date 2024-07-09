@@ -679,7 +679,7 @@
         "kind": 2,
         "importPath": "src.set_proxy",
         "description": "src.set_proxy",
-        "peekOfCode": "def run_proxy():\n    r = requests.get(proxy_url)\n    config = r.text\n    os.system(\"pkill -9 lite\")\n    os.system(f\"./lite -p 10808 {config} &\")\n    return test_proxy()",
+        "peekOfCode": "def run_proxy():\n    r = requests.get(proxy_url)\n    config = r.text\n    os.system(\"pkill -9 lite\")\n    os.system(f\"./lite -p 2002 {config} &\")\n    return test_proxy()",
         "detail": "src.set_proxy",
         "documentation": {}
     },
