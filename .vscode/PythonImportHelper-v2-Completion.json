@@ -598,7 +598,7 @@
         "kind": 5,
         "importPath": "src.environment",
         "description": "src.environment",
-        "peekOfCode": "keys_url = os.environ[\"SECRET\"]\nreq = requests.get(keys_url, timeout=99)\nresponse = req.json()\ndb_url = response[\"postgres\"][\"neon\"]\nwriter = response[\"bot\"][\"writer\"]",
+        "peekOfCode": "keys_url = os.environ[\"SECRET\"]\nreq = requests.get(keys_url, timeout=99)\nresponse = req.json()\ndb_url = response[\"sql\"][\"neon\"]\nwriter = response[\"bot\"][\"writer\"]",
         "detail": "src.environment",
         "documentation": {}
     },
@@ -607,7 +607,7 @@
         "kind": 5,
         "importPath": "src.environment",
         "description": "src.environment",
-        "peekOfCode": "req = requests.get(keys_url, timeout=99)\nresponse = req.json()\ndb_url = response[\"postgres\"][\"neon\"]\nwriter = response[\"bot\"][\"writer\"]",
+        "peekOfCode": "req = requests.get(keys_url, timeout=99)\nresponse = req.json()\ndb_url = response[\"sql\"][\"neon\"]\nwriter = response[\"bot\"][\"writer\"]",
         "detail": "src.environment",
         "documentation": {}
     },
@@ -616,7 +616,7 @@
         "kind": 5,
         "importPath": "src.environment",
         "description": "src.environment",
-        "peekOfCode": "response = req.json()\ndb_url = response[\"postgres\"][\"neon\"]\nwriter = response[\"bot\"][\"writer\"]",
+        "peekOfCode": "response = req.json()\ndb_url = response[\"sql\"][\"neon\"]\nwriter = response[\"bot\"][\"writer\"]",
         "detail": "src.environment",
         "documentation": {}
     },
@@ -625,7 +625,7 @@
         "kind": 5,
         "importPath": "src.environment",
         "description": "src.environment",
-        "peekOfCode": "db_url = response[\"postgres\"][\"neon\"]\nwriter = response[\"bot\"][\"writer\"]",
+        "peekOfCode": "db_url = response[\"sql\"][\"neon\"]\nwriter = response[\"bot\"][\"writer\"]",
         "detail": "src.environment",
         "documentation": {}
     },
