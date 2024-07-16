@@ -1,4 +1,3 @@
-import os
 from sqlalchemy import create_engine, select
 from sqlalchemy.orm import Session
 from .model import Base, Note
@@ -7,7 +6,9 @@ from ..environment import db_url
 
 class Client:
     def __init__(self) -> None:
-        engine = create_engine(db_url)
+        engine = create_engine(
+            db_url, connect_args={"check_same_thread": False}, echo=True
+        )
         Base.metadata.create_all(engine)
         self.session = Session(engine)
 
