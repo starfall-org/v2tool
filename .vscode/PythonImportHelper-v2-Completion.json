@@ -1,0 +1,713 @@
+[
+    {
+        "label": "base64",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "base64",
+        "description": "base64",
+        "detail": "base64",
+        "documentation": {}
+    },
+    {
+        "label": "requests",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "requests",
+        "description": "requests",
+        "detail": "requests",
+        "documentation": {}
+    },
+    {
+        "label": "Flask",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "Response",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "request",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "render_template",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "redirect",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "jsonify",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "Flask",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "Response",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "request",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "render_template",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "redirect",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "Client",
+        "importPath": "src.database.client",
+        "description": "src.database.client",
+        "isExtraImport": true,
+        "detail": "src.database.client",
+        "documentation": {}
+    },
+    {
+        "label": "processes",
+        "importPath": "src.editor",
+        "description": "src.editor",
+        "isExtraImport": true,
+        "detail": "src.editor",
+        "documentation": {}
+    },
+    {
+        "label": "writer",
+        "importPath": "src.environment",
+        "description": "src.environment",
+        "isExtraImport": true,
+        "detail": "src.environment",
+        "documentation": {}
+    },
+    {
+        "label": "create_engine",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "select",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "String",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "BigInteger",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "Session",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
+        "label": "Mapped",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
+        "label": "DeclarativeBase",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
+        "label": "mapped_column",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "Deta",
+        "importPath": "database.deta",
+        "description": "database.deta",
+        "isExtraImport": true,
+        "detail": "database.deta",
+        "documentation": {}
+    },
+    {
+        "label": "MongoClient",
+        "importPath": "pymongo",
+        "description": "pymongo",
+        "isExtraImport": true,
+        "detail": "pymongo",
+        "documentation": {}
+    },
+    {
+        "label": "socket",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "socket",
+        "description": "socket",
+        "detail": "socket",
+        "documentation": {}
+    },
+    {
+        "label": "urlparse",
+        "importPath": "urllib.parse",
+        "description": "urllib.parse",
+        "isExtraImport": true,
+        "detail": "urllib.parse",
+        "documentation": {}
+    },
+    {
+        "label": "parse_qs",
+        "importPath": "urllib.parse",
+        "description": "urllib.parse",
+        "isExtraImport": true,
+        "detail": "urllib.parse",
+        "documentation": {}
+    },
+    {
+        "label": "urlencode",
+        "importPath": "urllib.parse",
+        "description": "urllib.parse",
+        "isExtraImport": true,
+        "detail": "urllib.parse",
+        "documentation": {}
+    },
+    {
+        "label": "urlunparse",
+        "importPath": "urllib.parse",
+        "description": "urllib.parse",
+        "isExtraImport": true,
+        "detail": "urllib.parse",
+        "documentation": {}
+    },
+    {
+        "label": "urlparse",
+        "importPath": "urllib.parse",
+        "description": "urllib.parse",
+        "isExtraImport": true,
+        "detail": "urllib.parse",
+        "documentation": {}
+    },
+    {
+        "label": "parse_qs",
+        "importPath": "urllib.parse",
+        "description": "urllib.parse",
+        "isExtraImport": true,
+        "detail": "urllib.parse",
+        "documentation": {}
+    },
+    {
+        "label": "urlencode",
+        "importPath": "urllib.parse",
+        "description": "urllib.parse",
+        "isExtraImport": true,
+        "detail": "urllib.parse",
+        "documentation": {}
+    },
+    {
+        "label": "urlunparse",
+        "importPath": "urllib.parse",
+        "description": "urllib.parse",
+        "isExtraImport": true,
+        "detail": "urllib.parse",
+        "documentation": {}
+    },
+    {
+        "label": "unquote",
+        "importPath": "urllib.parse",
+        "description": "urllib.parse",
+        "isExtraImport": true,
+        "detail": "urllib.parse",
+        "documentation": {}
+    },
+    {
+        "label": "re",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "re",
+        "description": "re",
+        "detail": "re",
+        "documentation": {}
+    },
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "Thread",
+        "importPath": "threading",
+        "description": "threading",
+        "isExtraImport": true,
+        "detail": "threading",
+        "documentation": {}
+    },
+    {
+        "label": "concurrent.futures",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "concurrent.futures",
+        "description": "concurrent.futures",
+        "detail": "concurrent.futures",
+        "documentation": {}
+    },
+    {
+        "label": "pika",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pika",
+        "description": "pika",
+        "detail": "pika",
+        "documentation": {}
+    },
+    {
+        "label": "DeliveryMode",
+        "importPath": "pika",
+        "description": "pika",
+        "isExtraImport": true,
+        "detail": "pika",
+        "documentation": {}
+    },
+    {
+        "label": "time",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "time",
+        "description": "time",
+        "detail": "time",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "importPath": "src.application",
+        "description": "src.application",
+        "isExtraImport": true,
+        "detail": "src.application",
+        "documentation": {}
+    },
+    {
+        "label": "send_",
+        "kind": 2,
+        "importPath": "api.app",
+        "description": "api.app",
+        "peekOfCode": "def send_(IP):\n    return\n    requests.post(\n        f\"https://api.telegram.org/bot{writer}/sendMessage\",\n        json={\n            \"chat_id\": \"@share_v2ray_file\",\n            \"text\": f\"{IP} vừa truy cập v2tool.vercel.app\",\n        },\n    ).text\n@app.route(\"/\")",
+        "detail": "api.app",
+        "documentation": {}
+    },
+    {
+        "label": "handle_query",
+        "kind": 2,
+        "importPath": "api.app",
+        "description": "api.app",
+        "peekOfCode": "def handle_query():\n    headers = request.headers\n    print(send_(headers[\"X-Real-Ip\"]))\n    query_url = request.args.get(\"url\")\n    if not query_url:\n        return render_template(\"index.html\")\n    endpoint = request.args.get(\"endpoint\")\n    sni = request.args.get(\"sni\")\n    if endpoint == \"v2ray-subscribe\":\n        return redirect(",
+        "detail": "api.app",
+        "documentation": {}
+    },
+    {
+        "label": "get_note",
+        "kind": 2,
+        "importPath": "api.app",
+        "description": "api.app",
+        "peekOfCode": "def get_note(note):\n    headers = request.headers\n    print(send_(headers[\"X-Real-Ip\"]))\n    db = Client()\n    uuid = request.args.get(\"uuid\")\n    sni = request.args.get(\"sni\")\n    tag = request.args.get(\"tag\")\n    try:\n        list_links = db.get(note).content.splitlines()\n        links = processes(list_links, uuid, sni, tag)",
+        "detail": "api.app",
+        "documentation": {}
+    },
+    {
+        "label": "get_headers",
+        "kind": 2,
+        "importPath": "api.app",
+        "description": "api.app",
+        "peekOfCode": "def get_headers():\n    headers = []\n    for key, value in request.headers:\n        headers.append({key: value})\n    return jsonify(headers)",
+        "detail": "api.app",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "api.app",
+        "description": "api.app",
+        "peekOfCode": "app = Flask(__name__)\ndef send_(IP):\n    return\n    requests.post(\n        f\"https://api.telegram.org/bot{writer}/sendMessage\",\n        json={\n            \"chat_id\": \"@share_v2ray_file\",\n            \"text\": f\"{IP} vừa truy cập v2tool.vercel.app\",\n        },\n    ).text",
+        "detail": "api.app",
+        "documentation": {}
+    },
+    {
+        "label": "Client",
+        "kind": 6,
+        "importPath": "src.database.client",
+        "description": "src.database.client",
+        "peekOfCode": "class Client:\n    def __init__(self) -> None:\n        engine = create_engine(\n            db_url, connect_args={\"check_same_thread\": False}, echo=True\n        )\n        Base.metadata.create_all(engine)\n        self.session = Session(engine)\n    def get(self, name: str) -> Note:\n        sql = select(Note).where(Note.name == name)\n        return self.session.scalars(sql).first()",
+        "detail": "src.database.client",
+        "documentation": {}
+    },
+    {
+        "label": "get_data",
+        "kind": 2,
+        "importPath": "src.database.deta",
+        "description": "src.database.deta",
+        "peekOfCode": "def get_data(filename):\n    entry = db.get(filename)\n    if entry:\n        return entry[\"urls\"]\n    else:\n        raise Exception(\"Không tìm thấy dữ liệu\")",
+        "detail": "src.database.deta",
+        "documentation": {}
+    },
+    {
+        "label": "deta",
+        "kind": 5,
+        "importPath": "src.database.deta",
+        "description": "src.database.deta",
+        "peekOfCode": "deta = Deta(os.getenv(\"DETA_KEY\"))\ndb = deta.Base(\"notes\")\ndef get_data(filename):\n    entry = db.get(filename)\n    if entry:\n        return entry[\"urls\"]\n    else:\n        raise Exception(\"Không tìm thấy dữ liệu\")",
+        "detail": "src.database.deta",
+        "documentation": {}
+    },
+    {
+        "label": "db",
+        "kind": 5,
+        "importPath": "src.database.deta",
+        "description": "src.database.deta",
+        "peekOfCode": "db = deta.Base(\"notes\")\ndef get_data(filename):\n    entry = db.get(filename)\n    if entry:\n        return entry[\"urls\"]\n    else:\n        raise Exception(\"Không tìm thấy dữ liệu\")",
+        "detail": "src.database.deta",
+        "documentation": {}
+    },
+    {
+        "label": "Base",
+        "kind": 6,
+        "importPath": "src.database.model",
+        "description": "src.database.model",
+        "peekOfCode": "class Base(DeclarativeBase):\n    pass\nclass Note(Base):\n    __tablename__ = \"notes\"\n    name: Mapped[str] = mapped_column(String, primary_key=True)\n    urls: Mapped[str] = mapped_column(String)\n    content: Mapped[str] = mapped_column(String)\n    user_id: Mapped[int] = mapped_column(BigInteger)\n    def __repr__(self) -> str:\n        obj = dict(",
+        "detail": "src.database.model",
+        "documentation": {}
+    },
+    {
+        "label": "Note",
+        "kind": 6,
+        "importPath": "src.database.model",
+        "description": "src.database.model",
+        "peekOfCode": "class Note(Base):\n    __tablename__ = \"notes\"\n    name: Mapped[str] = mapped_column(String, primary_key=True)\n    urls: Mapped[str] = mapped_column(String)\n    content: Mapped[str] = mapped_column(String)\n    user_id: Mapped[int] = mapped_column(BigInteger)\n    def __repr__(self) -> str:\n        obj = dict(\n            name=self.name,\n            urls=self.urls.splitlines(),",
+        "detail": "src.database.model",
+        "documentation": {}
+    },
+    {
+        "label": "NoKeyError",
+        "kind": 6,
+        "importPath": "src.database.mongo",
+        "description": "src.database.mongo",
+        "peekOfCode": "class NoKeyError(Exception):\n    pass\nclass Mongo:\n    def __init__(self):\n        db_url = os.getenv(\"MONGO_URL\")\n        client = MongoClient(db_url)\n        db = client.mo9973_notes\n        self.notes = db.notes\n        self.content = db.content\n    def get(self, note):",
+        "detail": "src.database.mongo",
+        "documentation": {}
+    },
+    {
+        "label": "Mongo",
+        "kind": 6,
+        "importPath": "src.database.mongo",
+        "description": "src.database.mongo",
+        "peekOfCode": "class Mongo:\n    def __init__(self):\n        db_url = os.getenv(\"MONGO_URL\")\n        client = MongoClient(db_url)\n        db = client.mo9973_notes\n        self.notes = db.notes\n        self.content = db.content\n    def get(self, note):\n        result = self.notes.find_one({\"_id\": note})\n        if result:",
+        "detail": "src.database.mongo",
+        "documentation": {}
+    },
+    {
+        "label": "get_loc",
+        "kind": 2,
+        "importPath": "src.protocols.func",
+        "description": "src.protocols.func",
+        "peekOfCode": "def get_loc(addr: str = \"www.google.com\"):\n    host = socket.gethostbyaddr(addr)\n    ip = host[2][0]\n    req = requests.get(f\"https://ipinfo.io/{ip}\")\n    res = req.json()\n    city = res.get(\"city\")\n    country = res.get(\"country\")\n    org = res.get(\"org\")\n    if org:\n        org = \" \".join(org.split(\" \")[1:])",
+        "detail": "src.protocols.func",
+        "documentation": {}
+    },
+    {
+        "label": "edit",
+        "kind": 2,
+        "importPath": "src.protocols.trojan",
+        "description": "src.protocols.trojan",
+        "peekOfCode": "def edit(link, set_uuid, set_sni, set_tag):\n    link = urlparse(link)\n    query = parse_qs(link.query)\n    full_netloc = link.netloc\n    netloc = full_netloc.split(\"@\")\n    ip = netloc[1].split(\":\")[0]\n    if ip in [\"127.0.0.1\", \"1.1.1.1\", \"0.0.0.0\", \"8.8.8.8\"]:\n        return\n    if set_uuid:\n        netloc[0] = set_uuid",
+        "detail": "src.protocols.trojan",
+        "documentation": {}
+    },
+    {
+        "label": "edit",
+        "kind": 2,
+        "importPath": "src.protocols.vless",
+        "description": "src.protocols.vless",
+        "peekOfCode": "def edit(link, set_uuid, set_sni, set_tag):\n    link = urlparse(link)\n    query = parse_qs(link.query)\n    full_netloc = link.netloc\n    netloc = full_netloc.split(\"@\")\n    ip = netloc[1].split(\":\")[0]\n    if ip in [\"127.0.0.1\", \"1.1.1.1\", \"0.0.0.0\", \"8.8.8.8\"]:\n        return\n    if set_uuid:\n        netloc[0] = set_uuid",
+        "detail": "src.protocols.vless",
+        "documentation": {}
+    },
+    {
+        "label": "edit",
+        "kind": 2,
+        "importPath": "src.protocols.vmess",
+        "description": "src.protocols.vmess",
+        "peekOfCode": "def edit(link, set_uuid, set_sni, set_tag):\n    code = link.split(\"://\")[1]\n    config = base64.b64decode(code).decode(\"utf-8\")\n    config = json.loads(config)\n    netloc = config[\"id\"] + \"@\" + config[\"add\"] + \":\" + config[\"port\"]\n    ip = config[\"add\"]\n    net = config[\"net\"]\n    if ip in [\"127.0.0.1\", \"1.1.1.1\", \"0.0.0.0\", \"8.8.8.8\"]:\n        return\n    if set_tag:",
+        "detail": "src.protocols.vmess",
+        "documentation": {}
+    },
+    {
+        "label": "get_update",
+        "kind": 2,
+        "importPath": "src.application",
+        "description": "src.application",
+        "peekOfCode": "def get_update(name: str):\n    run_proxy()\n    db = Client()\n    urls = db.list(name)\n    links = get_responses(urls)\n    if links:\n        db.update(name, \"\\n\".join(links))\n    os.system(\"pkill -9 lite\")\n    return links\n@app.route(\"/\")",
+        "detail": "src.application",
+        "documentation": {}
+    },
+    {
+        "label": "handle_query",
+        "kind": 2,
+        "importPath": "src.application",
+        "description": "src.application",
+        "peekOfCode": "def handle_query():\n    query_url = request.args.get(\"url\")\n    if not query_url:\n        return render_template(\"index.html\")\n    endpoint = request.args.get(\"endpoint\")\n    uuid = request.args.get(\"uuid\")\n    sni = request.args.get(\"sni\")\n    tag = request.args.get(\"tag\")\n    if endpoint == \"v2ray-subscribe\":\n        return redirect(",
+        "detail": "src.application",
+        "documentation": {}
+    },
+    {
+        "label": "update_note",
+        "kind": 2,
+        "importPath": "src.application",
+        "description": "src.application",
+        "peekOfCode": "def update_note(note):\n    uuid = request.args.get(\"uuid\")\n    sni = request.args.get(\"sni\")\n    tag = request.args.get(\"tag\")\n    try:\n        list_links = get_update(note)\n        links = processes(list_links, uuid, sni, tag)\n        links = \"\\n\".join(links).encode(\"utf-8\")\n        result = base64.b64encode(links).decode(\"utf-8\")\n        return Response(result, mimetype=\"text/plain\")",
+        "detail": "src.application",
+        "documentation": {}
+    },
+    {
+        "label": "get_note",
+        "kind": 2,
+        "importPath": "src.application",
+        "description": "src.application",
+        "peekOfCode": "def get_note(note):\n    db = Client()\n    uuid = request.args.get(\"uuid\")\n    sni = request.args.get(\"sni\")\n    tag = request.args.get(\"tag\")\n    try:\n        try:\n            list_links = db.get(note).content.splitlines()\n            Thread(target=publish, args=(note,)).start()\n        except Exception as e:",
+        "detail": "src.application",
+        "documentation": {}
+    },
+    {
+        "label": "check_server",
+        "kind": 2,
+        "importPath": "src.application",
+        "description": "src.application",
+        "peekOfCode": "def check_server():\n    variables = os.environ\n    result = []\n    for key, value in variables.items():\n        result.append(f\"{key}: {value}\")\n    return \"\\n\\n\\n\".join(result), 200, {\"content-type\": \"text/plain\"}",
+        "detail": "src.application",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "src.application",
+        "description": "src.application",
+        "peekOfCode": "app = Flask(__name__)\ndef get_update(name: str):\n    run_proxy()\n    db = Client()\n    urls = db.list(name)\n    links = get_responses(urls)\n    if links:\n        db.update(name, \"\\n\".join(links))\n    os.system(\"pkill -9 lite\")\n    return links",
+        "detail": "src.application",
+        "documentation": {}
+    },
+    {
+        "label": "editor",
+        "kind": 2,
+        "importPath": "src.editor",
+        "description": "src.editor",
+        "peekOfCode": "def editor(\n    batch: list, values: set, uuid: str = None, sni: str = None, tag: str = None\n):\n    for link in batch:\n        if link.startswith(\"vmess\"):\n            link = vmess.edit(link, uuid, sni, tag)\n        elif link.startswith(\"trojan\"):\n            link = trojan.edit(link, uuid, sni, tag)\n        elif link.startswith(\"vless\"):\n            link = vless.edit(link, uuid, sni, tag)",
+        "detail": "src.editor",
+        "documentation": {}
+    },
+    {
+        "label": "processes",
+        "kind": 2,
+        "importPath": "src.editor",
+        "description": "src.editor",
+        "peekOfCode": "def processes(links: list, uuid: str = None, sni: str = None, tag: str = None):\n    batch_size = 10\n    values = set()\n    duplicate = []\n    result = []\n    def process_batch(batch):\n        try:\n            editor(batch, values, uuid, sni, tag)\n        except Exception as e:\n            print(e)",
+        "detail": "src.editor",
+        "documentation": {}
+    },
+    {
+        "label": "keys_url",
+        "kind": 5,
+        "importPath": "src.environment",
+        "description": "src.environment",
+        "peekOfCode": "keys_url = os.environ[\"SECRET\"]\nreq = requests.get(keys_url, timeout=99)\nresponse = req.json()\ndb_url = response[\"db\"][\"libsql\"]\nwriter = response[\"access\"][\"telegram\"][\"writer\"]",
+        "detail": "src.environment",
+        "documentation": {}
+    },
+    {
+        "label": "req",
+        "kind": 5,
+        "importPath": "src.environment",
+        "description": "src.environment",
+        "peekOfCode": "req = requests.get(keys_url, timeout=99)\nresponse = req.json()\ndb_url = response[\"db\"][\"libsql\"]\nwriter = response[\"access\"][\"telegram\"][\"writer\"]",
+        "detail": "src.environment",
+        "documentation": {}
+    },
+    {
+        "label": "response",
+        "kind": 5,
+        "importPath": "src.environment",
+        "description": "src.environment",
+        "peekOfCode": "response = req.json()\ndb_url = response[\"db\"][\"libsql\"]\nwriter = response[\"access\"][\"telegram\"][\"writer\"]",
+        "detail": "src.environment",
+        "documentation": {}
+    },
+    {
+        "label": "db_url",
+        "kind": 5,
+        "importPath": "src.environment",
+        "description": "src.environment",
+        "peekOfCode": "db_url = response[\"db\"][\"libsql\"]\nwriter = response[\"access\"][\"telegram\"][\"writer\"]",
+        "detail": "src.environment",
+        "documentation": {}
+    },
+    {
+        "label": "writer",
+        "kind": 5,
+        "importPath": "src.environment",
+        "description": "src.environment",
+        "peekOfCode": "writer = response[\"access\"][\"telegram\"][\"writer\"]",
+        "detail": "src.environment",
+        "documentation": {}
+    },
+    {
+        "label": "get_response",
+        "kind": 2,
+        "importPath": "src.http_req",
+        "description": "src.http_req",
+        "peekOfCode": "def get_response(url):\n    response = requests.get(\n        url, timeout=10, headers={\"User-Agent\": \"v2rayNG/*.*.*\"}, proxies=proxies\n    )\n    response = response.text\n    links = []\n    if any(proto in response for proto in [\"vmess:\", \"trojan:\", \"vless:\"]):\n        links.extend(response.splitlines())\n    elif any(proto in response for proto in [\"http:\", \"https:\"]):\n        url_pattern = r\"https?://(?:[-\\w.]|(?:%[\\da-fA-F]{2}))+\"",
+        "detail": "src.http_req",
+        "documentation": {}
+    },
+    {
+        "label": "get_responses",
+        "kind": 2,
+        "importPath": "src.http_req",
+        "description": "src.http_req",
+        "peekOfCode": "def get_responses(urls):\n    links = []\n    def process(url):\n        sub_response = requests.get(\n            url, timeout=10, headers={\"User-Agent\": \"v2rayNG/*.*.*\"}, proxies=proxies\n        )\n        sub_response = sub_response.text\n        if any(proto in sub_response for proto in [\"vmess:\", \"trojan:\", \"vless:\"]):\n            links.extend(sub_response.splitlines())\n        else:",
+        "detail": "src.http_req",
+        "documentation": {}
+    },
+    {
+        "label": "publish",
+        "kind": 2,
+        "importPath": "src.push",
+        "description": "src.push",
+        "peekOfCode": "def publish(data):\n    mq_url = os.getenv(\"MQ_URL\")\n    parameters = pika.URLParameters(mq_url)\n    connection = pika.BlockingConnection(parameters)\n    channel = connection.channel()\n    channel.basic_publish(\n        \"mq\",\n        \"standard_key\",\n        data,\n        pika.BasicProperties(",
+        "detail": "src.push",
+        "documentation": {}
+    },
+    {
+        "label": "test_proxy",
+        "kind": 2,
+        "importPath": "src.set_proxy",
+        "description": "src.set_proxy",
+        "peekOfCode": "def test_proxy():\n    start_time = time.time()\n    while True:\n        if time.time() - start_time >= 3:\n            return False\n        try:\n            requests.get(\n                \"https://www.google.com/generate_204\", timeout=1, proxies=proxies\n            )\n            return True",
+        "detail": "src.set_proxy",
+        "documentation": {}
+    },
+    {
+        "label": "run_proxy",
+        "kind": 2,
+        "importPath": "src.set_proxy",
+        "description": "src.set_proxy",
+        "peekOfCode": "def run_proxy():\n    r = requests.get(proxy_url)\n    config = r.text\n    os.system(\"pkill -9 lite\")\n    os.system(f\"./lite -p 2002 {config} &\")\n    return test_proxy()",
+        "detail": "src.set_proxy",
+        "documentation": {}
+    },
+    {
+        "label": "local_proxy",
+        "kind": 5,
+        "importPath": "src.set_proxy",
+        "description": "src.set_proxy",
+        "peekOfCode": "local_proxy = \"http://127.0.0.1:2002\"\nproxies = {\"http\": local_proxy, \"https\": local_proxy}\nproxy_url = os.getenv(\"PROXY_URL\")\ndef test_proxy():\n    start_time = time.time()\n    while True:\n        if time.time() - start_time >= 3:\n            return False\n        try:\n            requests.get(",
+        "detail": "src.set_proxy",
+        "documentation": {}
+    },
+    {
+        "label": "proxies",
+        "kind": 5,
+        "importPath": "src.set_proxy",
+        "description": "src.set_proxy",
+        "peekOfCode": "proxies = {\"http\": local_proxy, \"https\": local_proxy}\nproxy_url = os.getenv(\"PROXY_URL\")\ndef test_proxy():\n    start_time = time.time()\n    while True:\n        if time.time() - start_time >= 3:\n            return False\n        try:\n            requests.get(\n                \"https://www.google.com/generate_204\", timeout=1, proxies=proxies",
+        "detail": "src.set_proxy",
+        "documentation": {}
+    },
+    {
+        "label": "proxy_url",
+        "kind": 5,
+        "importPath": "src.set_proxy",
+        "description": "src.set_proxy",
+        "peekOfCode": "proxy_url = os.getenv(\"PROXY_URL\")\ndef test_proxy():\n    start_time = time.time()\n    while True:\n        if time.time() - start_time >= 3:\n            return False\n        try:\n            requests.get(\n                \"https://www.google.com/generate_204\", timeout=1, proxies=proxies\n            )",
+        "detail": "src.set_proxy",
+        "documentation": {}
+    }
+]
