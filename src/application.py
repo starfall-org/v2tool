@@ -6,7 +6,6 @@ from flask import Flask, Response, request, render_template, redirect
 from .database.client import Client
 from .editor import processes
 from .http_req import get_response, get_responses
-from .push import publish
 from .set_proxy import run_proxy
 
 app = Flask(__name__)
@@ -68,7 +67,6 @@ def get_note(note):
     try:
         try:
             list_links = db.get(note).content.splitlines()
-            Thread(target=publish, args=(note,)).start()
         except Exception as e:
             print(e)
             list_links = get_update(note)
