@@ -12,8 +12,8 @@ def processes(links: list, uuid: str = None, sni: str = None, tag: str = None):
         elif link.startswith("vless"):
             result = vless.edit(link, uuid, sni, tag)
         else:
-            result = link
-        if result and len(result) == 2:
+            results.append(link)
+        if result and isinstance(result, tuple) and len(result) == 2:
             if result[1] not in duplicate:
                 results.append(result[0])
                 duplicate.append(result[1])
