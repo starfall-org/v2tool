@@ -1,28 +1,13 @@
 import base64
-import requests
 from flask import Flask, Response, request, render_template, redirect, jsonify
 from src.database.client import Client
 from src.editor import processes
-from src.environment import writer
 
 app = Flask(__name__)
 
 
-def send_(IP):
-    return
-    requests.post(
-        f"https://api.telegram.org/bot{writer}/sendMessage",
-        json={
-            "chat_id": "@share_v2ray_file",
-            "text": f"{IP} vừa truy cập v2tool.vercel.app",
-        },
-    ).text
-
-
 @app.route("/")
 def handle_query():
-    headers = request.headers
-    print(send_(headers["X-Real-Ip"]))
     query_url = request.args.get("url")
     if not query_url:
         return render_template("index.html")
@@ -38,8 +23,6 @@ def handle_query():
 
 @app.route("/get/<note>")
 def get_note(note):
-    headers = request.headers
-    print(send_(headers["X-Real-Ip"]))
     db = Client()
     uuid = request.args.get("uuid")
     sni = request.args.get("sni")
