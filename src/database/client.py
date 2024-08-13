@@ -13,7 +13,7 @@ class Client:
         self.session = Session(engine)
 
     def get(self, name: str) -> Note:
-        sql = select(Note).where(Note.name == name)
+        sql = select(Note).where(Note.title == name)
         return self.session.scalars(sql).first()
 
     def list(self, name: str) -> list:
@@ -24,9 +24,9 @@ class Client:
 
     def update(self, name: str, content: str) -> None:
         note = self.get(name)
-        note = Note(name=name, urls=note.urls, content=content, user_id=note.user_id)
+        note = Note(title=name, urls=note.urls, content=content, auth_id=note.user_id)
         self.session.merge(note)
         self.session.commit()
 
     def object(self, name: str, urls: str, content: str, user_id: int) -> Note:
-        return Note(name=name, urls=urls, content=content, user_id=user_id)
+        return Note(title=name, urls=urls, content=content, auth_id=user_id)
