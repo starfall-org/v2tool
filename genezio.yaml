@@ -1,0 +1,14 @@
+backend:
+    functions:
+        - entry: main.py
+          handler: app
+          name: flask
+          path: .
+          type: httpServer
+    language:
+        name: python
+        packageManager: pip
+    path: .
+name: v2tool-full
+region: us-east-1
+yamlVersion: 2
