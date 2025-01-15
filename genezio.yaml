@@ -1,14 +1,21 @@
-backend:
-    functions:
-        - entry: main.py
-          handler: app
-          name: flask
-          path: .
-          type: httpServer
-    language:
-        name: python
-        packageManager: pip
-    path: .
-name: v2tool-full
+name: v2tool
 region: us-east-1
 yamlVersion: 2
+backend:
+  path: .
+  language:
+    name: python
+    packageManager: pip
+  functions:
+    - name: flask
+      path: .
+      handler: app
+      entry: app.py
+      type: httpServer
+frontend:
+  path: .
+  publish: .
+  rewrites:
+    - from: ${{ backend.functions.flask.url }}/:slugs*
+      to: /:slugs*
+  subdomain: sapphire-causal-hornet
