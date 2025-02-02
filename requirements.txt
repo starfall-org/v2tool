@@ -1,5 +1,0 @@
-Flask
-flask-restx
-requests
-sqlalchemy
-sqlalchemy-libsql
