@@ -1,0 +1,21 @@
+{
+  "tasks": {
+    "dev": "deno run --watch index.ts"
+  },
+  "imports": {
+    "@libsql/client": "npm:@libsql/client@^0.14.0",
+    "@std/assert": "jsr:@std/assert@1",
+    "@types/pg": "npm:@types/pg@^8.11.11",
+    "drizzle-kit": "npm:drizzle-kit@^0.30.4",
+    "drizzle-orm": "npm:drizzle-orm@^0.39.3",
+    "pg": "npm:pg@^8.13.3"
+  },
+  "deploy": {
+    "project": "5d737787-0b06-45b9-b5f6-ac7539d45242",
+    "exclude": [
+      "**/node_modules"
+    ],
+    "include": [],
+    "entrypoint": "index.ts"
+  }
+}

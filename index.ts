@@ -1,16 +1,16 @@
-import { Hono } from "hono";
-import { eq } from "drizzle-orm";
-import { db } from "./db";
-import { notes } from "./schema";
-import { processes } from "./tool";
+import { Hono, Context } from "jsr:@hono/hono";
+import { eq } from "npm:drizzle-orm";
+import { db } from "./lib/db.ts";
+import { notes } from "./lib/schema.ts";
+import { processes } from "./lib/tool.ts";
 
 const app = new Hono();
 
-app.get("/", (c) => {
+app.get("/", (c: Context) => {
   return c.text("V2Tool");
 });
 
-app.get("/get/:note", async (c) => {
+app.get("/get/:note", async (c: Context) => {
   const note = c.req.param("note");
   const { uuid, sni, tag } = c.req.query();
 
