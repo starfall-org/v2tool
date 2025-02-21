@@ -1,8 +1,7 @@
 ```
-npm install
-npm run dev
+deno run
 ```
 
 ```
-npm run deploy
+deno deploy
 ```
